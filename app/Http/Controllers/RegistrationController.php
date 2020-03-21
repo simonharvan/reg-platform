@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RegistrationsExport;
 use App\Models\Country;
 use App\Models\Event;
 use App\Models\EventText;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RegistrationController extends Controller
 {
@@ -225,8 +227,6 @@ class RegistrationController extends Controller
                 $registration->save();
             }
 
-            $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
-            $event = Event::where('id', '=', Session::get('event_id'))->first();
             Session::flash('message', 'Registration was updated');
 
             return Redirect::route('registration.index');
@@ -251,42 +251,45 @@ class RegistrationController extends Controller
 
     public function downloadExcel()
     {
-        $registrations = Registration::where('event_id', '=', Session::get('event_id'))->with('group')->get();
-        $reg_export = array();
 
-        foreach ($registrations as $key => $registration) {
-
-
-            $room_type = 'Standard single';
-            if ($registration->room_type == 1) {
-                $room_type = 'Double twin beds';
-            } elseif ($registration->room_type == 2) {
-                $room_type = 'Double queen size bed';
-            } elseif ($registration->room_type == 3) {
-                $room_type = 'Executive Room';
-            }
-            $reg_export[] = array(
-                'id' => $registration->id,
-                'prefix' => $registration->prefix,
-                'first_name' => $registration->first_name,
-                'last_name' => $registration->last_name,
-                'organization' => $registration->organization,
-                'position' => $registration->position,
-                'address' => $registration->address,
-                'city' => $registration->city,
-                'postal_code' => $registration->postal_code,
-                'country' => $registration->country,
-                'nationality' => $registration->nationality,
-                'email' => $registration->email,
-                'assistant_email' => $registration->assistant_email,
-                'cc_assistant_email' => $registration->cc_assistant_email,
-                'phone' => $registration->phone,
-                'mobile_phone' => $registration->mobile_phone,
+        return Excel::download(new RegistrationsExport(Session::get('event_id')), 'registrations.xlsx');
+//        dd('something');
+//        $registrations = Registration::where('event_id', '=', Session::get('event_id'))->with('group')->get();
+//        $reg_export = array();
+//
+//        foreach ($registrations as $key => $registration) {
+//
+//
+//            $room_type = 'Standard single';
+//            if ($registration->room_type == 1) {
+//                $room_type = 'Double twin beds';
+//            } elseif ($registration->room_type == 2) {
+//                $room_type = 'Double queen size bed';
+//            } elseif ($registration->room_type == 3) {
+//                $room_type = 'Executive Room';
+//            }
+//            $reg_export[] = array(
+//                'id' => $registration->id,
+//                'prefix' => $registration->prefix,
+//                'first_name' => $registration->first_name,
+//                'last_name' => $registration->last_name,
+//                'organization' => $registration->organization,
+//                'position' => $registration->position,
+//                'address' => $registration->address,
+//                'city' => $registration->city,
+//                'postal_code' => $registration->postal_code,
+//                'country' => $registration->country,
+//                'nationality' => $registration->nationality,
+//                'email' => $registration->email,
+//                'assistant_email' => $registration->assistant_email,
+//                'cc_assistant_email' => $registration->cc_assistant_email,
+//                'phone' => $registration->phone,
+//                'mobile_phone' => $registration->mobile_phone,
 //				'fax'                => $registration->fax,
-                'attending_dates' => $registration->attending_dates,
-                '25_may_participation' => $registration->additional_info,
-                '26_may_participation' => $registration->additional_info_2,
-                '27_may_participation' => $registration->additional_info_3,
+//                'attending_dates' => $registration->attending_dates,
+//                '25_may_participation' => $registration->additional_info,
+//                '26_may_participation' => $registration->additional_info_2,
+//                '27_may_participation' => $registration->additional_info_3,
 //				'passport_number'              => $registration->passport_number,
 //				'passport_issued_by'           => $registration->passport_issued_by,
 //				'passport_date_of_issue'       => $registration->passport_date_of_issue,
@@ -346,17 +349,18 @@ class RegistrationController extends Controller
 //				'nr_of_per_diems'              => '',
 //				'total_amount_of_per_diems'    => '',
 //				'notes'                        => '',
-            );
-        }
+//            );
+//        }
         // dd($reg_export);
 
 
-        Excel::create('registrations', function ($excel) use ($reg_export) {
-            $excel->sheet('registrations', function ($sheet) use ($reg_export) {
-                // $sheet->fromModel(Registration::where('event_id' , '=' , Session::get('event_id'))->with('group')->get());
-                $sheet->fromArray($reg_export);
-            });
-        })->download('xls');
+//        Excel::create('registrations', function ($excel) use ($reg_export) {
+//            $excel->sheet('registrations', function ($sheet) use ($reg_export) {
+//                // $sheet->fromModel(Registration::where('event_id' , '=' , Session::get('event_id'))->with('group')->get());
+//                $sheet->fromArray($reg_export);
+//            });
+//        })->download('xls');
+
     }
 
     public function downloadPdf($id)

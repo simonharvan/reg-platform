@@ -51,7 +51,7 @@ Route::post('/', function (Request $request) {
     return View::make('login', array('error_message' => [$error_message]));
 });
 
-Route::resource('registration', 'RegistrationController');
+
 
 Route::get('logout', function () {
     Session::flush();
@@ -89,3 +89,5 @@ Route::get('thankyou', function () {
         'event_text' => $event_text,
     ]);
 });
+Route::get( 'registration/downloadExcel', 'RegistrationController@downloadExcel' );
+Route::resource('registration', 'RegistrationController');
