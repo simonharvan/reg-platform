@@ -1,21 +1,26 @@
-<?php 
-class Code extends Eloquent {
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Code extends Model {
     
     public $timestamps = false;
 
 	public function group()
     {
-        return $this->belongsTo('Group');
+        return $this->belongsTo('App\Models\Group');
     }
 
 	public function event()
     {
-        return $this->belongsTo('Event');
+        return $this->belongsTo('App\Models\Event');
     }
 
 	public function texts()
     {
-        return $this->hasMany('CodeText');
+        return $this->hasMany('App\Models\CodeText');
     }
 
 }

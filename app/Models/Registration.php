@@ -1,6 +1,10 @@
 <?php
 
-class Registration extends Eloquent {
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Registration extends Model {
 
 	protected $hidden = array( 'group_id', 'event_id' );
 
@@ -78,11 +82,11 @@ class Registration extends Eloquent {
 	);
 
 	public function group() {
-		return $this->belongsTo( 'Group' );
+		return $this->belongsTo( 'App\Models\Group' );
 	}
 
 	public function event() {
-		return $this->belongsTo( 'Event' );
+		return $this->belongsTo( 'App\Models\Event' );
 	}
 
 	public function setAttendingDatesAttribute( $value ) {

@@ -1,4 +1,9 @@
-<?php 
-class Country extends Eloquent {
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Country extends Model {
 
 }
