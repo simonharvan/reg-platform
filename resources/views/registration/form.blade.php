@@ -67,15 +67,8 @@
             {!! Former::text('phone') !!}
             {!! Former::text('mobile_phone')->required() !!}
             {!! Former::text('fax') !!}
-            {{--@if(!isset($registration))--}}
-            {{--{!! Former::file('photo')->accept('image/*')->required() !!}--}}
-            {{--@else--}}
-            {{--{!! Former::file('photo')->accept('image/*') !!}--}}
-            {{--@endif--}}
+            {!! Former::file('additional_file')->accept('image/*, application/pdf')->label('Press card') !!}
 
-            @if (Session::get('group_id', 0)==5)
-                {!! Former::file('additional_file')->accept('image/*, application/pdf')->label('Press card') !!}
-            @endif
         </div>
         <!-- /.panel-body -->
     </div>

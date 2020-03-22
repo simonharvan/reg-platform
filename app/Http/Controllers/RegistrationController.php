@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 class RegistrationController extends Controller
@@ -177,8 +179,6 @@ class RegistrationController extends Controller
             return Redirect::route('registration.index');
         }
 
-        // return View::make('registration.form_'.Session::get('event_id'))->with('registration', $registration);
-
         $country_list = Country::pluck('name', 'name');
 
         return View::make('registration.form', array(
@@ -246,126 +246,21 @@ class RegistrationController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        if (!isset($id) || $id === 'undefined'){
+            return abort(404);
+        }
+        Registration::where('id', '=', $id)->delete();
+        return response('Success',200);
     }
 
     public function downloadExcel()
     {
-
         return Excel::download(new RegistrationsExport(Session::get('event_id')), 'registrations.xlsx');
-//        dd('something');
-//        $registrations = Registration::where('event_id', '=', Session::get('event_id'))->with('group')->get();
-//        $reg_export = array();
-//
-//        foreach ($registrations as $key => $registration) {
-//
-//
-//            $room_type = 'Standard single';
-//            if ($registration->room_type == 1) {
-//                $room_type = 'Double twin beds';
-//            } elseif ($registration->room_type == 2) {
-//                $room_type = 'Double queen size bed';
-//            } elseif ($registration->room_type == 3) {
-//                $room_type = 'Executive Room';
-//            }
-//            $reg_export[] = array(
-//                'id' => $registration->id,
-//                'prefix' => $registration->prefix,
-//                'first_name' => $registration->first_name,
-//                'last_name' => $registration->last_name,
-//                'organization' => $registration->organization,
-//                'position' => $registration->position,
-//                'address' => $registration->address,
-//                'city' => $registration->city,
-//                'postal_code' => $registration->postal_code,
-//                'country' => $registration->country,
-//                'nationality' => $registration->nationality,
-//                'email' => $registration->email,
-//                'assistant_email' => $registration->assistant_email,
-//                'cc_assistant_email' => $registration->cc_assistant_email,
-//                'phone' => $registration->phone,
-//                'mobile_phone' => $registration->mobile_phone,
-//				'fax'                => $registration->fax,
-//                'attending_dates' => $registration->attending_dates,
-//                '25_may_participation' => $registration->additional_info,
-//                '26_may_participation' => $registration->additional_info_2,
-//                '27_may_participation' => $registration->additional_info_3,
-//				'passport_number'              => $registration->passport_number,
-//				'passport_issued_by'           => $registration->passport_issued_by,
-//				'passport_date_of_issue'       => $registration->passport_date_of_issue,
-//				'passport_date_of_expiry'      => $registration->passport_date_of_expiry,
-//				'birthdate'                    => $registration->birthdate,
-
-//				'disabilities'       => $registration->disabilities,
-//				'remark'             => $registration->remark,
-//
-//
-//
-//
-//				'is_visa_required'             => $registration->is_visa_required,
-//				'copy_of_passport_uploaded'    => ( $registration->passport_copy ) ? 'yes' : 'no',
-//				'copy_of_visa_uploaded'        => ( $registration->visa_copy ) ? 'yes' : 'no',
-//				'photo_uploaded'               => ( $registration->photo ) ? 'yes' : 'no',
-//				'photo_name'                   => $registration->photo,
-//				'additional_file'              => ( $registration->additional_file ) ? 'yes' : 'no',
-//				'local_embassy'                => $registration->local_embassy,
-//				'departure_city'               => $registration->departure_city,
-//				'preferred_departure_date'     => $registration->departure_date,
-//				'preferred_return_date'        => $registration->return_date,
-//				'needs_accomodation'           => $registration->needs_accomodation,
-//				'guest_names'                  => $registration->guest_names,
-//				'room_type'                    => $room_type,
-//				'room_arrival'                 => $registration->room_arrival,
-//				'room_departure'               => $registration->room_departure,
-                // 'room_additional_number_night' => $registration->room_additional_number_night,
-//				'dietary_requirements'         => $registration->dietary_requirements,
-//				'interpretation'               => $registration->interpretation,
-//				'group_name'                   => $registration->group->name,
-//				'category'                     => $registration->category,
-//				'delegation_name'              => $registration->delegation_name,
-//				'travel_remarks_or_requests'   => '',
-//				'registration_status'          => '',
-//				'proposed_role'                => '',
-//				'insurance_needed'             => '',
-//				'flight_proposed'              => '',
-//				'flight_approved'              => '',
-//				'flight_sent'                  => '',
-//				'itinerary'                    => '',
-//				'airlines'                     => '',
-//				'departure_from_residence'     => '',
-//				'airport_arrival'              => '',
-//				'flight_nr_in'                 => '',
-//				'arrival_date'                 => '',
-//				'time_inairport_departure'     => '',
-//				'flight_nr_out'                => '',
-//				'departure_date'               => '',
-//				'time_out'                     => '',
-//				'arrival_to_residence'         => '',
-//				'needs_local_transportation'   => '',
-//				'nights_paid_by_the_ec'        => '',
-//				'total_nights'                 => '',
-//				'room_comments'                => '',
-//				'amount_of_per_diem'           => '',
-//				'nr_of_per_diems'              => '',
-//				'total_amount_of_per_diems'    => '',
-//				'notes'                        => '',
-//            );
-//        }
-        // dd($reg_export);
-
-
-//        Excel::create('registrations', function ($excel) use ($reg_export) {
-//            $excel->sheet('registrations', function ($sheet) use ($reg_export) {
-//                // $sheet->fromModel(Registration::where('event_id' , '=' , Session::get('event_id'))->with('group')->get());
-//                $sheet->fromArray($reg_export);
-//            });
-//        })->download('xls');
-
     }
 
     public function downloadPdf($id)
     {
-
         $group_id = Session::get('group_id', 0);
         if ($group_id == 0 && strlen($id) != 10) {
             return Redirect::to('/');
@@ -435,15 +330,14 @@ class RegistrationController extends Controller
 
     private function uploadImage($field_name)
     {
-        $error_messages = array();
-        $file = Input::file($field_name);
-        $full = true;
-        $filename = str_random(15) . '.' . $file->getClientOriginalExtension();
-        $filename = strtolower($filename);
-        $fullpath = base_path() . '/assets/p/';
-        $upload = $file->move($fullpath, $filename);
-        // $uploaded_image = Image::make($file->getRealPath());
-        // $uploaded_image->save($fullpath . $filename);
+        $file = Request::file($field_name);
+        $filename = Str::random(15) . '.' . $file->getClientOriginalExtension();
+        $filename = Str::lower($filename);
+
+        Storage::put(
+            'assets/',
+            Request::file($field_name)
+        );
         return $filename;
     }
 

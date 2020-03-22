@@ -9,7 +9,7 @@ $event = Event::find(Session::get('event_id')); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="NOOKOM">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @section('title')
             {{ trans('platform.title') }}
@@ -30,7 +30,7 @@ $event = Event::find(Session::get('event_id')); ?>
     {{ Html::style('css/flag-icon.min.css') }}
     {{ Html::style('css/dataTables.bootstrap.css') }}
     {{ Html::style('css/datepicker.css') }}
-
+    {{ Html::style('css/app.css') }}
 
 </head>
 
@@ -125,11 +125,6 @@ $event = Event::find(Session::get('event_id')); ?>
 
 {{ Html::script('js/bootstrap.min.js') }}
 {{ Html::script('js/bootstrap-datepicker.js') }}
-{{ Html::script('js/spin.min.js') }}
-{{ Html::script('js/ladda.min.js') }}
-<!-- DataTables JavaScript -->
-{{ Html::script('js/dataTables/jquery.dataTables.js') }}
-{{ Html::script('js/dataTables/dataTables.bootstrap.js') }}
 
 <script>
 $(document).ready(function () {
@@ -142,8 +137,6 @@ $(document).ready(function () {
     format: 'yyyy-mm-dd',
     language: 'sk'
   });
-
-  Ladda.bind('.ladda-button');
 
   $('#registration').bootstrapValidator({
     feedbackIcons: {

@@ -27,5 +27,6 @@ return [
 
     'save' => 'Save',
 
+    'operations' => 'Operations',
 
 ];

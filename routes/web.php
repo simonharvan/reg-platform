@@ -81,7 +81,7 @@ Route::get('statistics', function () {
 
 Route::get('thankyou', function () {
 
-    $event_id = Session::get('event_id', 0);
+    $event_id = Session::get('event_id');
     $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
 
     return View::make('thankyou', [
