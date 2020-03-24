@@ -7,12 +7,12 @@ use App\Models\Country;
 use App\Models\Event;
 use App\Models\EventText;
 use App\Models\Registration;
-
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -101,21 +101,21 @@ class RegistrationController extends Controller
             $registration->save();
 
             if ($request::hasFile('passport_copy')) {
-                $registration->passport_copy = $this->uploadImage('passport_copy');
+                $registration->passport_copy = $this->uploadImage(Session::get('event_id', 0), 'passport_copy');
                 $registration->save();
             }
             if ($request::hasFile('visa_copy')) {
-                $registration->visa_copy = $this->uploadImage('visa_copy');
+                $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0),'visa_copy');
                 $registration->save();
             }
 
             if ($request::hasFile('photo')) {
-                $registration->photo = $this->uploadImage('photo');
+                $registration->photo = $this->uploadImage(Session::get('event_id', 0),'photo');
                 $registration->save();
             }
 
             if ($request::hasFile('additional_file')) {
-                $registration->photo = $this->uploadImage('additional_file');
+                $registration->photo = $this->uploadImage(Session::get('event_id', 0),'additional_file');
                 $registration->save();
             }
 
@@ -211,19 +211,19 @@ class RegistrationController extends Controller
             $registration->save();
 
             if (Request::hasFile('passport_copy')) {
-                $registration->passport_copy = $this->uploadImage('passport_copy');
+                $registration->passport_copy = $this->uploadImage(Session::get('event_id', 0),'passport_copy');
                 $registration->save();
             }
             if (Request::hasFile('visa_copy')) {
-                $registration->visa_copy = $this->uploadImage('visa_copy');
+                $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0),'visa_copy');
                 $registration->save();
             }
             if (Request::hasFile('photo')) {
-                $registration->photo = $this->uploadImage('photo');
+                $registration->photo = $this->uploadImage(Session::get('event_id', 0),'photo');
                 $registration->save();
             }
             if (Request::hasFile('additional_file')) {
-                $registration->photo = $this->uploadImage('additional_file');
+                $registration->photo = $this->uploadImage(Session::get('event_id', 0),'additional_file');
                 $registration->save();
             }
 
@@ -247,11 +247,11 @@ class RegistrationController extends Controller
     public function destroy($id)
     {
 
-        if (!isset($id) || $id === 'undefined'){
+        if (!isset($id) || $id === 'undefined') {
             return abort(404);
         }
         Registration::where('id', '=', $id)->delete();
-        return response('Success',200);
+        return response('Success', 200);
     }
 
     public function downloadExcel()
@@ -259,84 +259,35 @@ class RegistrationController extends Controller
         return Excel::download(new RegistrationsExport(Session::get('event_id')), 'registrations.xlsx');
     }
 
-    public function downloadPdf($id)
+    public function downloadImage($id, $file)
     {
-        $group_id = Session::get('group_id', 0);
-        if ($group_id == 0 && strlen($id) != 10) {
-            return Redirect::to('/');
+        if (Session::get('group_id', 0) < 2) {
+            return abort(404);
         }
 
-        if (strlen($id) == 10) {
-            $hashids = new Hashids\Hashids('', 10);
-            $id = implode("", $hashids->decode($id));
+        $registration = Registration::find($id);
+
+        if (empty($registration)) {
+            return abort(404);
         }
 
-        $registration = Registration::findOrFail($id);
-        $template_path = base_path() . '/assets/template/visa_invitation_letter.html';
-        $template = file_get_contents($template_path);
+        $pathToFile = base_path() . '/storage/app/public/' . $registration->event_id . '/' . $registration->$file;
+        if (!file_exists($pathToFile)) {
+            return abort(404);
+        }
 
-        $template_with_content = makeReplacements($template, [
-            'created_at' => formatDate($registration->created_at),
-            'first_name' => $registration->first_name,
-            'surname' => $registration->last_name,
-            'organization' => $registration->organization,
-            'photo' => $registration->address . ', ' .
-                $registration->city . ', ' .
-                $registration->postal_code . ', ' .
-                $registration->country,
-            'passport_number' => $registration->passport_number,
-            'birthdate' => $registration->birthdate,
-        ]);
-
-        // dd($template_with_content);
-
-        $pdf = PDF::loadHTML($template_with_content);
-
-        // return $pdf->stream();
-        return $pdf->download('visa_invitation_letter.pdf');
+        return Response::download($pathToFile);
     }
 
-    public function downloadBadge($id)
-    {
-        $group_id = Session::get('group_id', 0);
-        if ($group_id == 0 && strlen($id) != 10) {
-            return Redirect::to('/');
-        }
-
-        if (strlen($id) == 10) {
-            $hashids = new Hashids\Hashids('', 10);
-            $id = implode("", $hashids->decode($id));
-        }
-
-        $registration = Registration::findOrFail($id);
-        $template_path = base_path() . '/assets/template/badge_somalia.html';
-        $template = file_get_contents($template_path);
-        $template_with_content = makeReplacements($template, [
-            'created_at' => formatDate($registration->created_at),
-            'first_name' => $registration->first_name,
-            'last_name' => $registration->last_name,
-            'organization' => $registration->organization,
-            'photo' => base_path() . '/assets/p/' . $registration->photo,
-        ]);
-
-
-//		dd($template_with_content);
-
-        $pdf = PDF::loadHTML($template_with_content);
-
-        // return $pdf->stream();
-        return $pdf->download('badge_' . $registration->last_name . '.pdf');
-    }
-
-    private function uploadImage($field_name)
+    private function uploadImage($event_id, $field_name)
     {
         $file = Request::file($field_name);
         $filename = Str::random(15) . '.' . $file->getClientOriginalExtension();
         $filename = Str::lower($filename);
 
         Storage::put(
-            'assets/',
-            Request::file($field_name)
+            'public/' . $event_id . '/',
+            Request::file($filename)
         );
         return $filename;
     }

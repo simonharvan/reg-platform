@@ -89,5 +89,11 @@ Route::get('thankyou', function () {
         'event_text' => $event_text,
     ]);
 });
+Route::get( 'registration/{id}/download/{file}', 'RegistrationController@downloadImage');
 Route::get( 'registration/downloadExcel', 'RegistrationController@downloadExcel' );
 Route::resource('registration', 'RegistrationController');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

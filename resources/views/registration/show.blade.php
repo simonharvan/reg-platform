@@ -123,7 +123,7 @@
             <td>photo</td>
             <td>
                 @if ($registration->photo)
-                    <a href="{{ URL::to('registration/' . $registration->id . '/download/photo') }}" target="_blank">download</a>
+                    <a href="{{ URL::to('registration/' . $registration->id . '/download/photo') }}" target="_blank"><img height="50" src="{{ URL::to('registration/' . $registration->id . '/download/photo') }}"></a>
                 @endif
             </td>
         </tr>

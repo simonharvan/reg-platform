@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use \TCG\Voyager\Models\User as AuthenticableUser;
 
-class User extends Authenticatable
+class User extends AuthenticableUser
 {
     use Notifiable;
 

@@ -1,0 +1,14 @@
+
+$gray: rgb(210, 210, 210);
+
+.create-form-parameters {
+  padding-top: 10px;
+  border-top: 1px solid $gray;
+  .row>[class*=col-] {
+    margin-bottom: 0;
+  }
+  section fieldset {
+    padding-left: 15px;
+  }
+}
+

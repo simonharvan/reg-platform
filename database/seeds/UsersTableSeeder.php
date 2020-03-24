@@ -1,4 +1,10 @@
-<?php 
+<?php
+
+use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use TCG\Voyager\Models\Role;
+
 class UsersTableSeeder extends Seeder {
 
 	/**
@@ -9,21 +15,15 @@ class UsersTableSeeder extends Seeder {
 	public function run()
 	{
 
-        DB::table('users')->truncate();
-        
-        $now = date("Y-m-d H:i:s");
+	    $role = Role::where('name', 'admin')->firstOrFail();
 
-        $users = [
-            [
-                'username' => 'admin',
-                'email' => 'simon@bero.tech',
-                'password' => Hash::make('admin'),
-                'created_at' => $now,
-                'updated_at' => $now
-            ]
-        ];
-
-        DB::table('users')->insert($users);
+        User::create([
+            'name'           => 'Admin',
+            'email'          => 'admin@admin.com',
+            'password'       => bcrypt('password'),
+            'remember_token' => Str::random(60),
+            'role_id'        => $role->id,
+        ]);
 
 	}
 
