@@ -112,7 +112,7 @@ $event = Event::find(Session::get('event_id')); ?>
 
     </div>
     <!-- /#page-wrapper -->
-    <footer><span><a href="{{ URL::to('/admin/') }}">Created with <3</a> by bero.tech</span></footer>
+    <footer>Created by <a href="http://amitis.sk">Amitis</a> | <a href="{{ URL::to('/admin/') }}">Admin</a></footer>
 </div>
 <!-- /#wrapper -->
 

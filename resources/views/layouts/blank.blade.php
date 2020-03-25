@@ -29,7 +29,7 @@
 		<!-- Content -->
 		@yield('content')
 
-		<footer><span><a href="{{ URL::to('/admin/') }}">Created with <3</a> by bero.tech</span></footer>
+		<footer>Created by <a href="http://amitis.sk">Amitis</a> | <a href="{{ URL::to('/admin/') }}">Admin</a></footer>
 
 		<!-- Core JavaScript Files -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
