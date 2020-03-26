@@ -16,12 +16,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Voyager::addFormField(CreateFormField::class);
-        $this->app->bind('path.public', function() {
-            return '/home/bero.tech/sub/reg-platform';
-        });
-        $this->app->bind('path.storage', function() {
-            return '/home/bero.tech/sub/reg-platform/storage';
-        });
     }
 
     /**
