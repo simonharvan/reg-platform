@@ -147,5 +147,6 @@ return [
     */
 
     'attributes' => [],
+    'error_storing'        => 'Sorry it appears there was a problem storing this',
 
 ];

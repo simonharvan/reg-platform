@@ -194,7 +194,8 @@ return [
     ],
 
     'additional_js' => [
-//        'js/jquery-3.4.1.min.js'
+        'js/custom-admin.js'
+//        'https://code.jquery.com/jquery-3.4.1.min.js'
     ],
 
 

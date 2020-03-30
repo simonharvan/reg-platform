@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\RegistrationsExport;
 use App\Models\Country;
 use App\Models\Event;
+use App\Models\EventForm;
 use App\Models\EventText;
 use App\Models\Registration;
 use Illuminate\Routing\Controller;
@@ -57,7 +58,17 @@ class RegistrationController extends Controller
 
         $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
 
-        return View::make('registration.form', [
+        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
+        if (is_null($event_form)){
+
+            return View::make('registration.form', [
+                'event_text' => $event_text,
+                'group_id' => $group_id,
+                'country_list' => $country_list
+            ]);
+        }
+        return View::make('registration.custom-form', [
+            'event_form' => $event_form,
             'event_text' => $event_text,
             'group_id' => $group_id,
             'country_list' => $country_list
@@ -181,10 +192,23 @@ class RegistrationController extends Controller
 
         $country_list = Country::pluck('name', 'name');
 
-        return View::make('registration.form', array(
+        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
+
+        if (is_null($event_form)){
+            return View::make('registration.form', array(
+                'event_form' => $event_form,
+                'group_id' => $registration->group_id,
+                'country_list' => $country_list
+            ))->with('registration', $registration);
+        }
+
+        return View::make('registration.custom-form', array(
+            'event_form' => $event_form,
             'group_id' => $registration->group_id,
             'country_list' => $country_list
         ))->with('registration', $registration);
+
+
 
     }
 
