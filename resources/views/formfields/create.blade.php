@@ -934,7 +934,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="add-file" @if(!isset($old_parameters->additional_file)) {{ 'style="display: none"' }} @endif>
+                <div class="add-file" @if(!isset($old_parameters->additional_file)) {{ 'style=display:none;' }} @endif>
                     <div class="col-sm-2">
                         <div class="form-group">
                             <input type="text" class="form-control input-sm" id="additional_file_label"
@@ -987,7 +987,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="add-field" @if(!isset($old_parameters->additional_field)) {{ 'style="display: none"' }} @endif>
+                <div class="add-field" @if(!isset($old_parameters) || !isset($old_parameters->additional_field)) {{ 'style=display:none;' }} @endif>
                     <div class="col-sm-2">
                         <div class="form-group">
                             <input type="text" class="form-control input-sm" id="additional_field_label"
@@ -1042,7 +1042,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-10 col-sm-offset-4 add-field-options" @if(isset($old_parameters) && $old_parameters->additional_field->type !== 'checkboxes' && $old_parameters->additional_field->type !== 'radio') {{ 'style="display: none"' }} @endif>
+                    <div class="col-sm-10 col-sm-offset-4 add-field-options" @if(!isset($old_parameters) || ($old_parameters->additional_field->type !== 'checkboxes' && $old_parameters->additional_field->type !== 'radio')) {{ 'style=display:none;' }} @endif>
                         @if (isset($old_parameters->additional_field->options))
                             @foreach($old_parameters->additional_field->options as $option)
                                 <div class="form-group row" row-id="{{ $end_id }}">

@@ -32,7 +32,6 @@ Route::get('/', function () {
 });
 
 Route::post('/', function (Request $request) {
-//    dd($request);
     $password_input = $request->request->get('password');
     $code = Code::where('password', '=', $password_input)->first();
 
