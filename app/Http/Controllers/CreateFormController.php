@@ -17,6 +17,9 @@ class CreateFormController extends VoyagerBaseController
         $inputs = $request->except(['_token', 'event_id', '_method']);
         foreach ($inputs as $key => $value) {
             if ($key === 'additional_file' || $key === 'additional_field') {
+                if (!$value->value) {
+                    continue;
+                }
                 $new_parameters[$key] = $value;
                 if ($key === 'additional_file') {
                     $new_parameters[$key]['type'] = 'file';
@@ -44,7 +47,7 @@ class CreateFormController extends VoyagerBaseController
     {
         if ($request->request->get('event_id') == null) {
             return redirect()->back()->with([
-                'message'    => __('validation.error_storing')." event form.",
+                'message' => __('validation.error_storing') . " event form.",
                 'alert-type' => 'error',
             ]);
         }
@@ -62,7 +65,7 @@ class CreateFormController extends VoyagerBaseController
 
         if ($request->request->get('event_id') == null) {
             return redirect()->back()->with([
-                'message'    => __('validation.error_storing')." event form.",
+                'message' => __('validation.error_storing') . " event form.",
                 'alert-type' => 'error',
             ]);
         }

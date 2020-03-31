@@ -939,7 +939,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control input-sm" id="additional_file_label"
                                    name="additional_file[label]" placeholder="File field label"
-                                   value="{{ $old_parameters->additional_file->label }}">
+                                   value="{{ isset($old_parameters) ? $old_parameters->additional_file->label : '' }}">
                         </div>
                     </div>
 
@@ -947,16 +947,16 @@
                         <div class="form-group">
                             <select class="form-control input-sm" name="additional_file[section]"
                                     id="additional_file_section">
-                                <option @if($old_parameters->additional_file->section === 'Personal') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_file->section === 'Personal') {{ 'selected' }} @endif>
                                     Personal
                                 </option>
-                                <option @if($old_parameters->additional_file->section === 'Travel') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_file->section === 'Travel') {{ 'selected' }} @endif>
                                     Travel
                                 </option>
-                                <option @if($old_parameters->additional_file->section === 'Accomodation') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_file->section === 'Accomodation') {{ 'selected' }} @endif>
                                     Accomodation
                                 </option>
-                                <option @if($old_parameters->additional_file->section === 'Additional') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_file->section === 'Additional') {{ 'selected' }} @endif>
                                     Additional
                                 </option>
                             </select>
@@ -992,7 +992,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control input-sm" id="additional_field_label"
                                    name="additional_field[label]" placeholder="Field label"
-                                   value="{{ $old_parameters->additional_field->label }}">
+                                   value="{{ isset($old_parameters) ? $old_parameters->additional_field->label : ''}}">
                         </div>
                     </div>
 
@@ -1000,16 +1000,16 @@
                         <div class="form-group">
                             <select class="form-control input-sm" name="additional_field[section]"
                                     id="additional_field_section">
-                                <option @if($old_parameters->additional_field->section === 'Personal') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->section === 'Personal') {{ 'selected' }} @endif>
                                     Personal
                                 </option>
-                                <option @if($old_parameters->additional_field->section === 'Travel') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->section === 'Travel') {{ 'selected' }} @endif>
                                     Travel
                                 </option>
-                                <option @if($old_parameters->additional_field->section === 'Accomodation') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->section === 'Accomodation') {{ 'selected' }} @endif>
                                     Accomodation
                                 </option>
-                                <option @if($old_parameters->additional_field->section === 'Additional') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->section === 'Additional') {{ 'selected' }} @endif>
                                     Additional
                                 </option>
                             </select>
@@ -1020,29 +1020,29 @@
                         <div class="form-group">
                             <select class="form-control input-sm" name="additional_field[type]"
                                     id="additional_field_type">
-                                <option @if($old_parameters->additional_field->type === 'text') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->type === 'text') {{ 'selected' }} @endif>
                                     Text
                                 </option>
-                                <option @if($old_parameters->additional_field->type === 'text-area') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->type === 'text-area') {{ 'selected' }} @endif>
                                     Text area
                                 </option>
-                                <option @if($old_parameters->additional_field->type === 'date') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->type === 'date') {{ 'selected' }} @endif>
                                     Date
                                 </option>
-                                <option @if($old_parameters->additional_field->type === 'number') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->type === 'number') {{ 'selected' }} @endif>
                                     Number
                                 </option>
-                                <option @if($old_parameters->additional_field->type === 'checkboxes') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->type === 'checkboxes') {{ 'selected' }} @endif>
                                     Checkboxes
                                 </option>
-                                <option @if($old_parameters->additional_field->type === 'radio') {{ 'selected' }} @endif>
+                                <option @if(isset($old_parameters) && $old_parameters->additional_field->type === 'radio') {{ 'selected' }} @endif>
                                     Radio
                                 </option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="col-sm-10 col-sm-offset-4 add-field-options" @if($old_parameters->additional_field->type !== 'checkboxes' && $old_parameters->additional_field->type !== 'radio') {{ 'style="display: none"' }} @endif>
+                    <div class="col-sm-10 col-sm-offset-4 add-field-options" @if(isset($old_parameters) && $old_parameters->additional_field->type !== 'checkboxes' && $old_parameters->additional_field->type !== 'radio') {{ 'style="display: none"' }} @endif>
                         @if (isset($old_parameters->additional_field->options))
                             @foreach($old_parameters->additional_field->options as $option)
                                 <div class="form-group row" row-id="{{ $end_id }}">
