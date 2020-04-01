@@ -31,3 +31,21 @@ if (!function_exists('formatDate')) {
         return date("d. m. Y", strtotime($date));
     }
 }
+
+if (!function_exists('sortForm')) {
+    /**
+     *
+     * Compares two inputs and for uasort
+     *
+     * @param $a part of json @EventForm
+     * @param $b part of json @EventForm
+     * @return int
+     */
+    function sortForm($a, $b)
+    {
+        if ($a->order === $b->order) {
+            return 0;
+        }
+        return ($a->order < $b->order) ? -1 : 1;
+    }
+}

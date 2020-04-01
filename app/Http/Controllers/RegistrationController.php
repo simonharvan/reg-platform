@@ -39,7 +39,7 @@ class RegistrationController extends Controller
         $registrations = Registration::where('event_id', '=', Session::get('event_id'))->orderBy('created_at', 'DESC')->get();
         $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
 
-        View::make('registration.index')
+        return View::make('registration.index')
             ->with('registrations', $registrations)
             ->with('event_form', $event_form);
     }

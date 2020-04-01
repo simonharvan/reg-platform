@@ -38,15 +38,6 @@
         !!}
     @endif
     @php
-
-        function cmp($a, $b) {
-
-            if ($a->order === $b->order) {
-                return 0;
-            }
-            return ($a->order < $b->order) ? -1 : 1;
-        }
-
         $form = json_decode($event_form->form);
         $personal = array_filter(get_object_vars($form), function($v, $k) {
             return $v->section === 'Personal';
@@ -61,10 +52,10 @@
             return $v->section === 'Additional';
         }, ARRAY_FILTER_USE_BOTH);
 
-        uasort($personal, 'cmp');
-        uasort($travel, 'cmp');
-        uasort($accomodation, 'cmp');
-        uasort($additional, 'cmp');
+        uasort($personal, 'sortForm');
+        uasort($travel, 'sortForm');
+        uasort($accomodation, 'sortForm');
+        uasort($additional, 'sortForm');
     @endphp
     @if (count($personal) > 0)
         <div class="panel panel-default">

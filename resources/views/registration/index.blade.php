@@ -3,7 +3,16 @@
 
 @section('content')
 
-
+    @php
+        if (!empty($event_form->form)) {
+            $form = json_decode($event_form->form);
+            $array = get_object_vars($form);
+            uasort($array, 'sortForm');
+            $list = array_keys($array);
+        } else {
+            $list = array_keys($registrations[0]->toArray());
+        }
+    @endphp
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Registrated Users</h1>
@@ -15,6 +24,7 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
+
 
     <div class="row">
         <div class="col-lg-12">
@@ -29,11 +39,17 @@
                             <thead>
                             <tr>
                                 <th>{{ __('app.operations') }}</th>
-                                @if (!empty($registrations[0]))
-                                    @foreach(array_keys($registrations[0]->toArray()) as $key)
-                                        <th>{{ $key }}</th>
-                                    @endforeach
-                                @endif
+
+                                @foreach($list as $key)
+                                    <th>
+                                        @if (isset($form) && isset($form->$key->label))
+                                            {{ ucwords(str_replace('_', ' ', $form->$key->label)) }}
+                                        @else
+                                            {{ ucwords(str_replace('_', ' ', $key)) }}
+                                        @endif
+                                    </th>
+                                @endforeach
+
 
                             </tr>
                             </thead>
@@ -54,8 +70,17 @@
                                         {{--class="btn btn-info btn-circle" data-following="false"><i class="fas fa-id-badge" aria-hidden="true"></i></a>--}}
                                     </td>
                                     @if (!empty($registrations[0]))
-                                        @foreach(array_keys($registrations[0]->toArray()) as $key)
-                                            <td>{{ $registration->$key }}</td>
+                                        @foreach($list as $key)
+                                            @if (isset($form) && $form->$key->type === 'file')
+                                                <td>
+                                                    <a href="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
+                                                       target="_blank"><img
+                                                                src="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
+                                                                class="img-responsive"></a>
+                                                </td>
+                                            @else
+                                                <td>{{ $registration->$key }}</td>
+                                            @endif
                                         @endforeach
                                     @endif
 
@@ -94,10 +119,10 @@
             },
             url: 'registration/' + e.target.dataset.id,
             type: 'DELETE',
-            success: function(result) {
+            success: function (result) {
               document.location.href = '/registration';
             },
-            error: function(result) {
+            error: function (result) {
               console.error(result);
               alert('Something went wrong, please try again');
             }
