@@ -12,7 +12,6 @@ class Registration extends Model {
 		'cc_assistant_email' => '0',
 		'passport_copy' => '',
 		'visa_copy' => '',
-		'attending_dates' => '',
 	];
 
 	protected $fillable = array(
@@ -52,30 +51,26 @@ class Registration extends Model {
 		'dietary_requirements',
 		'interpretation',
 		'disabilities',
-		'attending_dates',
+		'additional_field',
+        'additional_file',
 		'remark',
-		'category',
-		'delegation_name',
-		'additional_info',
-		'additional_info_2',
-		'additional_info_3'
 	);
 
 	public static $rules = array(
 //		'delegation_name' => 'required',
 //		'category'        => 'required',
-		'prefix'          => 'required',
-		'first_name'      => 'required',
-		'last_name'       => 'required',
-		'organization'    => 'required',
-		'position'        => 'required',
+//		'prefix'          => 'required',
+//		'first_name'      => 'required',
+//		'last_name'       => 'required',
+//		'organization'    => 'required',
+//		'position'        => 'required',
 		// 'address'         => 'required',
 		// 'city'            => 'required',
-		'nationality'     => 'required',
+//		'nationality'     => 'required',
 //		'postal_code'     => 'required',
-		'country'         => 'required',
+//		'country'         => 'required',
 		'email'           => 'email|required',
-// 'interpretation' => 'required',
+//      'interpretation' => 'required',
 //		'passport_copy'   => 'mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF',
 //		'visa_copy'       => 'mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF',
 //		'photo'           => 'mimes:jpeg,jpg,png,JPG,bmp,png',

@@ -37,8 +37,11 @@ class RegistrationController extends Controller
         }
 
         $registrations = Registration::where('event_id', '=', Session::get('event_id'))->orderBy('created_at', 'DESC')->get();
+        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
 
-        return View::make('registration.index')->with('registrations', $registrations);
+        View::make('registration.index')
+            ->with('registrations', $registrations)
+            ->with('event_form', $event_form);
     }
 
 
@@ -88,18 +91,10 @@ class RegistrationController extends Controller
         $input = $request::all();
 
         $rules = Registration::$rules;
-//		$rules['email'] = 'email|required|unique:registrations,email,NULL,id,event_id,' . Session::get( 'event_id' );
-        if (!empty($input['additional_info']) && is_array($input['additional_info'])) {
-            $input['additional_info'] = implode(", ", $input['additional_info']);
+        if (!empty($input['additional_field']) && is_array($input['additional_field'])) {
+            $input['additional_field'] = implode(", ", $input['additional_field']);
         }
 
-        if (!empty($input['additional_info_2']) && is_array($input['additional_info_2'])) {
-            $input['additional_info_2'] = implode(", ", $input['additional_info_2']);
-        }
-
-        if (!empty($input['additional_info_3']) && is_array($input['additional_info_3'])) {
-            $input['additional_info_3'] = implode(", ", $input['additional_info_3']);
-        }
         $v = Validator::make($input, $rules);
 
         if ($v->passes()) {
@@ -120,13 +115,8 @@ class RegistrationController extends Controller
                 $registration->save();
             }
 
-            if ($request::hasFile('photo')) {
-                $registration->photo = $this->uploadImage(Session::get('event_id', 0),'photo');
-                $registration->save();
-            }
-
             if ($request::hasFile('additional_file')) {
-                $registration->photo = $this->uploadImage(Session::get('event_id', 0),'additional_file');
+                $registration->additional_file = $this->uploadImage(Session::get('event_id', 0),'additional_file');
                 $registration->save();
             }
 
@@ -162,10 +152,12 @@ class RegistrationController extends Controller
         if ($group_id < 2) {
             return Redirect::route('registration.create');
         }
-
+        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
         $registration = Registration::find($id);
 
-        return View::make('registration.show')->with('registration', $registration);
+        return View::make('registration.show')
+            ->with('registration', $registration)
+            ->with('event_form', $event_form);
     }
 
 
@@ -242,12 +234,9 @@ class RegistrationController extends Controller
                 $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0),'visa_copy');
                 $registration->save();
             }
-            if (Request::hasFile('photo')) {
-                $registration->photo = $this->uploadImage(Session::get('event_id', 0),'photo');
-                $registration->save();
-            }
+
             if (Request::hasFile('additional_file')) {
-                $registration->photo = $this->uploadImage(Session::get('event_id', 0),'additional_file');
+                $registration->additional_file = $this->uploadImage(Session::get('event_id', 0),'additional_file');
                 $registration->save();
             }
 
@@ -295,7 +284,7 @@ class RegistrationController extends Controller
             return abort(404);
         }
 
-        $pathToFile = base_path() . '/storage/app/public/' . $registration->event_id . '/' . $registration->$file;
+        $pathToFile = base_path() . '/storage/app/public/event_' . $registration->event_id . '/' . $registration->$file;
         if (!file_exists($pathToFile)) {
             return abort(404);
         }
@@ -308,11 +297,14 @@ class RegistrationController extends Controller
         $file = Request::file($field_name);
         $filename = Str::random(15) . '.' . $file->getClientOriginalExtension();
         $filename = Str::lower($filename);
+        $path = 'public/event_' . $event_id . '/';
+        if(!Storage::exists($path)){
+            Storage::makeDirectory($path);
+        }
 
-        Storage::put(
-            'public/' . $event_id . '/',
-            Request::file($filename)
-        );
+        if (Storage::put($path . $filename, file_get_contents($file))) {
+            return $filename;
+        }
         return $filename;
     }
 
