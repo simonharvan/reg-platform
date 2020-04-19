@@ -1,14 +1,40 @@
-
 $gray: rgb(210, 210, 210);
+$lightGray: rgb(245, 245, 245);
 
 .create-form-parameters {
   padding-top: 10px;
   border-top: 1px solid $gray;
-  .row>[class*=col-] {
+
+  .row > [class*=col-] {
     margin-bottom: 0;
   }
+
   section fieldset {
     padding-left: 15px;
+  }
+
+  .grid-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+    border-bottom: 1px solid $lightGray;
+
+    &.heading {
+      font-weight: 600;
+      padding-bottom: 15px;
+      border-bottom: 0;
+    }
+  }
+
+  .col-form-label {
+    font-weight: 400;
+    small{
+     font-weight: 300;
+    }
+
+    &.required-label {
+      margin-right: 10px;
+    }
   }
 }
 

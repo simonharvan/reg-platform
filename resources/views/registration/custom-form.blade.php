@@ -19,13 +19,24 @@
         </div>
     @endif
 
+    @php
+        $form = json_decode($event_form->form);
+        $rules = array_map(function ($v) {
+            if (isset($v->validation) || (isset($registration->id) && $v->type === 'file')) {
+                return $v->validation;
+            }
+            return '';
+        }, get_object_vars($form));
+
+    @endphp
+
     @if(isset($registration))
         {!!
           Former::open_for_files('registration')
           ->route('registration.update', $registration->id)
           ->class('form-bordered form-horizontal')
           ->id('registration')
-          //->rules(App\Models\Registration::$rules)
+          ->rules($rules)
           ->populate($registration)
          !!}
     @else
@@ -34,11 +45,11 @@
           ->route('registration.store')
           ->class('form-bordered form-horizontal')
           ->id('registration')
-          //->rules(App\Models\Registration::$rules)
+          ->rules($rules)
         !!}
     @endif
     @php
-        $form = json_decode($event_form->form);
+
         $personal = array_filter(get_object_vars($form), function($v, $k) {
             return $v->section === 'Personal';
         }, ARRAY_FILTER_USE_BOTH);
@@ -56,7 +67,9 @@
         uasort($travel, 'sortForm');
         uasort($accomodation, 'sortForm');
         uasort($additional, 'sortForm');
+
     @endphp
+
     @if (count($personal) > 0)
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -73,13 +86,13 @@
                     @endphp
                     @if(isset($item->type))
                         @if ($item->type === 'text')
-                            {!! Former::text($key)->required()->label($label) !!}
+                            {!! Former::text($key)->label($label) !!}
                         @elseif($item->type === 'text-area')
-                            {!! Former::textarea($key)->required()->label($label) !!}
+                            {!! Former::textarea($key)->label($label) !!}
                         @elseif($item->type === 'date')
-                            {!! Former::date($key)->required()->label($label) !!}
+                            {!! Former::date($key)->label($label) !!}
                         @elseif($item->type === 'number')
-                            {!! Former::number($key)->required()->label($label) !!}
+                            {!! Former::number($key)->label($label) !!}
                         @elseif($item->type === 'checkboxes')
                             @php
                                 $options = [];
@@ -92,7 +105,7 @@
                                     }
                                 }
                             @endphp
-                            {!! Former::checkbox($key . '[]')->checkboxes($options)->required()->label($label)  !!}
+                            {!! Former::checkbox($key . '[]')->checkboxes($options)->label($label)  !!}
                         @elseif($item->type === 'radio')
                             @php
                                 $options = [];
@@ -105,9 +118,9 @@
                                     }
                                 }
                             @endphp
-                            {!! Former::radios($key)->radios($options)->inline()->required()->label($label)  !!}
+                            {!! Former::radios($key)->radios($options)->inline()->label($label)  !!}
                         @elseif($item->type === 'file')
-                            {!! Former::file($key)->accept('image/*, application/pdf')->required()->label($label) !!}
+                            {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
                         @endif
                     @endif
                 @endforeach
@@ -122,7 +135,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h5>{{ trans('app.travel') }}</h5>
-                <p>{{ trans($event_text->travel_data_note) }}</p>
+                <p>{{ isset($event_text->travel_data_note) ? trans($event_text->travel_data_note) : '' }}</p>
             </div>
             <div class="panel-body">
 
@@ -136,13 +149,13 @@
                     @endphp
                     @if(isset($item->type))
                         @if ($item->type === 'text')
-                            {!! Former::text($key)->required()->label($label) !!}
+                            {!! Former::text($key)->label($label) !!}
                         @elseif($item->type === 'text-area')
-                            {!! Former::textarea($key)->required()->label($label) !!}
+                            {!! Former::textarea($key)->label($label) !!}
                         @elseif($item->type === 'date')
-                            {!! Former::date($key)->required()->label($label) !!}
+                            {!! Former::date($key)->label($label) !!}
                         @elseif($item->type === 'number')
-                            {!! Former::number($key)->required()->label($label) !!}
+                            {!! Former::number($key)->label($label) !!}
                         @elseif($item->type === 'checkboxes')
                             @php
                                 $options = [];
@@ -155,7 +168,7 @@
                                     }
                                 }
                             @endphp
-                            {!! Former::checkbox($key)->checkboxes($options)->required()->label($label)  !!}
+                            {!! Former::checkbox($key)->checkboxes($options)->label($label)  !!}
                         @elseif($item->type === 'radio')
                             @php
                                 $options = [];
@@ -168,9 +181,9 @@
                                     }
                                 }
                             @endphp
-                            {!! Former::radios($key)->radios($options)->inline()->required()->label($label)  !!}
+                            {!! Former::radios($key)->radios($options)->inline()->label($label)  !!}
                         @elseif($item->type === 'file')
-                            {!! Former::file($key)->accept('image/*, application/pdf')->required()->label($label) !!}
+                            {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
                         @endif
                     @endif
                 @endforeach
@@ -198,16 +211,16 @@
                     @if(isset($item->type))
                         @if ($item->type === 'text')
                             @if($key === 'room_additional_number_night')
-                                {!! Former::text($key)->required()->label($label)->help($event_text->room_additional_number_night_help) !!}
+                                {!! Former::text($key)->label($label)->help($event_text->room_additional_number_night_help) !!}
                             @else
-                                {!! Former::text($key)->required()->label($label) !!}
+                                {!! Former::text($key)->label($label) !!}
                             @endif
                         @elseif($item->type === 'text-area')
-                            {!! Former::textarea($key)->required()->label($label) !!}
+                            {!! Former::textarea($key)->label($label) !!}
                         @elseif($item->type === 'date')
-                            {!! Former::date($key)->required()->label($label) !!}
+                            {!! Former::date($key)->label($label) !!}
                         @elseif($item->type === 'number')
-                            {!! Former::number($key)->required()->label($label) !!}
+                            {!! Former::number($key)->label($label) !!}
                         @elseif($item->type === 'checkboxes')
                             @php
                                 $options = [];
@@ -220,7 +233,7 @@
                                     }
                                 }
                             @endphp
-                            {!! Former::checkbox($key)->checkboxes($options)->required()->label($label)  !!}
+                            {!! Former::checkbox($key)->checkboxes($options)->label($label)  !!}
                         @elseif($item->type === 'radio')
                             @php
                                 $options = [];
@@ -233,9 +246,9 @@
                                     }
                                 }
                             @endphp
-                            {!! Former::radios($key)->radios($options)->inline()->required()->label($label)  !!}
+                            {!! Former::radios($key)->radios($options)->inline()->label($label)  !!}
                         @elseif($item->type === 'file')
-                            {!! Former::file($key)->accept('image/*, application/pdf')->required()->label($label) !!}
+                            {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
                         @endif
                     @endif
                 @endforeach
@@ -247,66 +260,66 @@
 
 
     @if (count($additional) > 0)
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h5>{{ trans('app.additional') }}</h5>
-        </div>
-        <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>{{ trans('app.additional') }}</h5>
+            </div>
+            <div class="panel-body">
 
 
-            @foreach($additional as $key => $item)
-                @php
-                    if ($key === 'additional_file' || $key === 'additional_field'){
-                        $label = $item->label;
-                    } else {
-                        $label = $key;
-                    }
-                @endphp
-                @if(isset($item->type))
-                    @if ($item->type === 'text')
-                        {!! Former::text($key)->required()->label($label) !!}
-                    @elseif($item->type === 'text-area')
-                        {!! Former::textarea($key)->required()->label($label) !!}
-                    @elseif($item->type === 'date')
-                        {!! Former::date($key)->required()->label($label) !!}
-                    @elseif($item->type === 'number')
-                        {!! Former::number($key)->required()->label($label) !!}
-                    @elseif($item->type === 'checkboxes')
-                        @php
-                            $options = [];
-                            if (isset($item->options)) {
-                                foreach($item->options as $optionKey => $optionValue) {
-                                    $options[$optionValue] = [
-                                        'name' => $key . '[]',
-                                        'value' => $optionValue
-                                    ];
+                @foreach($additional as $key => $item)
+                    @php
+                        if ($key === 'additional_file' || $key === 'additional_field'){
+                            $label = $item->label;
+                        } else {
+                            $label = $key;
+                        }
+                    @endphp
+                    @if(isset($item->type))
+                        @if ($item->type === 'text')
+                            {!! Former::text($key)->label($label) !!}
+                        @elseif($item->type === 'text-area')
+                            {!! Former::textarea($key)->label($label) !!}
+                        @elseif($item->type === 'date')
+                            {!! Former::date($key)->label($label) !!}
+                        @elseif($item->type === 'number')
+                            {!! Former::number($key)->label($label) !!}
+                        @elseif($item->type === 'checkboxes')
+                            @php
+                                $options = [];
+                                if (isset($item->options)) {
+                                    foreach($item->options as $optionKey => $optionValue) {
+                                        $options[$optionValue] = [
+                                            'name' => $key . '[]',
+                                            'value' => $optionValue
+                                        ];
+                                    }
                                 }
-                            }
-                        @endphp
-                        {!! Former::checkbox($key)->checkboxes($options)->required()->label($label)  !!}
-                    @elseif($item->type === 'radio')
-                        @php
-                            $options = [];
-                            if (isset($item->options)) {
-                                foreach($item->options as $optionKey => $optionValue) {
-                                    $options[$optionValue] = [
-                                        'name' => $key,
-                                        'value' => $optionValue
-                                    ];
+                            @endphp
+                            {!! Former::checkbox($key)->checkboxes($options)->label($label)  !!}
+                        @elseif($item->type === 'radio')
+                            @php
+                                $options = [];
+                                if (isset($item->options)) {
+                                    foreach($item->options as $optionKey => $optionValue) {
+                                        $options[$optionValue] = [
+                                            'name' => $key,
+                                            'value' => $optionValue
+                                        ];
+                                    }
                                 }
-                            }
-                        @endphp
-                        {!! Former::radios($key)->radios($options)->inline()->required()->label($label)  !!}
-                    @elseif($item->type === 'file')
-                        {!! Former::file($key)->accept('image/*, application/pdf')->required()->label($label) !!}
+                            @endphp
+                            {!! Former::radios($key)->radios($options)->inline()->label($label)  !!}
+                        @elseif($item->type === 'file')
+                            {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
+                        @endif
                     @endif
-                @endif
-            @endforeach
+                @endforeach
+            </div>
+
+
+            <!-- /.panel-body -->
         </div>
-
-
-        <!-- /.panel-body -->
-    </div>
     @endif
 
     <!-- /.panel -->

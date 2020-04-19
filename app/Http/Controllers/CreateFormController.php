@@ -15,13 +15,25 @@ class CreateFormController extends VoyagerBaseController
         $new_parameters = array();
         $order_additional = 10000;
         $inputs = $request->except(['_token', 'event_id', '_method']);
+
         foreach ($inputs as $key => $value) {
             if ($key === 'additional_file' || $key === 'additional_field') {
+                if (!$value['value']) {
+                    continue;
+                }
                 $new_parameters[$key] = $value;
+                unset($new_parameters[$key]['required']);
                 $new_parameters[$key]['order'] = $order_additional;
                 $order_additional++;
                 if ($key === 'additional_file') {
                     $new_parameters[$key]['type'] = 'file';
+                    $new_parameters[$key]['options'] = [
+                        'mime' => 'image/*, application/pdf'
+                    ];
+                    $new_parameters[$key]['validation'] = 'required|file|mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF';
+                }
+                if ($key == 'additional_field') {
+                    $new_parameters[$key]['validation'] = 'required';
                 }
 
                 if (isset($new_parameters[$key]['type'])) {
@@ -32,12 +44,22 @@ class CreateFormController extends VoyagerBaseController
                     $new_parameters[$key]['options'] = array_filter($value['options']);
                 }
 
+
+                if (!$value['required']) {
+                    $new_parameters[$key]['validation'] = '';
+                }
+
                 continue;
             }
 
-            if ($value) {
+            if ($value['value']) {
                 $new_parameters[$key] = $this->form_defaults[$key];
+                if (!$value['required']) {
+                    $new_parameters[$key]['validation'] = '';
+                }
             }
+
+
         }
 
         return json_encode($new_parameters);
@@ -166,21 +188,21 @@ class CreateFormController extends VoyagerBaseController
             'value' => 1,
             'section' => 'Personal',
             'type' => 'text',
-            'validation' => 'required'
+            'validation' => 'required|email'
         ],
         'assistant_email' => [
             'order' => 13,
             'value' => 1,
             'section' => 'Personal',
             'type' => 'text',
-            'validation' => 'required'
+            'validation' => 'required|email'
         ],
         'cc_assistant_email' => [
             'order' => 14,
             'value' => 1,
             'section' => 'Personal',
             'type' => 'text',
-            'validation' => 'required'
+            'validation' => 'required|email'
         ],
         'phone' => [
             'order' => 15,
@@ -219,7 +241,7 @@ class CreateFormController extends VoyagerBaseController
             'value' => 1,
             'section' => 'Travel',
             'type' => 'file',
-            'validation' => 'required',
+            'validation' => 'required|file|mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF',
             'options' => [
                 'mime' => 'image/*, application/pdf'
             ]
@@ -229,7 +251,7 @@ class CreateFormController extends VoyagerBaseController
             'value' => 1,
             'section' => 'Travel',
             'type' => 'file',
-            'validation' => 'required',
+            'validation' => 'required|file|mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF',
             'options' => [
                 'mime' => 'image/*, application/pdf'
             ]
@@ -253,20 +275,20 @@ class CreateFormController extends VoyagerBaseController
             'value' => 1,
             'section' => 'Travel',
             'type' => 'date',
-            'validation' => 'required'
+            'validation' => 'required|date'
         ],
         'passport_date_of_expiry' => [
             'order' => 24,
             'value' => 1,
             'section' => 'Travel',
             'type' => 'date',
-            'validation' => 'required'
+            'validation' => 'required|date'
         ],
         'birthdate' => [
             'order' => 25,
             'value' => 1,
             'section' => 'Travel',
-            'type' => 'date',
+            'type' => 'required|date',
             'validation' => 'required'
         ],
         'local_embassy' => [
@@ -295,7 +317,7 @@ class CreateFormController extends VoyagerBaseController
             'value' => 1,
             'section' => 'Travel',
             'type' => 'date',
-            'validation' => 'required'
+            'validation' => 'required|date'
         ],
         'needs_accomodation' => [
             'order' => 30,
@@ -333,7 +355,7 @@ class CreateFormController extends VoyagerBaseController
             'value' => 1,
             'section' => 'Accomodation',
             'type' => 'date',
-            'validation' => 'required'
+            'validation' => 'required|date'
         ],
         'room_departure' => [
             'order' => 34,
