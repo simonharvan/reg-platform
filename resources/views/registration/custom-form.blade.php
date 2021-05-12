@@ -81,7 +81,7 @@
                         if ($key === 'additional_file' || $key === 'additional_field'){
                             $label = $item->label;
                         } else {
-                            $label = $key;
+                            $label = trans('registration.'. $key);
                         }
                     @endphp
                     @if(isset($item->type))
@@ -144,7 +144,7 @@
                         if ($key === 'additional_file' || $key === 'additional_field'){
                             $label = $item->label;
                         } else {
-                            $label = $key;
+                            $label = trans('registration.'. $key);
                         }
                     @endphp
                     @if(isset($item->type))
@@ -205,7 +205,7 @@
                         if ($key === 'additional_file' || $key === 'additional_field'){
                             $label = $item->label;
                         } else {
-                            $label = $key;
+                            $label = trans('registration.'. $key);
                         }
                     @endphp
                     @if(isset($item->type))
@@ -272,7 +272,7 @@
                         if ($key === 'additional_file' || $key === 'additional_field'){
                             $label = $item->label;
                         } else {
-                            $label = $key;
+                            $label = trans('registration.'. $key);
                         }
                     @endphp
                     @if(isset($item->type))
@@ -322,6 +322,8 @@
         </div>
     @endif
 
+
+    {!! $event_text->registration_note  !!}
     <!-- /.panel -->
 
     {!! Former::actions(Form::submit(__('app.save'), array('class'=>'btn btn-primary')) ) !!}

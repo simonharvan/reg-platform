@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="sk">
 
-<?php use App\Models\Event;
-$event = Event::find(Session::get('event_id')); ?>
+<?php
+use App\Models\Event;
+use App\Models\EventText;
+$event = Event::find(Session::get('event_id'));
+$event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
+?>
 
 <head>
     <meta charset="utf-8">
@@ -47,7 +51,7 @@ $event = Event::find(Session::get('event_id')); ?>
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand"
-               href="{{ URL::to('/') }}">{{ Session::get('event_name', 'Registration Platform') }}</a>
+               href="{{ URL::to('/') }}">{{ $event_text->title }}</a>
         </div>
         <!-- /.navbar-header -->
 

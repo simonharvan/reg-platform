@@ -23,15 +23,30 @@ use Illuminate\Support\Facades\View;
 */
 
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+	$code = $request->query('code', '');
+
+	if (!empty($code)) {
+		$codeModel = Code::where( 'password', '=', $code )->first();
+		if ( isset( $codeModel ) && ! empty( $codeModel ) && strcmp($codeModel->password, $code) == 0) {
+			Session::put( 'code_id', $codeModel->id );
+			Session::put( 'group_id', $codeModel->group->id );
+			Session::put( 'event_id', $codeModel->event->id );
+			Session::put( 'event_name', $codeModel->event->name );
+			return Redirect::to( 'welcome-page' );
+		}
+	}
+
     if (Session::has('code_id')) {
-        return Redirect::to('registration/create');
+
+        return Redirect::to('welcome-page');
     }
 
     return View::make('login');
 });
 
 Route::post('/', function (Request $request) {
+
     $password_input = $request->request->get('password');
     $code = Code::where('password', '=', $password_input)->first();
 

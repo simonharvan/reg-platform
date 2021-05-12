@@ -51,8 +51,11 @@ class Registration extends Model {
 		'dietary_requirements',
 		'interpretation',
 		'disabilities',
+		'additional_file',
+		'additional_info',
+		'additional_info_2',
+		'additional_info_3',
 		'additional_field',
-        'additional_file',
 		'remark',
 	);
 
