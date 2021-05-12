@@ -20,7 +20,7 @@ return [
     'accommodation' => 'HÉBERGEMENT À L\'HÔTEL',
     'additional' => 'INFORMATIONS COMPLÉMENTAIRES',
 
-    'registrationSuccess' => 'Le formulaire d\'inscription a été envoyée avec succès',
+    'registrationSuccess' => 'Le formulaire d\'inscription a été envoyé avec succès',
     'thanks' => 'MERCI!',
     'confirmationText' => 'Vous recevrez un email de confirmation . Veuillez lire les informations dans l\'email de la confirmation attentivement . <br> (Vous pouvez fermer cette page.)',
 

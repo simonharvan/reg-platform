@@ -143,36 +143,14 @@ $(document).ready(function () {
   });
 
   $('#registration').bootstrapValidator({
-    feedbackIcons: {
-      valid: 'glyphicon glyphicon-ok',
-      invalid: 'glyphicon glyphicon-remove',
-      validating: 'glyphicon glyphicon-refresh'
-    },
-    live: 'enabled',
-    submitButtons: 'input[type="submit"]'
-  }).on('error.form.bv', function (e) {
-    // $(e.target)  --> The field element
-    // data.bv      --> The BootstrapValidator instance
-    // data.field   --> The field name
-    // data.element --> The field element
-    console.log('error.form.bv')
-  }).on('success.form.bv', function (e) {
-    console.log('success.form.bv')
-
-    var form = $(e.target);
-
-    // Get the BootstrapValidator instance
-    var bv = form.data('bootstrapValidator');
-    if (bv.isValid()) {
-      e.preventDefault();
-      bv.destroy()
-      setTimeout(function () {
-        $('#submit').click()
-      }, 200);
-
-    }
-
-  });
+      feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+      },
+      live: 'enabled',
+      submitButtons: 'input[type="submit"]'
+  })
 
 
 });

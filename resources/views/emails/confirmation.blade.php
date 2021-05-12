@@ -67,7 +67,7 @@
                 </tr>
             @elseif ($label == 'additional_info')
                 <tr>
-                    <td width="200">Additional info:</td>
+                    <td width="200">Additional info :</td>
                     <td>{{ $value }}</td>
                 </tr>
             @else
