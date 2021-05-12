@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<p>{!! makeReplacements($event_text->email_confirmation_text, ['name' => $registration['prefix'].'. '.$registration['first_name'].' '.$registration['last_name']]) !!}</p>
+<p>{!! makeReplacements($event_text->email_confirmation_text, ['name' => isset($registration['prefix']) ?$registration['prefix'] : '' .'. '. isset($registration['first_name']) ?$registration['first_name'] : ''.' '.isset($registration['last_name']) ?$registration['last_name'] : '']) !!}</p>
 
 <p>Please review your registration details hereunder and contact us if any changes are required.</p>
 
@@ -67,7 +67,7 @@
                 </tr>
             @elseif ($label == 'additional_info')
                 <tr>
-                    <td width="200">Car ID :</td>
+                    <td width="200">Additional info:</td>
                     <td>{{ $value }}</td>
                 </tr>
             @else
