@@ -5,9 +5,9 @@
 use App\Models\Event;
 use App\Models\EventText;
 use \App\Models\EventMenuItem;
-$event = Event::find(Session::get('event_id'));
-$event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
-$event_menu_items = EventMenuItem::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->get();
+$event = Event::find( Session::get( 'event_id' ) );
+$event_text = EventText::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
+$event_menu_items = EventMenuItem::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 ?>
 
 <head>
@@ -91,10 +91,10 @@ $event_menu_items = EventMenuItem::where('event_id', '=', Session::get('event_id
                     </li>
                     @if (isset($event_menu_items))
                         @foreach($event_menu_items as $menu_item)
-                        <li>
-                            <a target="_blank" href="{{ URL::to('/storage/' . $menu_item->url) }}"><i
-                                        class="fa fa-file fa-fw"></i> {{ $menu_item->name }}</a>
-                        </li>
+                            <li>
+                                <a target="_blank" href="{{ URL::to('/storage/' . $menu_item->url) }}"><i
+                                            class="fa fa-file fa-fw"></i> {{ $menu_item->name }}</a>
+                            </li>
                         @endforeach
                     @endif
                     @if (Session::get('group_id', 0)==3)
@@ -113,7 +113,8 @@ $event_menu_items = EventMenuItem::where('event_id', '=', Session::get('event_id
                     </li>
                     @if ($event->logo_url)
                         <li>
-                            <img src="{{URL::to($event->logo_url)}}" class="img-responsive" style="padding: 20px"/>
+                            <img src="{{ URL::to('/storage/'. $event->logo_url) }}" class="img-responsive"
+                                 style="padding: 20px"/>
                         </li>
                     @endif
 
@@ -147,45 +148,49 @@ $event_menu_items = EventMenuItem::where('event_id', '=', Session::get('event_id
 {{ Html::script('js/bootstrap-datepicker.js') }}
 
 <script>
-$(document).ready(function () {
-  if (window.innerWidth < 768) {
-    $('.sidebar-collapse').addClass('collapse');
-  } else {
-    $('.sidebar-collapse').removeClass('collapse');
-  }
-  $('input[type=date]').datepicker({
-    format: 'yyyy-mm-dd',
-    language: 'sk'
-  });
+    $(document).ready(function () {
+        if (window.innerWidth < 768) {
+            $('.sidebar-collapse').addClass('collapse');
+        } else {
+            $('.sidebar-collapse').removeClass('collapse');
+        }
+        $('input[type=date]').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'sk'
+        });
 
-  $('#registration').bootstrapValidator({
-      feedbackIcons: {
-          valid: 'glyphicon glyphicon-ok',
-          invalid: 'glyphicon glyphicon-remove',
-          validating: 'glyphicon glyphicon-refresh'
-      },
-      live: 'enabled',
-      submitButtons: 'input[type="submit"]'
-  })
+        $('#registration').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            live: 'enabled',
+            submitButtons: 'input[type="submit"]'
+        })
 
 
-});
-$(window).resize(function () {
-  if (window.innerWidth < 768) {
-    $('.sidebar-collapse').addClass('collapse');
-  } else {
-    $('.sidebar-collapse').removeClass('collapse');
-  }
-});
+    });
+    $(window).resize(function () {
+        if (window.innerWidth < 768) {
+            $('.sidebar-collapse').addClass('collapse');
+        } else {
+            $('.sidebar-collapse').removeClass('collapse');
+        }
+    });
 </script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161907026-1"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-gtag('config', 'UA-161907026-1');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-161907026-1');
 </script>
 
 
