@@ -22,7 +22,7 @@
 @php
     $prefix = isset($registration['prefix']) ? $registration['prefix'] . '. ': '';
     $fist_name = isset($registration['first_name']) ? $registration['first_name'] . ' ' : '';
-    $last_name = isset($registration['last_name']) ?$registration['last_name'] : '';
+    $last_name = isset($registration['last_name']) ? $registration['last_name'] : '';
 
     $name =  $prefix . $fist_name . $last_name;
 @endphp
@@ -37,10 +37,10 @@
         <th colspan="2">{{ $event_text->email_egistration_details }}</th>
     </tr>
 
-    @foreach ($registration as $label=>$value)
+    @foreach ($registration as $label => $value)
         @if (is_array($value))
             <tr>
-                <td width="200">{{ trans('registration. '. $label) }} :</td>
+                <td width="200">{{ trans('registration.'. $label) }} :</td>
                 <td>{{ implode('<br>',$value) }}</td>
             </tr>
         @else
