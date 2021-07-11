@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fadd46372662375b6e1e76a85da10822",
+    "content-hash": "aeed7fa5ceebf417dc46fe9efd5de1a2",
     "packages": [
         {
             "name": "anahkiasen/former",
@@ -4937,16 +4937,16 @@
         },
         {
             "name": "tcg/voyager",
-            "version": "1.x-dev",
+            "version": "v1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "726cb098c4796878237f083be1da7cd80334bf67"
+                "reference": "aabdd942b802dcb395650d139a03e2221c26bfda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/726cb098c4796878237f083be1da7cd80334bf67",
-                "reference": "726cb098c4796878237f083be1da7cd80334bf67",
+                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/aabdd942b802dcb395650d139a03e2221c26bfda",
+                "reference": "aabdd942b802dcb395650d139a03e2221c26bfda",
                 "shasum": ""
             },
             "require": {
@@ -4999,7 +4999,25 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2020-03-10T15:28:49+00:00"
+            "support": {
+                "issues": "https://github.com/the-control-group/voyager/issues",
+                "source": "https://github.com/the-control-group/voyager"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/emptynick",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/fletch3555",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/tnylea",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-07-02T13:40:19+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -7347,5 +7365,6 @@
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
