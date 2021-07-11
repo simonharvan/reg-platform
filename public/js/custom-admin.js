@@ -145,6 +145,16 @@ $(document).ready(function () {
       $('.create-form-parameters .add-field-3-options').css('display', 'none');
     }
   });
+  $('.create-form-parameters [name=additional_field_4\\[value\\]]').click(function () {
+    $('.create-form-parameters .add-field-4').css('display', this.value === '1' ? 'block' : 'none');
+  });
+  $('.create-form-parameters [name=additional_field_4\\[type\\]]').change(function () {
+    if (this.value === 'Checkboxes' || this.value === 'Radio') {
+      $('.create-form-parameters .add-field-4-options').css('display', 'block');
+    } else {
+      $('.create-form-parameters .add-field-4-options').css('display', 'none');
+    }
+  });
 });
 
 function editNameCount(el) {
