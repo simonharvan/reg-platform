@@ -91,8 +91,11 @@ class RegistrationController extends Controller
         $input = $request::all();
 
         $rules = Registration::$rules;
-        if (!empty($input['additional_field']) && is_array($input['additional_field'])) {
-            $input['additional_field'] = implode(", ", $input['additional_field']);
+
+        foreach ($input as $key => $value) {
+	        if (!empty($value) && is_array($value)) {
+	        	$input[$key] = implode(", ", $value);
+	        }
         }
 
         $v = Validator::make($input, $rules);
@@ -186,8 +189,10 @@ class RegistrationController extends Controller
 
         $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
 
+        $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
         if (is_null($event_form)){
             return View::make('registration.form', array(
+	            'event_text' => $event_text,
                 'event_form' => $event_form,
                 'group_id' => $registration->group_id,
                 'country_list' => $country_list
@@ -195,6 +200,7 @@ class RegistrationController extends Controller
         }
 
         return View::make('registration.custom-form', array(
+	        'event_text' => $event_text,
             'event_form' => $event_form,
             'group_id' => $registration->group_id,
             'country_list' => $country_list

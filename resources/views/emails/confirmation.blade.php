@@ -19,12 +19,16 @@
     </style>
 </head>
 <body>
-<p>{!! makeReplacements($event_text->email_confirmation_text, ['name' => isset($registration['prefix']) ?$registration['prefix'] : '' .'. '. isset($registration['first_name']) ?$registration['first_name'] : ''.' '.isset($registration['last_name']) ?$registration['last_name'] : '']) !!}</p>
+@php
+    $prefix = isset($registration['prefix']) ? $registration['prefix'] . '. ': '';
+    $fist_name = isset($registration['first_name']) ? $registration['first_name'] . ' ' : '';
+    $last_name = isset($registration['last_name']) ?$registration['last_name'] : '';
 
-<p>Please review your registration details hereunder and contact us if any changes are required.</p>
+    $name =  $prefix . $fist_name . $last_name;
+@endphp
+<p>{!! makeReplacements($event_text->email_confirmation_text, ['name' => $name]) !!}</p>
 
-<p>Do not hesitate to contact us if you have any questions.</p>
-
+<p>{!! $event_text->email_please_review !!}</p>
 
 <p>{!! $event_text->email_signature  !!}</p>
 
@@ -36,7 +40,7 @@
     @foreach ($registration as $label=>$value)
         @if (is_array($value))
             <tr>
-                <td width="200">{{ ucwords(str_replace('_', ' ', $label)) }} :</td>
+                <td width="200">{{ trans('registration. '. $label) }} :</td>
                 <td>{{ implode('<br>',$value) }}</td>
             </tr>
         @else
@@ -72,7 +76,7 @@
                 </tr>
             @else
                 <tr>
-                    <td width="200">{{ ucwords(str_replace('_', ' ', $label)) }} :</td>
+                    <td width="200">{{ trans('registration. '. $label) }} :</td>
                     <td>{{ $value }}</td>
                 </tr>
             @endif

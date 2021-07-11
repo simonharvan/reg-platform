@@ -17,11 +17,11 @@ class CreateFormController extends VoyagerBaseController
         $inputs = $request->except(['_token', 'event_id', '_method']);
 
         foreach ($inputs as $key => $value) {
-            if ($key === 'additional_file' || $key === 'additional_field') {
-                if (!$value['value']) {
+        	if ($key === 'additional_file' || strpos($key, 'additional_field') !== false) {
+        		if (!$value['value']) {
                     continue;
                 }
-                $new_parameters[$key] = $value;
+        		$new_parameters[$key] = $value;
                 unset($new_parameters[$key]['required']);
                 $new_parameters[$key]['order'] = $order_additional;
                 $order_additional++;
@@ -32,7 +32,7 @@ class CreateFormController extends VoyagerBaseController
                     ];
                     $new_parameters[$key]['validation'] = 'required|file|mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF';
                 }
-                if ($key == 'additional_field') {
+                if (strpos($key, 'additional_field') != false) {
                     $new_parameters[$key]['validation'] = 'required';
                 }
 
@@ -40,8 +40,9 @@ class CreateFormController extends VoyagerBaseController
                     $new_parameters[$key]['type'] = Str::slug($new_parameters[$key]['type']);
                 }
 
+
                 if (isset($value['options'])) {
-                    $new_parameters[$key]['options'] = array_filter($value['options']);
+                	$new_parameters[$key]['options'] = array_filter($value['options']);
                 }
 
 
@@ -52,15 +53,14 @@ class CreateFormController extends VoyagerBaseController
                 continue;
             }
 
-            if ($value['value']) {
-                $new_parameters[$key] = $this->form_defaults[$key];
+            if ($value['value'] == 1) {
+            	$new_parameters[$key] = $this->form_defaults[$key];
                 if (!$value['required']) {
                     $new_parameters[$key]['validation'] = '';
                 }
             }
-
-
         }
+
 
         return json_encode($new_parameters);
     }

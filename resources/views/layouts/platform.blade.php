@@ -4,8 +4,10 @@
 <?php
 use App\Models\Event;
 use App\Models\EventText;
+use \App\Models\EventMenuItem;
 $event = Event::find(Session::get('event_id'));
 $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
+$event_menu_items = EventMenuItem::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->get();
 ?>
 
 <head>
@@ -87,6 +89,14 @@ $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where
                                     class="fa fa-th-list fa-fw"></i> {{ __('platform.register') }}
                         </a>
                     </li>
+                    @if (isset($event_menu_items))
+                        @foreach($event_menu_items as $menu_item)
+                        <li>
+                            <a target="_blank" href="{{ URL::to('/storage/' . $menu_item->url) }}"><i
+                                        class="fa fa-file fa-fw"></i> {{ $menu_item->name }}</a>
+                        </li>
+                        @endforeach
+                    @endif
                     @if (Session::get('group_id', 0)==3)
                         <li>
                             <a href="{{ URL::to('registration') }}"><i
@@ -101,9 +111,15 @@ $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where
                         <a href="{{ URL::to('logout') }}" class="text-danger"><i
                                     class="fa fa-sign-out-alt fa-fw"></i> {{ trans('platform.logout')}}</a>
                     </li>
+                    @if ($event->logo_url)
+                        <li>
+                            <img src="{{URL::to($event->logo_url)}}" class="img-responsive" style="padding: 20px"/>
+                        </li>
+                    @endif
 
                 </ul>
             </div>
+
             <!-- /.sidebar-collapse -->
         </div>
         <!-- /.navbar-static-side -->
