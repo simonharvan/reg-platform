@@ -38,45 +38,28 @@
     </tr>
 
     @foreach ($registration as $label => $value)
+
         @if (is_array($value))
-            <tr>
-                <td width="200">{{ trans('registration.'. $label) }} :</td>
-                <td>{{ implode('<br>',$value) }}</td>
-            </tr>
+            @if(isset($event_form[$label]->label))
+                <tr>
+                    <td width="200">{{$event_form[$label]->label}}</td>
+                    <td>{{ implode(' <br> ', $value) }}</td>
+                </tr>
+            @else
+                <tr>
+                    <td width="200">{{ trans('registration.'. $label) }} :</td>
+                    <td>{{ implode(' <br> ', $value) }}</td>
+                </tr>
+            @endif
         @else
-            @if($label == 'assistant_email')
+            @if(isset($event_form[$label]->label))
                 <tr>
-                    <td width="200">Second email :</td>
-                    <td>{{ $value }}</td>
-                </tr>
-            @elseif ($label == 'is_visa_required')
-                <tr>
-                    <td width="200">Do you need assistance with the visa application? :</td>
-                    <td>{{ $value  }}</td>
-                </tr>
-            @elseif ($label == 'disabilities')
-                <tr>
-                    <td width="200">Specific needs :</td>
-                    <td>{{ $value }}</td>
-                </tr>
-            @elseif ($label == 'remark')
-                <tr>
-                    <td width="200">Other particular requirements and comments :</td>
-                    <td>{{ $value }}</td>
-                </tr>
-            @elseif ($label == 'dietary_requirements')
-                <tr>
-                    <td width="200">Dietary requirements :</td>
-                    <td>{{ $value }}</td>
-                </tr>
-            @elseif ($label == 'additional_info')
-                <tr>
-                    <td width="200">Additional info :</td>
+                    <td width="200">{{$event_form[$label]->label}}</td>
                     <td>{{ $value }}</td>
                 </tr>
             @else
                 <tr>
-                    <td width="200">{{ trans('registration. '. $label) }} :</td>
+                    <td width="200">{{ trans('registration.'. $label) }} :</td>
                     <td>{{ $value }}</td>
                 </tr>
             @endif
