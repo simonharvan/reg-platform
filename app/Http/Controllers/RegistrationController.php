@@ -102,6 +102,7 @@ class RegistrationController extends Controller
         $v = Validator::make($input, $rules);
 
         if ($v->passes()) {
+	        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
 
             // $input = array_filter($input, 'strlen');
             $registration = new Registration;
@@ -125,11 +126,11 @@ class RegistrationController extends Controller
             }
 
             $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
-	        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
+
 
             Mail::send('emails.confirmation', [
                 'registration' => $request::except('_token'),
-                'event_form' => $event_form,
+                'event_form' => json_decode($event_form->form),
                 'event_text' => $event_text,
             ], function ($message) use ($registration, $event, $event_text) {
                 $message->from('reg-platform@nookom.eu', 'Registration Platform');

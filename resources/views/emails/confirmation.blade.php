@@ -38,28 +38,27 @@
     </tr>
 
     @foreach ($registration as $label => $value)
-
         @if (is_array($value))
-            @if(isset($event_form[$label]->label))
+            @if(isset($event_form->$label->label))
                 <tr>
-                    <td width="200">{{$event_form[$label]->label}}</td>
-                    <td>{{ implode(' <br> ', $value) }}</td>
+                    <td width="200">{{$event_form->$label->label}}</td>
+                    <td>{!! implode(' <br> ', $value) !!}</td>
                 </tr>
             @else
                 <tr>
-                    <td width="200">{{ trans('registration.'. $label) }} :</td>
-                    <td>{{ implode(' <br> ', $value) }}</td>
+                    <td width="200">{{ trans('registration.'. $label) }}</td>
+                    <td>{!! implode('<br> ', $value)  !!}</td>
                 </tr>
             @endif
         @else
-            @if(isset($event_form[$label]->label))
+            @if(isset($event_form->$label->label))
                 <tr>
-                    <td width="200">{{$event_form[$label]->label}}</td>
+                    <td width="200">{{$event_form->$label->label}}</td>
                     <td>{{ $value }}</td>
                 </tr>
             @else
                 <tr>
-                    <td width="200">{{ trans('registration.'. $label) }} :</td>
+                    <td width="200">{{ trans('registration.'. $label) }}</td>
                     <td>{{ $value }}</td>
                 </tr>
             @endif
