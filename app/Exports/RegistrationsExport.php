@@ -18,7 +18,13 @@ class RegistrationsExport implements FromCollection, WithHeadings
         $this->id = $id;
         $tmp = Registration::where('event_id' , '=' , $this->id)->with('group');
         $this->registrations = $tmp->get();
-        $this->keys = array_keys($tmp->first()->toArray());
+        $first = $tmp->first();
+        if (isset($first)) {
+	        $this->keys = array_keys($first->toArray());
+        } else {
+	        $this->keys = [];
+        }
+
     }
 
     /**

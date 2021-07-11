@@ -16,4 +16,9 @@ class Event extends Model {
     {
         return $this->hasMany('App\Models\EventText');
     }
+
+	public function menuItems()
+	{
+		return $this->hasMany('App\Models\EventMenuItem');
+	}
 }
