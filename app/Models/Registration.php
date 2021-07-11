@@ -52,10 +52,10 @@ class Registration extends Model {
 		'interpretation',
 		'disabilities',
 		'additional_file',
-		'additional_info',
-		'additional_info_2',
-		'additional_info_3',
 		'additional_field',
+		'additional_field_2',
+		'additional_field_3',
+		'additional_field_4',
 		'remark',
 	);
 
