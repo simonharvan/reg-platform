@@ -32,7 +32,7 @@ class CreateFormController extends VoyagerBaseController
                     ];
                     $new_parameters[$key]['validation'] = 'required|file|mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF';
                 }
-                if (strpos($key, 'additional_field') != false) {
+                if (strpos($key, 'additional_field') !== false) {
                     $new_parameters[$key]['validation'] = 'required';
                 }
 
@@ -49,6 +49,7 @@ class CreateFormController extends VoyagerBaseController
                 if (!$value['required']) {
                     $new_parameters[$key]['validation'] = '';
                 }
+
 
                 continue;
             }
