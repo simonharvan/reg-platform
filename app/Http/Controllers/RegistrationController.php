@@ -125,7 +125,7 @@ class RegistrationController extends Controller
             }
 
             $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
-	        $event_form = EventForm::where('event_id', '=', Session::get('event_id'));
+	        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
 
             Mail::send('emails.confirmation', [
                 'registration' => $request::except('_token'),
