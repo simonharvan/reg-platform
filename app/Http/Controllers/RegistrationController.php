@@ -93,9 +93,10 @@ class RegistrationController extends Controller
 
         $rules = Registration::$rules;
 
+
         foreach ($input as $key => $value) {
 	        if (!empty($value) && is_array($value)) {
-	        	$input[$key] = implode(", ", $value);
+	        	$input[$key] = implode(', ', $value);
 	        }
         }
 
@@ -194,6 +195,8 @@ class RegistrationController extends Controller
         $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
 
         $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
+
+
         if (is_null($event_form)){
             return View::make('registration.form', array(
 	            'event_text' => $event_text,
