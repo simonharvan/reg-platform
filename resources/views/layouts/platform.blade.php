@@ -94,7 +94,12 @@ $event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->
                         @foreach($event_pages as $page)
                             <li>
                                 <a href="{{ URL::to('/event-page/' . $page->id) }}"><i
-                                            class="fa fa-file fa-fw"></i> {{ $page->title }}</a>
+                                            class="fa
+                                            @if (isset($page->icon))
+                                            {{ $page->icon }}
+                                            @else
+                                            {{ "fa-file" }}
+                                            @endif fa-fw"></i> {{ $page->title }}</a>
                             </li>
                         @endforeach
                     @endif
