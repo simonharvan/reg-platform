@@ -2,9 +2,10 @@
 
 
 @section('content')
-    {!! $event_text->registration_top_note !!}
+
     <div class="row">
         <div class="col-lg-12">
+            {!! $event_text->registration_top_note !!}
             <h1 class="page-header">{{trans('app.registerNow')}}</h1>
             <p>{{trans('app.fields')}} (<span
                         class="required">*</span>) {{trans('app.areRequired')}}</p>
