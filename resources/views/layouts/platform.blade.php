@@ -3,11 +3,12 @@
 
 <?php
 use App\Models\Event;
-use App\Models\EventText;
+use App\Models\EventPage;use App\Models\EventText;
 use \App\Models\EventMenuItem;
 $event = Event::find( Session::get( 'event_id' ) );
 $event_text = EventText::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
 $event_menu_items = EventMenuItem::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
+$event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 ?>
 
 <head>
@@ -89,6 +90,14 @@ $event_menu_items = EventMenuItem::where( 'event_id', '=', Session::get( 'event_
                                     class="fa fa-th-list fa-fw"></i> {{ __('platform.register') }}
                         </a>
                     </li>
+                    @if (isset($event_pages))
+                        @foreach($event_pages as $page)
+                            <li>
+                                <a href="{{ URL::to('/event-page/' . $page->id) }}"><i
+                                            class="fa fa-file fa-fw"></i> {{ $page->title }}</a>
+                            </li>
+                        @endforeach
+                    @endif
                     @if (isset($event_menu_items))
                         @foreach($event_menu_items as $menu_item)
                             <li>
