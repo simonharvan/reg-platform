@@ -37,7 +37,7 @@ $event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->
     {{ Html::style('css/flag-icon.min.css') }}
     {{ Html::style('css/dataTables.bootstrap.css') }}
     {{ Html::style('css/datepicker.css') }}
-    {{ Html::style('css/app.css') }}
+    {{ Html::style('css/app.css?version=1.0.0') }}
 
 </head>
 
