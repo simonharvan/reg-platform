@@ -14,7 +14,7 @@ class CreateRegistrationAdditionalFieldDefaultValue extends Migration
     public function up()
     {
 	    Schema::table('registrations', function (Blueprint $table) {
-	    	$table->string('additional_field')->nullable()->change();
+	    	$table->text('additional_field')->nullable()->change();
 	    });
     }
 
@@ -26,7 +26,7 @@ class CreateRegistrationAdditionalFieldDefaultValue extends Migration
     public function down()
     {
 	    Schema::table('registrations', function (Blueprint $table) {
-		    $table->string('additional_field')->change();
+		    $table->text('additional_field')->change();
 	    });
     }
 }

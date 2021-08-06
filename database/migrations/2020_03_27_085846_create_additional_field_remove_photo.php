@@ -18,7 +18,7 @@ class CreateAdditionalFieldRemovePhoto extends Migration
             $table->dropColumn('category');
             $table->dropColumn('photo');
             $table->dropColumn('attending_dates');
-            $table->string('additional_field');
+            $table->text('additional_field');
         });
     }
 

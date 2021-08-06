@@ -14,8 +14,8 @@ class AddAdditionalFieldsToRegistration extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-	        $table->string('additional_field_2');
-	        $table->string('additional_field_3');
+	        $table->text('additional_field_2');
+	        $table->text('additional_field_3');
         });
     }
 
