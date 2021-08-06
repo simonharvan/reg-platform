@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\View;
 
 
 Route::get( '/', function ( Request $request ) {
-	$code = $request->query( 'code', '' );
+//	$code = $request->query( 'code', '' );
 
 	if ( ! empty( $code ) ) {
 		$codeModel = Code::where( 'password', '=', $code )->first();
