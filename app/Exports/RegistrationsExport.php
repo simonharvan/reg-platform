@@ -23,7 +23,7 @@ class RegistrationsExport implements FromArray, WithHeadings {
 		}
 		$registrations = $tmp->get()->toArray();
 
-		$first = $tmp->first();
+		$first            = $tmp->first();
 		$helperCheckboxes = [];
 		if ( isset( $first ) ) {
 			if ( isset( $event_form ) ) {
@@ -31,8 +31,8 @@ class RegistrationsExport implements FromArray, WithHeadings {
 				foreach ( get_object_vars( $event_form ) as $key => $form_item ) {
 					if ( $form_item->type === 'checkboxes' ) {
 						foreach ( $form_item->options as $option ) {
-							$helperCheckboxes[$option] = $key;
-							$checkboxesAddedKeys[] = strip_tags( $option );
+							$helperCheckboxes[ strip_tags( $option ) ] = $key;
+							$checkboxesAddedKeys[]                     = strip_tags( $option );
 						}
 					} else {
 						$checkboxesAddedKeys[] = $key;
@@ -51,7 +51,7 @@ class RegistrationsExport implements FromArray, WithHeadings {
 
 
 				$this->keys = array_combine(
-					array_merge( [ 'group' ],$checkboxesAddedKeys),
+					array_merge( [ 'group' ], $checkboxesAddedKeys ),
 					$filteredAndLabelKeys
 				);
 			} else {
@@ -78,11 +78,11 @@ class RegistrationsExport implements FromArray, WithHeadings {
 			$this->registrations = $registrations;
 		}
 
-		$this->registrations = array_map( function ( $item ) use ($helperCheckboxes){
+		$this->registrations = array_map( function ( $item ) use ( $helperCheckboxes ) {
 			$registration = [];
 			foreach ( $this->keys as $key => $value ) {
-				if (isset($helperCheckboxes[$key])) {
-					if (in_array($key, explode(', ',$item[$helperCheckboxes[$key]]))) {
+				if ( isset( $helperCheckboxes[ $key ] ) ) {
+					if ( in_array( $key, explode( ', ', $item[ $helperCheckboxes[ $key ] ] ) ) ) {
 						$registration[] = '✓';
 					} else {
 						$registration[] = '';
