@@ -61,6 +61,10 @@ class RegistrationsExport implements FromArray, WithHeadings {
 			$this->keys = [];
 		}
 
+		$this->keys = array_map( function ( $item ) {
+			return ucfirst( str_replace( '_', ' ', $item ) );
+		}, $this->keys );
+
 		if ( isset( $event_form ) ) {
 			$this->registrations = array_map( function ( $item ) use ( $event_form ) {
 				$array = array_filter( $item, function ( $property ) use ( $event_form, $item ) {
