@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventForm extends Model {
 	public $timestamps = false;
-	
-	public function event()
-    {
-        return $this->belongsTo('Event');
-    }
+
+	protected $fillable = [
+		'event_id',
+		'form'
+	];
+
+	public function event() {
+		return $this->belongsTo( 'Event' );
+	}
 
 }

@@ -122,4 +122,5 @@ Route::resource( 'registration', 'RegistrationController' );
 
 Route::group( [ 'prefix' => 'admin' ], function () {
 	Voyager::routes();
+	Route::get('event/copy','EventController@copy')->name('event.copy');
 } );

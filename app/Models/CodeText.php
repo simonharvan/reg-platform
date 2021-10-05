@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class CodeText extends Model {
 	public $timestamps = false;
-	
-	public function code()
-    {
-        return $this->belongsTo('Code');
-    }
+
+	protected $fillable = [
+		'code_id',
+		'language_code',
+		'instructions'
+	];
+
+	public function code() {
+		return $this->belongsTo( 'Code' );
+	}
 
 }
