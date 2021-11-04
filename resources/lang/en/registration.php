@@ -4,7 +4,7 @@ return [
 	'prefix' => 'Prefix',
 	'first_name' => 'First name',
     'last_name' => 'Last name',
-    'organization' => 'Organization',
+    'organization' => 'Organisation',
 	'country' => 'Country',
     'position' => 'Position',
     'email' => 'Email',
