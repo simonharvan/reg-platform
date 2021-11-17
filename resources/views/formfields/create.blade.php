@@ -6,6 +6,12 @@
     $end_id_2 = 0;
     $end_id_3 = 0;
     $end_id_4 = 0;
+    $end_id_5 = 0;
+    $end_id_6 = 0;
+    $end_id_7 = 0;
+    $end_id_8 = 0;
+    $end_id_9 = 0;
+    $end_id_10 = 0;
 @endphp
 
 
@@ -2165,6 +2171,786 @@
                         <label>
                             <input class="form-check-input" type="radio" name="additional_field_4[required]" id="prefix"
                                    value="1" @if(!empty($old_parameters->additional_field_4->validation)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="grid-row">
+                <span class="col-form-label pt-0">Field 5</span>
+                <div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_5[value]"
+                                   id="additional_field_5"
+                                   value="0" @if(!isset($old_parameters->additional_field_5)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_5[value]"
+                                   id="additional_field_5"
+                                   value="1" @if(isset($old_parameters->additional_field_5)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="add-field-5" @if(!isset($old_parameters->additional_field_5)) {{ 'style=display:none;' }} @endif>
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Label</span>
+                            <input type="text" class="form-control input-sm" id="additional_field_5_label"
+                                   name="additional_field_5[label]" placeholder="Field label"
+                                   value="{{ isset($old_parameters->additional_field_5) ? $old_parameters->additional_field_5->label : ''}}">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Section</span>
+                            <select class="form-control input-sm" name="additional_field_5[section]"
+                                    id="additional_field_5_section">
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->section === 'Personal') {{ 'selected' }} @endif>
+                                    Personal
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->section === 'Travel') {{ 'selected' }} @endif>
+                                    Travel
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->section === 'Accomodation') {{ 'selected' }} @endif>
+                                    Accomodation
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->section === 'Additional') {{ 'selected' }} @endif>
+                                    Additional
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Type</span>
+                            <select class="form-control input-sm" name="additional_field_5[type]"
+                                    id="additional_field_5_type">
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->type === 'text') {{ 'selected' }} @endif>
+                                    Text
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->type === 'text-area') {{ 'selected' }} @endif>
+                                    Text area
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->type === 'date') {{ 'selected' }} @endif>
+                                    Date
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->type === 'number') {{ 'selected' }} @endif>
+                                    Number
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->type === 'checkboxes') {{ 'selected' }} @endif>
+                                    Checkboxes
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_5) && $old_parameters->additional_field_5->type === 'radio') {{ 'selected' }} @endif>
+                                    Radio
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-field-4-options" @if(!isset($old_parameters->additional_field_5) || ($old_parameters->additional_field_5->type !== 'checkboxes' && $old_parameters->additional_field_5->type !== 'radio')) {{ 'style=display:none;' }} @endif>
+                        @if (isset($old_parameters->additional_field_5->options))
+                            @foreach($old_parameters->additional_field_5->options as $option)
+                                <div class="form-group row add-field-5-option" row-id="{{ $end_id_5 }}">
+                                    <div class="col-sm-10" style="margin-bottom:0;">
+                                        <input type="text" class="form-control input-sm" id="additional_field_option"
+                                               name="additional_field_5[options][{{ $end_id_5 }}]" placeholder="Option"
+                                               value="{{ $option }}">
+                                    </div>
+                                    <div style="margin-bottom:0;">
+                                        <button type="button" class="btn btn-sm" style="margin-top:0px;"><i
+                                                    class="voyager-trash"></i></button>
+                                    </div>
+                                </div>
+                                @php
+                                    $end_id_5 = $loop->index + 1;
+                                @endphp
+                            @endforeach
+                        @endif
+                        <div class="form-group row add-field-5-option" row-id="{{ $end_id_5 }}">
+                            <div class="col-sm-10" style="margin-bottom:0;">
+                                <input type="text" class="form-control input-sm" id="additional_field_option"
+                                       name="additional_field_5[options][{{ $end_id_5 }}]" placeholder="Option"
+                                       value="">
+                            </div>
+                            <div style="margin-bottom:0;">
+                                <button type="button" class="btn btn-success btn-sm" style="margin-top:0px;"><i
+                                            class="voyager-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="col-form-label required-label">Required</span>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_5[required]" id="prefix"
+                                   value="0" @if(empty($old_parameters->additional_field_5->validation)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_5[required]" id="prefix"
+                                   value="1" @if(!empty($old_parameters->additional_field_5->validation)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="grid-row">
+                <span class="col-form-label pt-0">Field 6</span>
+                <div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_6[value]"
+                                   id="additional_field_6"
+                                   value="0" @if(!isset($old_parameters->additional_field_6)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_6[value]"
+                                   id="additional_field_6"
+                                   value="1" @if(isset($old_parameters->additional_field_6)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="add-field-6" @if(!isset($old_parameters->additional_field_6)) {{ 'style=display:none;' }} @endif>
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Label</span>
+                            <input type="text" class="form-control input-sm" id="additional_field_6_label"
+                                   name="additional_field_6[label]" placeholder="Field label"
+                                   value="{{ isset($old_parameters->additional_field_6) ? $old_parameters->additional_field_6->label : ''}}">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Section</span>
+                            <select class="form-control input-sm" name="additional_field_6[section]"
+                                    id="additional_field_6_section">
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->section === 'Personal') {{ 'selected' }} @endif>
+                                    Personal
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->section === 'Travel') {{ 'selected' }} @endif>
+                                    Travel
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->section === 'Accomodation') {{ 'selected' }} @endif>
+                                    Accomodation
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->section === 'Additional') {{ 'selected' }} @endif>
+                                    Additional
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Type</span>
+                            <select class="form-control input-sm" name="additional_field_6[type]"
+                                    id="additional_field_6_type">
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->type === 'text') {{ 'selected' }} @endif>
+                                    Text
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->type === 'text-area') {{ 'selected' }} @endif>
+                                    Text area
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->type === 'date') {{ 'selected' }} @endif>
+                                    Date
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->type === 'number') {{ 'selected' }} @endif>
+                                    Number
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->type === 'checkboxes') {{ 'selected' }} @endif>
+                                    Checkboxes
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_6) && $old_parameters->additional_field_6->type === 'radio') {{ 'selected' }} @endif>
+                                    Radio
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-field-6-options" @if(!isset($old_parameters->additional_field_6) || ($old_parameters->additional_field_6->type !== 'checkboxes' && $old_parameters->additional_field_6->type !== 'radio')) {{ 'style=display:none;' }} @endif>
+                        @if (isset($old_parameters->additional_field_6->options))
+                            @foreach($old_parameters->additional_field_6->options as $option)
+                                <div class="form-group row add-field-6-option" row-id="{{ $end_id_6 }}">
+                                    <div class="col-sm-10" style="margin-bottom:0;">
+                                        <input type="text" class="form-control input-sm" id="additional_field_option"
+                                               name="additional_field_6[options][{{ $end_id_6 }}]" placeholder="Option"
+                                               value="{{ $option }}">
+                                    </div>
+                                    <div style="margin-bottom:0;">
+                                        <button type="button" class="btn btn-sm" style="margin-top:0px;"><i
+                                                    class="voyager-trash"></i></button>
+                                    </div>
+                                </div>
+                                @php
+                                    $end_id_6 = $loop->index + 1;
+                                @endphp
+                            @endforeach
+                        @endif
+                        <div class="form-group row add-field-6-option" row-id="{{ $end_id_6 }}">
+                            <div class="col-sm-10" style="margin-bottom:0;">
+                                <input type="text" class="form-control input-sm" id="additional_field_option"
+                                       name="additional_field_6[options][{{ $end_id_6 }}]" placeholder="Option"
+                                       value="">
+                            </div>
+                            <div style="margin-bottom:0;">
+                                <button type="button" class="btn btn-success btn-sm" style="margin-top:0px;"><i
+                                            class="voyager-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="col-form-label required-label">Required</span>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_6[required]" id="prefix"
+                                   value="0" @if(empty($old_parameters->additional_field_6->validation)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_6[required]" id="prefix"
+                                   value="1" @if(!empty($old_parameters->additional_field_6->validation)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="grid-row">
+                <span class="col-form-label pt-0">Field 7</span>
+                <div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_7[value]"
+                                   id="additional_field_7"
+                                   value="0" @if(!isset($old_parameters->additional_field_7)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_7[value]"
+                                   id="additional_field_7"
+                                   value="1" @if(isset($old_parameters->additional_field_7)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="add-field-7" @if(!isset($old_parameters->additional_field_7)) {{ 'style=display:none;' }} @endif>
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Label</span>
+                            <input type="text" class="form-control input-sm" id="additional_field_7_label"
+                                   name="additional_field_7[label]" placeholder="Field label"
+                                   value="{{ isset($old_parameters->additional_field_7) ? $old_parameters->additional_field_7->label : ''}}">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Section</span>
+                            <select class="form-control input-sm" name="additional_field_7[section]"
+                                    id="additional_field_7_section">
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->section === 'Personal') {{ 'selected' }} @endif>
+                                    Personal
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->section === 'Travel') {{ 'selected' }} @endif>
+                                    Travel
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->section === 'Accomodation') {{ 'selected' }} @endif>
+                                    Accomodation
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->section === 'Additional') {{ 'selected' }} @endif>
+                                    Additional
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Type</span>
+                            <select class="form-control input-sm" name="additional_field_7[type]"
+                                    id="additional_field_7_type">
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->type === 'text') {{ 'selected' }} @endif>
+                                    Text
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->type === 'text-area') {{ 'selected' }} @endif>
+                                    Text area
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->type === 'date') {{ 'selected' }} @endif>
+                                    Date
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->type === 'number') {{ 'selected' }} @endif>
+                                    Number
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->type === 'checkboxes') {{ 'selected' }} @endif>
+                                    Checkboxes
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_7) && $old_parameters->additional_field_7->type === 'radio') {{ 'selected' }} @endif>
+                                    Radio
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-field-7-options" @if(!isset($old_parameters->additional_field_7) || ($old_parameters->additional_field_7->type !== 'checkboxes' && $old_parameters->additional_field_7->type !== 'radio')) {{ 'style=display:none;' }} @endif>
+                        @if (isset($old_parameters->additional_field_7->options))
+                            @foreach($old_parameters->additional_field_7->options as $option)
+                                <div class="form-group row add-field-7-option" row-id="{{ $end_id_7 }}">
+                                    <div class="col-sm-10" style="margin-bottom:0;">
+                                        <input type="text" class="form-control input-sm" id="additional_field_option"
+                                               name="additional_field_7[options][{{ $end_id_7 }}]" placeholder="Option"
+                                               value="{{ $option }}">
+                                    </div>
+                                    <div style="margin-bottom:0;">
+                                        <button type="button" class="btn btn-sm" style="margin-top:0px;"><i
+                                                    class="voyager-trash"></i></button>
+                                    </div>
+                                </div>
+                                @php
+                                    $end_id_7 = $loop->index + 1;
+                                @endphp
+                            @endforeach
+                        @endif
+                        <div class="form-group row add-field-7-option" row-id="{{ $end_id_7 }}">
+                            <div class="col-sm-10" style="margin-bottom:0;">
+                                <input type="text" class="form-control input-sm" id="additional_field_option"
+                                       name="additional_field_7[options][{{ $end_id_7 }}]" placeholder="Option"
+                                       value="">
+                            </div>
+                            <div style="margin-bottom:0;">
+                                <button type="button" class="btn btn-success btn-sm" style="margin-top:0px;"><i
+                                            class="voyager-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="col-form-label required-label">Required</span>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_7[required]" id="prefix"
+                                   value="0" @if(empty($old_parameters->additional_field_7->validation)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_7[required]" id="prefix"
+                                   value="1" @if(!empty($old_parameters->additional_field_7->validation)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="grid-row">
+                <span class="col-form-label pt-0">Field 8</span>
+                <div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_8[value]"
+                                   id="additional_field_8"
+                                   value="0" @if(!isset($old_parameters->additional_field_8)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_8[value]"
+                                   id="additional_field_8"
+                                   value="1" @if(isset($old_parameters->additional_field_8)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="add-field-8" @if(!isset($old_parameters->additional_field_8)) {{ 'style=display:none;' }} @endif>
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Label</span>
+                            <input type="text" class="form-control input-sm" id="additional_field_8_label"
+                                   name="additional_field_8[label]" placeholder="Field label"
+                                   value="{{ isset($old_parameters->additional_field_8) ? $old_parameters->additional_field_8->label : ''}}">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Section</span>
+                            <select class="form-control input-sm" name="additional_field_8[section]"
+                                    id="additional_field_8_section">
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->section === 'Personal') {{ 'selected' }} @endif>
+                                    Personal
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->section === 'Travel') {{ 'selected' }} @endif>
+                                    Travel
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->section === 'Accomodation') {{ 'selected' }} @endif>
+                                    Accomodation
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->section === 'Additional') {{ 'selected' }} @endif>
+                                    Additional
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Type</span>
+                            <select class="form-control input-sm" name="additional_field_8[type]"
+                                    id="additional_field_8_type">
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->type === 'text') {{ 'selected' }} @endif>
+                                    Text
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->type === 'text-area') {{ 'selected' }} @endif>
+                                    Text area
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->type === 'date') {{ 'selected' }} @endif>
+                                    Date
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->type === 'number') {{ 'selected' }} @endif>
+                                    Number
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->type === 'checkboxes') {{ 'selected' }} @endif>
+                                    Checkboxes
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_8) && $old_parameters->additional_field_8->type === 'radio') {{ 'selected' }} @endif>
+                                    Radio
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-field-8-options" @if(!isset($old_parameters->additional_field_8) || ($old_parameters->additional_field_8->type !== 'checkboxes' && $old_parameters->additional_field_8->type !== 'radio')) {{ 'style=display:none;' }} @endif>
+                        @if (isset($old_parameters->additional_field_8->options))
+                            @foreach($old_parameters->additional_field_8->options as $option)
+                                <div class="form-group row add-field-8-option" row-id="{{ $end_id_8 }}">
+                                    <div class="col-sm-10" style="margin-bottom:0;">
+                                        <input type="text" class="form-control input-sm" id="additional_field_option"
+                                               name="additional_field_8[options][{{ $end_id_8 }}]" placeholder="Option"
+                                               value="{{ $option }}">
+                                    </div>
+                                    <div style="margin-bottom:0;">
+                                        <button type="button" class="btn btn-sm" style="margin-top:0px;"><i
+                                                    class="voyager-trash"></i></button>
+                                    </div>
+                                </div>
+                                @php
+                                    $end_id_8 = $loop->index + 1;
+                                @endphp
+                            @endforeach
+                        @endif
+                        <div class="form-group row add-field-8-option" row-id="{{ $end_id_8 }}">
+                            <div class="col-sm-10" style="margin-bottom:0;">
+                                <input type="text" class="form-control input-sm" id="additional_field_option"
+                                       name="additional_field_8[options][{{ $end_id_8 }}]" placeholder="Option"
+                                       value="">
+                            </div>
+                            <div style="margin-bottom:0;">
+                                <button type="button" class="btn btn-success btn-sm" style="margin-top:0px;"><i
+                                            class="voyager-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="col-form-label required-label">Required</span>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_8[required]" id="prefix"
+                                   value="0" @if(empty($old_parameters->additional_field_8->validation)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_8[required]" id="prefix"
+                                   value="1" @if(!empty($old_parameters->additional_field_8->validation)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="grid-row">
+                <span class="col-form-label pt-0">Field 9</span>
+                <div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_9[value]"
+                                   id="additional_field_9"
+                                   value="0" @if(!isset($old_parameters->additional_field_9)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_9[value]"
+                                   id="additional_field_9"
+                                   value="1" @if(isset($old_parameters->additional_field_9)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="add-field-9" @if(!isset($old_parameters->additional_field_9)) {{ 'style=display:none;' }} @endif>
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Label</span>
+                            <input type="text" class="form-control input-sm" id="additional_field_9_label"
+                                   name="additional_field_9[label]" placeholder="Field label"
+                                   value="{{ isset($old_parameters->additional_field_9) ? $old_parameters->additional_field_9->label : ''}}">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Section</span>
+                            <select class="form-control input-sm" name="additional_field_9[section]"
+                                    id="additional_field_9_section">
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->section === 'Personal') {{ 'selected' }} @endif>
+                                    Personal
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->section === 'Travel') {{ 'selected' }} @endif>
+                                    Travel
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->section === 'Accomodation') {{ 'selected' }} @endif>
+                                    Accomodation
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->section === 'Additional') {{ 'selected' }} @endif>
+                                    Additional
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Type</span>
+                            <select class="form-control input-sm" name="additional_field_9[type]"
+                                    id="additional_field_9_type">
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->type === 'text') {{ 'selected' }} @endif>
+                                    Text
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->type === 'text-area') {{ 'selected' }} @endif>
+                                    Text area
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->type === 'date') {{ 'selected' }} @endif>
+                                    Date
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->type === 'number') {{ 'selected' }} @endif>
+                                    Number
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->type === 'checkboxes') {{ 'selected' }} @endif>
+                                    Checkboxes
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_9) && $old_parameters->additional_field_9->type === 'radio') {{ 'selected' }} @endif>
+                                    Radio
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-field-9-options" @if(!isset($old_parameters->additional_field_9) || ($old_parameters->additional_field_9->type !== 'checkboxes' && $old_parameters->additional_field_9->type !== 'radio')) {{ 'style=display:none;' }} @endif>
+                        @if (isset($old_parameters->additional_field_9->options))
+                            @foreach($old_parameters->additional_field_9->options as $option)
+                                <div class="form-group row add-field-9-option" row-id="{{ $end_id_9 }}">
+                                    <div class="col-sm-10" style="margin-bottom:0;">
+                                        <input type="text" class="form-control input-sm" id="additional_field_option"
+                                               name="additional_field_9[options][{{ $end_id_9 }}]" placeholder="Option"
+                                               value="{{ $option }}">
+                                    </div>
+                                    <div style="margin-bottom:0;">
+                                        <button type="button" class="btn btn-sm" style="margin-top:0px;"><i
+                                                    class="voyager-trash"></i></button>
+                                    </div>
+                                </div>
+                                @php
+                                    $end_id_9 = $loop->index + 1;
+                                @endphp
+                            @endforeach
+                        @endif
+                        <div class="form-group row add-field-9-option" row-id="{{ $end_id_9 }}">
+                            <div class="col-sm-10" style="margin-bottom:0;">
+                                <input type="text" class="form-control input-sm" id="additional_field_option"
+                                       name="additional_field_9[options][{{ $end_id_9 }}]" placeholder="Option"
+                                       value="">
+                            </div>
+                            <div style="margin-bottom:0;">
+                                <button type="button" class="btn btn-success btn-sm" style="margin-top:0px;"><i
+                                            class="voyager-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="col-form-label required-label">Required</span>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_9[required]" id="prefix"
+                                   value="0" @if(empty($old_parameters->additional_field_9->validation)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_9[required]" id="prefix"
+                                   value="1" @if(!empty($old_parameters->additional_field_9->validation)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="grid-row">
+                <span class="col-form-label pt-0">Field 10</span>
+                <div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_10[value]"
+                                   id="additional_field_10"
+                                   value="0" @if(!isset($old_parameters->additional_field_10)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_10[value]"
+                                   id="additional_field_10"
+                                   value="1" @if(isset($old_parameters->additional_field_10)) {{ 'checked' }} @endif>
+                            Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="add-field-10" @if(!isset($old_parameters->additional_field_10)) {{ 'style=display:none;' }} @endif>
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Label</span>
+                            <input type="text" class="form-control input-sm" id="additional_field_10_label"
+                                   name="additional_field_10[label]" placeholder="Field label"
+                                   value="{{ isset($old_parameters->additional_field_10) ? $old_parameters->additional_field_10->label : ''}}">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Section</span>
+                            <select class="form-control input-sm" name="additional_field_10[section]"
+                                    id="additional_field_10_section">
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->section === 'Personal') {{ 'selected' }} @endif>
+                                    Personal
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->section === 'Travel') {{ 'selected' }} @endif>
+                                    Travel
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->section === 'Accomodation') {{ 'selected' }} @endif>
+                                    Accomodation
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->section === 'Additional') {{ 'selected' }} @endif>
+                                    Additional
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <span class="col-form-label pt-0">Type</span>
+                            <select class="form-control input-sm" name="additional_field_10[type]"
+                                    id="additional_field_10_type">
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->type === 'text') {{ 'selected' }} @endif>
+                                    Text
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->type === 'text-area') {{ 'selected' }} @endif>
+                                    Text area
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->type === 'date') {{ 'selected' }} @endif>
+                                    Date
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->type === 'number') {{ 'selected' }} @endif>
+                                    Number
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->type === 'checkboxes') {{ 'selected' }} @endif>
+                                    Checkboxes
+                                </option>
+                                <option @if(isset($old_parameters->additional_field_10) && $old_parameters->additional_field_10->type === 'radio') {{ 'selected' }} @endif>
+                                    Radio
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-field-10-options" @if(!isset($old_parameters->additional_field_10) || ($old_parameters->additional_field_10->type !== 'checkboxes' && $old_parameters->additional_field_10->type !== 'radio')) {{ 'style=display:none;' }} @endif>
+                        @if (isset($old_parameters->additional_field_10->options))
+                            @foreach($old_parameters->additional_field_10->options as $option)
+                                <div class="form-group row add-field-10-option" row-id="{{ $end_id_10 }}">
+                                    <div class="col-sm-10" style="margin-bottom:0;">
+                                        <input type="text" class="form-control input-sm" id="additional_field_option"
+                                               name="additional_field_10[options][{{ $end_id_10 }}]" placeholder="Option"
+                                               value="{{ $option }}">
+                                    </div>
+                                    <div style="margin-bottom:0;">
+                                        <button type="button" class="btn btn-sm" style="margin-top:0px;"><i
+                                                    class="voyager-trash"></i></button>
+                                    </div>
+                                </div>
+                                @php
+                                    $end_id_10 = $loop->index + 1;
+                                @endphp
+                            @endforeach
+                        @endif
+                        <div class="form-group row add-field-10-option" row-id="{{ $end_id_10 }}">
+                            <div class="col-sm-10" style="margin-bottom:0;">
+                                <input type="text" class="form-control input-sm" id="additional_field_option"
+                                       name="additional_field_10[options][{{ $end_id_10 }}]" placeholder="Option"
+                                       value="">
+                            </div>
+                            <div style="margin-bottom:0;">
+                                <button type="button" class="btn btn-success btn-sm" style="margin-top:0px;"><i
+                                            class="voyager-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="col-form-label required-label">Required</span>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_10[required]" id="prefix"
+                                   value="0" @if(empty($old_parameters->additional_field_10->validation)) {{ 'checked' }} @endif>
+                            No
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input class="form-check-input" type="radio" name="additional_field_10[required]" id="prefix"
+                                   value="1" @if(!empty($old_parameters->additional_field_10->validation)) {{ 'checked' }} @endif>
                             Yes
                         </label>
                     </div>

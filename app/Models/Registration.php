@@ -56,6 +56,12 @@ class Registration extends Model {
 		'additional_field_2',
 		'additional_field_3',
 		'additional_field_4',
+		'additional_field_5',
+		'additional_field_6',
+		'additional_field_7',
+		'additional_field_8',
+		'additional_field_9',
+		'additional_field_10',
 		'remark',
 	);
 

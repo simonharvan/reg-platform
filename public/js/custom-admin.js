@@ -155,6 +155,66 @@ $(document).ready(function () {
       $('.create-form-parameters .add-field-4-options').css('display', 'none');
     }
   });
+  $('.create-form-parameters [name=additional_field_5\\[value\\]]').click(function () {
+    $('.create-form-parameters .add-field-5').css('display', this.value === '1' ? 'block' : 'none');
+  });
+  $('.create-form-parameters [name=additional_field_5\\[type\\]]').change(function () {
+    if (this.value === 'Checkboxes' || this.value === 'Radio') {
+      $('.create-form-parameters .add-field-5-options').css('display', 'block');
+    } else {
+      $('.create-form-parameters .add-field-5-options').css('display', 'none');
+    }
+  });
+  $('.create-form-parameters [name=additional_field_6\\[value\\]]').click(function () {
+    $('.create-form-parameters .add-field-6').css('display', this.value === '1' ? 'block' : 'none');
+  });
+  $('.create-form-parameters [name=additional_field_6\\[type\\]]').change(function () {
+    if (this.value === 'Checkboxes' || this.value === 'Radio') {
+      $('.create-form-parameters .add-field-6-options').css('display', 'block');
+    } else {
+      $('.create-form-parameters .add-field-6-options').css('display', 'none');
+    }
+  });
+  $('.create-form-parameters [name=additional_field_7\\[value\\]]').click(function () {
+    $('.create-form-parameters .add-field-7').css('display', this.value === '1' ? 'block' : 'none');
+  });
+  $('.create-form-parameters [name=additional_field_7\\[type\\]]').change(function () {
+    if (this.value === 'Checkboxes' || this.value === 'Radio') {
+      $('.create-form-parameters .add-field-7-options').css('display', 'block');
+    } else {
+      $('.create-form-parameters .add-field-7-options').css('display', 'none');
+    }
+  });
+  $('.create-form-parameters [name=additional_field_8\\[value\\]]').click(function () {
+    $('.create-form-parameters .add-field-8').css('display', this.value === '1' ? 'block' : 'none');
+  });
+  $('.create-form-parameters [name=additional_field_8\\[type\\]]').change(function () {
+    if (this.value === 'Checkboxes' || this.value === 'Radio') {
+      $('.create-form-parameters .add-field-8-options').css('display', 'block');
+    } else {
+      $('.create-form-parameters .add-field-8-options').css('display', 'none');
+    }
+  });
+  $('.create-form-parameters [name=additional_field_9\\[value\\]]').click(function () {
+    $('.create-form-parameters .add-field-9').css('display', this.value === '1' ? 'block' : 'none');
+  });
+  $('.create-form-parameters [name=additional_field_9\\[type\\]]').change(function () {
+    if (this.value === 'Checkboxes' || this.value === 'Radio') {
+      $('.create-form-parameters .add-field-9-options').css('display', 'block');
+    } else {
+      $('.create-form-parameters .add-field-9-options').css('display', 'none');
+    }
+  });
+  $('.create-form-parameters [name=additional_field_10\\[value\\]]').click(function () {
+    $('.create-form-parameters .add-field-10').css('display', this.value === '1' ? 'block' : 'none');
+  });
+  $('.create-form-parameters [name=additional_field_10\\[type\\]]').change(function () {
+    if (this.value === 'Checkboxes' || this.value === 'Radio') {
+      $('.create-form-parameters .add-field-10-options').css('display', 'block');
+    } else {
+      $('.create-form-parameters .add-field-10-options').css('display', 'none');
+    }
+  });
 });
 
 function editNameCount(el) {
