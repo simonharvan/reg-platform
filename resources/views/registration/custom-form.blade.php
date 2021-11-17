@@ -310,7 +310,7 @@
                                     }
                                 }
                             @endphp
-                            {!! Former::radios($key)->radios($options)->inline()->label($label)  !!}
+                            {!! Former::radios($key)->radios($options)->label($label)  !!}
                         @elseif($item->type === 'file')
                             {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
                         @endif
