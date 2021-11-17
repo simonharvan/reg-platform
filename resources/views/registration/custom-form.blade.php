@@ -86,7 +86,9 @@
                         }
                     @endphp
                     @if(isset($item->type))
-                        @if ($item->type === 'text')
+                        @if ($item->type === 'note')
+                            <p>{!! $item->text !!}</p>
+                        @elseif ($item->type === 'text')
                             {!! Former::text($key)->label($label) !!}
                         @elseif($item->type === 'text-area')
                             {!! Former::textarea($key)->label($label) !!}
@@ -149,7 +151,9 @@
                         }
                     @endphp
                     @if(isset($item->type))
-                        @if ($item->type === 'text')
+                        @if ($item->type === 'note')
+                            <p>{!! $item->text !!}</p>
+                        @elseif ($item->type === 'text')
                             {!! Former::text($key)->label($label) !!}
                         @elseif($item->type === 'text-area')
                             {!! Former::textarea($key)->label($label) !!}
@@ -210,7 +214,9 @@
                         }
                     @endphp
                     @if(isset($item->type))
-                        @if ($item->type === 'text')
+                        @if ($item->type === 'note')
+                            <p>{!! $item->text !!}</p>
+                        @elseif ($item->type === 'text')
                             @if($key === 'room_additional_number_night')
                                 {!! Former::text($key)->label($label)->help($event_text->room_additional_number_night_help) !!}
                             @else
@@ -277,7 +283,9 @@
                         }
                     @endphp
                     @if(isset($item->type))
-                        @if ($item->type === 'text')
+                        @if ($item->type === 'note')
+                            <p>{!! $item->text !!}</p>
+                        @elseif ($item->type === 'text')
                             {!! Former::text($key)->label($label) !!}
                         @elseif($item->type === 'text-area')
                             {!! Former::textarea($key)->label($label) !!}
