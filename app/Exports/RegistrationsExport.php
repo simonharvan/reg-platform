@@ -92,7 +92,11 @@ class RegistrationsExport implements FromArray, WithHeadings {
 						$registration[] = '';
 					}
 				} else {
-					$registration[] = $item[ $key ];
+					if ( isset( $item[ $key ] ) ) {
+						$registration[] = $item[ $key ];
+					} else {
+						$registration[] = '';
+					}
 				}
 
 			}
