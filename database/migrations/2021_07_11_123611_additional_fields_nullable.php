@@ -28,7 +28,7 @@ class AdditionalFieldsNullable extends Migration
 	 */
 	public function down()
 	{
-		Schema::table('event_texts', function (Blueprint $table) {
+		Schema::table('registrations', function (Blueprint $table) {
 			$table->string('additional_field')->change();
 			$table->string('additional_field_2')->change();
 			$table->string('additional_field_3')->change();

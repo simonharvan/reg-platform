@@ -2,139 +2,56 @@ $(document).ready(() => {
     if (!document.location.href.includes('event-forms')) {
         return
     }
-    var buttons = document.querySelectorAll('.create-form-parameters .btn');
+
+    var buttons = document.querySelectorAll('.create-form-parameters .remove-option');
     for (var i = 0; i < buttons.length; i++)
         buttons[i].onclick = removeRow;
 
-    var suc_buttons = document.querySelectorAll('.create-form-parameters .btn-success');
+    var suc_buttons = document.querySelectorAll('.create-form-parameters .add-option');
     for (var i = 0; i < suc_buttons.length; i++)
         suc_buttons[i].onclick = addRow;
+
+    $('.create-form-parameters .add-note').click(function () {
+        var new_row = $('#note-field')[0].cloneNode(true);
+        var notes = $('.notes')[0]
+        new_row.style.display = 'block';
+        new_row.querySelector('#notes_text').value = '';
+        new_row.querySelector('#notes_order').value = '10000';
+        var nextId = parseInt(notes.getAttribute('row-id')) + 1
+        var textName = getNewName(new_row.querySelector('#notes_text').getAttribute('name'), nextId)
+        var orderName = getNewName(new_row.querySelector('#notes_order').getAttribute('name'), nextId)
+        var sectionName = getNewName(new_row.querySelector('#notes_section').getAttribute('name'), nextId)
+        new_row.querySelector('#notes_text').setAttribute('name', textName);
+        new_row.querySelector('#notes_order').setAttribute('name', orderName);
+        new_row.querySelector('#notes_section').setAttribute('name', sectionName);
+        notes.setAttribute('row-id', nextId)
+        new_row.querySelector('.remove-note').onclick = removeRow;
+        notes.appendChild(new_row);
+    });
+
+    var removeNotesButtons = document.querySelectorAll('.create-form-parameters .remove-note');
+    for (var i = 0; i < suc_buttons.length; i++)
+        removeNotesButtons[i].onclick = removeRow;
 
 
     $('.create-form-parameters [name=additional_file\\[value\\]]').click(function () {
         $('.create-form-parameters .add-file').css('display', this.value === '1' ? 'block' : 'none')
     });
 
-    $('.create-form-parameters [name=additional_field\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field').css('display', this.value === '1' ? 'block' : 'none')
-    });
+    for (let i = 0; i < 10; i++) {
+        $('.create-form-parameters [name=additional_field_' + i + '\\[value\\]]').click(function () {
+            $('.create-form-parameters .add-field-' + i).css('display', this.value === '1' ? 'block' : 'none')
+        });
 
-    $('.create-form-parameters [name=additional_field\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-options').css('display', 'none')
-        }
-    });
+        $('.create-form-parameters [name=additional_field_' + i + '\\[type\\]]').change(function () {
+            if (this.value === 'Checkboxes' || this.value === 'Radio') {
+                $('.create-form-parameters .add-field-' + i + '-options').css('display', 'block')
+            } else {
+                $('.create-form-parameters .add-field-' + i + '-options').css('display', 'none')
+            }
+        });
+    }
 
-    $('.create-form-parameters [name=additional_field_2\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-2').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_2\\[type\\]]').change(function () {
-        console.log(this.value)
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-2-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-2-options').css('display', 'none')
-        }
-    });
-
-    $('.create-form-parameters [name=additional_field_3\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-3').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_3\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-3-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-3-options').css('display', 'none')
-        }
-    });
-
-    $('.create-form-parameters [name=additional_field_4\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-4').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_4\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-4-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-4-options').css('display', 'none')
-        }
-    });
-
-    $('.create-form-parameters [name=additional_field_5\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-5').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_5\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-5-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-5-options').css('display', 'none')
-        }
-    });
-
-    $('.create-form-parameters [name=additional_field_6\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-6').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_6\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-6-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-6-options').css('display', 'none')
-        }
-    });
-
-    $('.create-form-parameters [name=additional_field_7\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-7').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_7\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-7-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-7-options').css('display', 'none')
-        }
-    });
-
-    $('.create-form-parameters [name=additional_field_8\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-8').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_8\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-8-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-8-options').css('display', 'none')
-        }
-    });
-
-    $('.create-form-parameters [name=additional_field_9\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-9').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_9\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-9-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-9-options').css('display', 'none')
-        }
-    });
-
-    $('.create-form-parameters [name=additional_field_10\\[value\\]]').click(function () {
-        $('.create-form-parameters .add-field-10').css('display', this.value === '1' ? 'block' : 'none')
-    });
-
-    $('.create-form-parameters [name=additional_field_10\\[type\\]]').change(function () {
-        if (this.value === 'Checkboxes' || this.value === 'Radio') {
-            $('.create-form-parameters .add-field-10-options').css('display', 'block')
-        } else {
-            $('.create-form-parameters .add-field-10-options').css('display', 'none')
-        }
-    });
 
 });
 
@@ -146,6 +63,10 @@ function editNameCount(el) {
         + (old_id + 1)
         + ']';
     return (new_str);
+}
+
+function getNewName(text, nextId) {
+    return text.replace("##", nextId);
 }
 
 function addRow() {
@@ -165,4 +86,5 @@ function addRow() {
 function removeRow() {
     this.parentNode.parentNode.remove();
 }
+
 

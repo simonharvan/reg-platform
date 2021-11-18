@@ -50,9 +50,13 @@ class CreateFormController extends VoyagerBaseController
                     $new_parameters[$key]['validation'] = '';
                 }
 
-
                 continue;
             }
+	        if (strpos($key, 'additional_notes') !== false) {
+		        $new_parameters[$key] = $value;
+		        $new_parameters[$key]['type'] = 'note';
+		        continue;
+	        }
 
             if ($value['value'] == 1) {
             	$new_parameters[$key] = $this->form_defaults[$key];
