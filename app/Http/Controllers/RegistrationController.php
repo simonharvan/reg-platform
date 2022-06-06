@@ -52,6 +52,11 @@ class RegistrationController extends Controller
      */
     public function create()
     {
+        $event = Event::find( Session::get( 'event_id' ) );
+        $is_registration_available = strtotime($event->available_until) >= time();
+        if (!$is_registration_available) {
+            return Redirect::to('/');
+        }
         $group_id = Session::get('group_id', 0);
         if ($group_id == 0) {
             return Redirect::to('/');
@@ -63,7 +68,6 @@ class RegistrationController extends Controller
 
         $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
         if (is_null($event_form)){
-
             return View::make('registration.form', [
                 'event_text' => $event_text,
                 'group_id' => $group_id,

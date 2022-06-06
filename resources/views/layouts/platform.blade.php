@@ -9,6 +9,7 @@ $event = Event::find( Session::get( 'event_id' ) );
 $event_text = EventText::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
 $event_menu_items = EventMenuItem::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 $event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
+$is_registration_available = strtotime($event->available_until) >= time();
 ?>
 
 <head>
@@ -85,11 +86,13 @@ $event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->
                         <a href="{{ URL::to('welcome-page') }}"><i
                                     class="fa fa-home fa-fw"></i> {{ __('platform.welcome') }}</a>
                     </li>
+                    @if ($is_registration_available)
                     <li>
                         <a href="{{ URL::to('registration/create') }}"><i
                                     class="fa fa-th-list fa-fw"></i> {{ __('platform.register') }}
                         </a>
                     </li>
+                    @endif
                     @if (isset($event_pages))
                         @foreach($event_pages as $page)
                             <li>
