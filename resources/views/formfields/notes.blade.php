@@ -1,7 +1,10 @@
 @php
-    $notes = array_filter(get_object_vars($old_parameters), function($v, $k) {
+    $notes = [];
+    if (isset($old_parameters)) {
+        $notes = array_filter(get_object_vars($old_parameters), function($v, $k) {
             return $v->type === 'note';
         }, ARRAY_FILTER_USE_BOTH);
+    }
 @endphp
 <div class="notes" row-id="{{count($notes) + 100}}">
     <fieldset class="form-group" id="note-field" style="display: none;">
@@ -47,7 +50,7 @@
             </div>
             <div>
                 <button type="button" class="btn btn-sm remove-note" style="margin-top:0px;"><i
-                            class="voyager-trash"></i></button>
+                        class="voyager-trash"></i></button>
             </div>
         </div>
     </fieldset>
@@ -95,7 +98,7 @@
                 </div>
                 <div>
                     <button type="button" class="btn btn-sm remove-note" style="margin-top:0px;"><i
-                                class="voyager-trash"></i></button>
+                            class="voyager-trash"></i></button>
                 </div>
             </div>
         </fieldset>
@@ -103,5 +106,5 @@
 </div>
 <div style="margin-bottom:0;">
     <button type="button" class="btn btn-success add-note btn-sm" style="margin-top:0px;"><i
-                class="voyager-plus"></i></button>
+            class="voyager-plus"></i></button>
 </div>
