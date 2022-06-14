@@ -138,7 +138,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h5>{{ trans('app.travel') }}</h5>
-                <p>{{ isset($event_text->travel_data_note) ? trans($event_text->travel_data_note) : '' }}</p>
+                <p>{!! isset($event_text->travel_data_note) ? trans($event_text->travel_data_note) : '' !!}</p>
             </div>
             <div class="panel-body">
 
@@ -227,7 +227,11 @@
                         @elseif($item->type === 'date')
                             {!! Former::date($key)->label($label) !!}
                         @elseif($item->type === 'number')
-                            {!! Former::number($key)->label($label) !!}
+                            @if($key === 'room_additional_number_night')
+                                {!! Former::number($key)->label($label)->help($event_text->room_additional_number_night_help) !!}
+                            @else
+                                {!! Former::number($key)->label($label) !!}
+                            @endif
                         @elseif($item->type === 'checkboxes')
                             @php
                                 $options = [];
