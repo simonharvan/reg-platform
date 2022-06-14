@@ -22,14 +22,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="is_visa_required[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="is_visa_required[required]" id="is_visa_required"
                            value="0" @if(empty($old_parameters->is_visa_required->validation)) {{'checked'}} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="is_visa_required[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="is_visa_required[required]" id="is_visa_required"
                            value="1" @if(!empty($old_parameters->is_visa_required->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>
@@ -43,16 +43,16 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="is_visa_required[value]"
-                           id="is_visa_required"
+                    <input class="form-check-input" type="radio" name="is_visa_obtained[value]"
+                           id="is_visa_obtained"
                            value="0" @if(!isset($old_parameters->is_visa_obtained->value)) {{ 'checked' }} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="is_visa_required[value]"
-                           id="is_visa_required"
+                    <input class="form-check-input" type="radio" name="is_visa_obtained[value]"
+                           id="is_visa_obtained"
                            value="1" @if(isset($old_parameters->is_visa_obtained->value)) {{ 'checked' }} @endif>
                     Yes
                 </label>
@@ -61,14 +61,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="is_visa_required[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="is_visa_obtained[required]" id="is_visa_obtained"
                            value="0" @if(empty($old_parameters->is_visa_obtained->validation)) {{'checked'}} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="is_visa_required[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="is_visa_obtained[required]" id="is_visa_obtained"
                            value="1" @if(!empty($old_parameters->is_visa_obtained->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>

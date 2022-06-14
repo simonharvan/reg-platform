@@ -38,6 +38,7 @@ class Registration extends Model {
 		'birthdate',
 		'nationality',
 		'is_visa_required',
+        'is_visa_obtained',
 		'local_embassy',
 		'departure_city',
 		'departure_date',
