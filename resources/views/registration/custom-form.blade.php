@@ -138,7 +138,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h5>{{ trans('app.travel') }}</h5>
-                <p>{!! isset($event_text->travel_data_note) ? trans($event_text->travel_data_note) : '' !!}</p>
+                <p>{!! $event_text->travel_data_note !!}</p>
             </div>
             <div class="panel-body">
 

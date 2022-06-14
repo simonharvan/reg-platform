@@ -17,6 +17,8 @@ return [
 	'cc_assistant_email' => 'Cc assistant email',
 	'mobile_phone' => 'Mobile phone',
 	'fax' => 'Fax',
+    'passport_copy' => 'Passport',
+    'visa_copy' => 'Visa',
 	'passport_number' => 'Passport number',
 	'passport_issued_by' => 'Passport issued by',
 	'passport_date_of_issue' => 'Passport date of issue',

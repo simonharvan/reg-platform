@@ -30,7 +30,7 @@ $(document).ready(() => {
     });
 
     var removeNotesButtons = document.querySelectorAll('.create-form-parameters .remove-note');
-    for (var i = 0; i < suc_buttons.length; i++)
+    for (var i = 0; i < removeNotesButtons.length; i++)
         removeNotesButtons[i].onclick = removeRow;
 
 

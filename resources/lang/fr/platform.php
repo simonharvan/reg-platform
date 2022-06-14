@@ -10,8 +10,8 @@ return [
     */
 
     'title' => 'Registration platform',
-    'welcome' => 'Welcome',
-    'register' => 'Register',
+    'welcome' => 'Bienvenue',
+    'register' => 'Enregistrement',
     'registered' => 'Registered',
     'statistics' => 'Statistics',
     'logout' => 'Logout',
