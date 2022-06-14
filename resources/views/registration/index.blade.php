@@ -43,7 +43,8 @@
                                 @foreach($list as $key)
                                     <th>
                                         @if (isset($form) && isset($form->$key->label))
-                                            {{ ucwords(str_replace('_', ' ', $form->$key->label)) }}
+                                            {{-- This is to check whether the label is suppose to be translated. It is if the first character is `.` --}}
+                                            {{ substr($form->$key->label, 0, 1) == '.' ? trans('registration'. $form->$key->label) : ucwords(str_replace('_', ' ', $form->$key->label)) }}
                                         @else
                                             {{ ucwords(str_replace('_', ' ', $key)) }}
                                         @endif

@@ -26,7 +26,7 @@ return [
 	'birthdate' => 'Date of birth',
 	'nationality' => 'Nationality',
 	'is_visa_required' => 'Do you need visa?',
-	'is_visa_obtained' => 'Did you already obtained visa?',
+	'is_visa_obtained' => 'Did you already obtain visa?',
 	'local_embassy' => 'Local embassy',
 	'departure_city' => 'Departure Airport',
 	'departure_date' => 'Departure date',

@@ -52,7 +52,7 @@ class RegistrationController extends Controller
      */
     public function create()
     {
-        $event = Event::find( Session::get( 'event_id' ) );
+        $event = Event::find(Session::get('event_id'));
         $is_registration_available = strtotime($event->available_until) >= time();
         if (!$is_registration_available) {
             return Redirect::to('/');
@@ -67,7 +67,7 @@ class RegistrationController extends Controller
         $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
 
         $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
-        if (is_null($event_form)){
+        if (is_null($event_form)) {
             return View::make('registration.form', [
                 'event_text' => $event_text,
                 'group_id' => $group_id,
@@ -99,15 +99,15 @@ class RegistrationController extends Controller
 
 
         foreach ($input as $key => $value) {
-	        if (!empty($value) && is_array($value)) {
-	        	$input[$key] = implode(', ', $value);
-	        }
+            if (!empty($value) && is_array($value)) {
+                $input[$key] = implode(', ', $value);
+            }
         }
 
         $v = Validator::make($input, $rules);
 
         if ($v->passes()) {
-	        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
+            $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
 
             // $input = array_filter($input, 'strlen');
             $registration = new Registration;
@@ -116,18 +116,22 @@ class RegistrationController extends Controller
             $registration->group_id = Session::get('group_id', 0);
             $registration->save();
 
+            $files = [];
             if ($request::hasFile('passport_copy')) {
                 $registration->passport_copy = $this->uploadImage(Session::get('event_id', 0), 'passport_copy');
                 $registration->save();
+                $files[] = $this->filePath($registration->id, 'passport_copy');
             }
             if ($request::hasFile('visa_copy')) {
-                $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0),'visa_copy');
+                $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0), 'visa_copy');
                 $registration->save();
+                $files[] = $this->filePath($registration->id, 'visa_copy');
             }
 
             if ($request::hasFile('additional_file')) {
-                $registration->additional_file = $this->uploadImage(Session::get('event_id', 0),'additional_file');
+                $registration->additional_file = $this->uploadImage(Session::get('event_id', 0), 'additional_file');
                 $registration->save();
+                $files[] = $this->filePath($registration->id, 'additional_file');
             }
 
             $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
@@ -137,10 +141,13 @@ class RegistrationController extends Controller
                 'registration' => $request::except('_token'),
                 'event_form' => json_decode($event_form->form),
                 'event_text' => $event_text,
-            ], function ($message) use ($registration, $event, $event_text) {
+            ], function ($message) use ($registration, $event, $event_text, $files) {
                 $message->from('reg-platform@nookom.eu', 'Registration Platform');
                 $message->to($registration->email)->cc($event->email_cc)->replyTo($event->email_reply_to);
                 $message->subject($event_text->email_subject);
+                foreach ($files as $file) {
+                    $message->attach($file);
+                }
             });
 
 
@@ -201,9 +208,9 @@ class RegistrationController extends Controller
         $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
 
 
-        if (is_null($event_form)){
+        if (is_null($event_form)) {
             return View::make('registration.form', array(
-	            'event_text' => $event_text,
+                'event_text' => $event_text,
                 'event_form' => $event_form,
                 'group_id' => $registration->group_id,
                 'country_list' => $country_list
@@ -211,12 +218,11 @@ class RegistrationController extends Controller
         }
 
         return View::make('registration.custom-form', array(
-	        'event_text' => $event_text,
+            'event_text' => $event_text,
             'event_form' => $event_form,
             'group_id' => $registration->group_id,
             'country_list' => $country_list
         ))->with('registration', $registration);
-
 
 
     }
@@ -231,7 +237,6 @@ class RegistrationController extends Controller
      */
     public function update($id)
     {
-
         $input = Request::all();
         $registration = Registration::find($id);
 
@@ -244,16 +249,16 @@ class RegistrationController extends Controller
             $registration->save();
 
             if (Request::hasFile('passport_copy')) {
-                $registration->passport_copy = $this->uploadImage(Session::get('event_id', 0),'passport_copy');
+                $registration->passport_copy = $this->uploadImage(Session::get('event_id', 0), 'passport_copy');
                 $registration->save();
             }
             if (Request::hasFile('visa_copy')) {
-                $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0),'visa_copy');
+                $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0), 'visa_copy');
                 $registration->save();
             }
 
             if (Request::hasFile('additional_file')) {
-                $registration->additional_file = $this->uploadImage(Session::get('event_id', 0),'additional_file');
+                $registration->additional_file = $this->uploadImage(Session::get('event_id', 0), 'additional_file');
                 $registration->save();
             }
 
@@ -276,7 +281,6 @@ class RegistrationController extends Controller
      */
     public function destroy($id)
     {
-
         if (!isset($id) || $id === 'undefined') {
             return abort(404);
         }
@@ -301,7 +305,7 @@ class RegistrationController extends Controller
             return abort(404);
         }
 
-        $pathToFile = base_path() . '/storage/app/public/event_' . $registration->event_id . '/' . $registration->$file;
+        $pathToFile = $this->filePath($id, $file);
         if (!file_exists($pathToFile)) {
             return abort(404);
         }
@@ -309,13 +313,19 @@ class RegistrationController extends Controller
         return Response::download($pathToFile);
     }
 
+    private function filePath($id, $file)
+    {
+        $registration = Registration::find($id);
+        return base_path() . '/storage/app/public/event_' . $registration->event_id . '/' . $registration->$file;
+    }
+
     private function uploadImage($event_id, $field_name)
     {
         $file = Request::file($field_name);
-        $filename = Str::random(15) . '.' . $file->getClientOriginalExtension();
+        $filename = $field_name .'_'. Str::random(15) . '.' . $file->getClientOriginalExtension();
         $filename = Str::lower($filename);
         $path = 'public/event_' . $event_id . '/';
-        if(!Storage::exists($path)){
+        if (!Storage::exists($path)) {
             Storage::makeDirectory($path);
         }
 

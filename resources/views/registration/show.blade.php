@@ -26,7 +26,8 @@
             <tr>
                 <td>
                     @if (isset($form) && isset($form->$key->label))
-                        {{ ucwords(str_replace('_', ' ', $form->$key->label)) }}
+                        {{-- This is to check whether the label is suppose to be translated. It is if the first character is `.` --}}
+                        {{ substr($form->$key->label, 0, 1) == '.' ? trans('registration'. $form->$key->label) : ucwords(str_replace('_', ' ', $form->$key->label)) }}
                     @else
                         {{ ucwords(str_replace('_', ' ', $key)) }}
                     @endif
@@ -35,8 +36,8 @@
                     @if (isset($form) && $form->$key->type === 'file')
                         <a href="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
                            target="_blank"><img
-                                    src="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
-                                    height=150"></a>
+                                src="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
+                                height=150"></a>
 
                     @else
                         {{ $registration->$key }}
