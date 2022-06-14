@@ -80,7 +80,11 @@
                 @foreach($personal as $key => $item)
                     @php
                         if (isset($item->label) && !empty($item->label)) {
-                            $label = $item->label;
+                            if (substr($item->label, 0, 1) == '.') {
+                                $label = trans('registration'. $item->label);
+                            } else {
+                                $label = $item->label;
+                            }
                         } else {
                             $label = trans('registration.'. $key);
                         }
@@ -145,7 +149,11 @@
                 @foreach($travel as $key => $item)
                     @php
                         if (isset($item->label) && !empty($item->label)) {
-                            $label = $item->label;
+                            if (substr($item->label, 0, 1) == '.') {
+                                $label = trans('registration'. $item->label);
+                            } else {
+                                $label = $item->label;
+                            }
                         } else {
                             $label = trans('registration.'. $key);
                         }
@@ -208,7 +216,11 @@
                 @foreach($accomodation as $key => $item)
                     @php
                         if (isset($item->label) && !empty($item->label)) {
-                            $label = $item->label;
+                            if (substr($item->label, 0, 1) == '.') {
+                                $label = trans('registration'. $item->label);
+                            } else {
+                                $label = $item->label;
+                            }
                         } else {
                             $label = trans('registration.'. $key);
                         }
@@ -281,7 +293,11 @@
                 @foreach($additional as $key => $item)
                     @php
                         if (isset($item->label) && !empty($item->label)) {
-                            $label = $item->label;
+                            if (substr($item->label, 0, 1) == '.') {
+                                $label = trans('registration'. $item->label);
+                            } else {
+                                $label = $item->label;
+                            }
                         } else {
                             $label = trans('registration.'. $key);
                         }

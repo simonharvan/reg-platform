@@ -37,7 +37,45 @@
         </div>
     </div>
 </fieldset>
-
+<fieldset class="form-group">
+    <div class="grid-row">
+        <span class="col-form-label pt-0">Is visa obtained</span>
+        <div>
+            <div class="radio-inline">
+                <label>
+                    <input class="form-check-input" type="radio" name="is_visa_required[value]"
+                           id="is_visa_required"
+                           value="0" @if(!isset($old_parameters->is_visa_obtained->value)) {{ 'checked' }} @endif>
+                    No
+                </label>
+            </div>
+            <div class="radio-inline">
+                <label>
+                    <input class="form-check-input" type="radio" name="is_visa_required[value]"
+                           id="is_visa_required"
+                           value="1" @if(isset($old_parameters->is_visa_obtained->value)) {{ 'checked' }} @endif>
+                    Yes
+                </label>
+            </div>
+        </div>
+        <div>
+            <div class="radio-inline">
+                <label>
+                    <input class="form-check-input" type="radio" name="is_visa_required[required]" id="prefix"
+                           value="0" @if(empty($old_parameters->is_visa_obtained->validation)) {{'checked'}} @endif>
+                    No
+                </label>
+            </div>
+            <div class="radio-inline">
+                <label>
+                    <input class="form-check-input" type="radio" name="is_visa_required[required]" id="prefix"
+                           value="1" @if(!empty($old_parameters->is_visa_obtained->validation)) {{ 'checked' }} @endif>
+                    Yes
+                </label>
+            </div>
+        </div>
+    </div>
+</fieldset>
 <fieldset class="form-group">
     <div class="grid-row">
         <span class="col-form-label pt-0">Visa copy<br><small>image/pdf file</small></span>

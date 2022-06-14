@@ -242,17 +242,18 @@ class CreateFormController extends VoyagerBaseController {
 				'no'
 			]
 		],
+        'is_visa_obtained'             => [
+            'order'      => 19,
+            'value'      => 1,
+            'section'    => 'Travel',
+            'type'       => 'radio',
+            'validation' => 'required',
+            'options'    => [
+                'yes',
+                'no'
+            ]
+        ],
 		'visa_copy'                    => [
-			'order'      => 19,
-			'value'      => 1,
-			'section'    => 'Travel',
-			'type'       => 'file',
-			'validation' => 'required|file|mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF',
-			'options'    => [
-				'mime' => 'image/*, application/pdf'
-			]
-		],
-		'passport_copy'                => [
 			'order'      => 20,
 			'value'      => 1,
 			'section'    => 'Travel',
@@ -262,71 +263,81 @@ class CreateFormController extends VoyagerBaseController {
 				'mime' => 'image/*, application/pdf'
 			]
 		],
-		'passport_number'              => [
+		'passport_copy'                => [
 			'order'      => 21,
 			'value'      => 1,
 			'section'    => 'Travel',
-			'type'       => 'text',
-			'validation' => 'required'
+			'type'       => 'file',
+			'validation' => 'required|file|mimes:jpeg,jpg,png,JPG,bmp,png,pdf,PDF',
+			'options'    => [
+				'mime' => 'image/*, application/pdf'
+			]
 		],
-		'passport_issued_by'           => [
+		'passport_number'              => [
 			'order'      => 22,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
-		'passport_date_of_issue'       => [
+		'passport_issued_by'           => [
 			'order'      => 23,
 			'value'      => 1,
 			'section'    => 'Travel',
-			'type'       => 'date',
-			'validation' => 'required|date'
+			'type'       => 'text',
+			'validation' => 'required'
 		],
-		'passport_date_of_expiry'      => [
+		'passport_date_of_issue'       => [
 			'order'      => 24,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'date',
 			'validation' => 'required|date'
 		],
-		'birthdate'                    => [
+		'passport_date_of_expiry'      => [
 			'order'      => 25,
+			'value'      => 1,
+			'section'    => 'Travel',
+			'type'       => 'date',
+			'validation' => 'required|date'
+		],
+		'birthdate'                    => [
+			'order'      => 26,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'required|date',
 			'validation' => 'required'
 		],
 		'local_embassy'                => [
-			'order'      => 26,
-			'value'      => 1,
-			'section'    => 'Travel',
-			'type'       => 'text',
-			'validation' => 'required'
-		],
-		'departure_city'               => [
 			'order'      => 27,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
-		'departure_date'               => [
+		'departure_city'               => [
 			'order'      => 28,
+			'value'      => 1,
+			'section'    => 'Travel',
+			'type'       => 'text',
+			'validation' => 'required'
+		],
+		'departure_date'               => [
+			'order'      => 29,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'date',
 			'validation' => 'required'
 		],
 		'return_date'                  => [
-			'order'      => 29,
+			'order'      => 30,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'date',
 			'validation' => 'required|date'
 		],
 		'needs_accomodation'           => [
-			'order'      => 30,
+			'order'      => 31,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'radio',
@@ -337,14 +348,14 @@ class CreateFormController extends VoyagerBaseController {
 			]
 		],
 		'guest_names'                  => [
-			'order'      => 31,
+			'order'      => 32,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'room_type'                    => [
-			'order'      => 32,
+			'order'      => 33,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'select',
@@ -357,49 +368,49 @@ class CreateFormController extends VoyagerBaseController {
 			]
 		],
 		'room_arrival'                 => [
-			'order'      => 33,
+			'order'      => 34,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'date',
 			'validation' => 'required|date'
 		],
 		'room_departure'               => [
-			'order'      => 34,
+			'order'      => 35,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'date',
 			'validation' => 'required'
 		],
 		'room_additional_number_night' => [
-			'order'      => 35,
+			'order'      => 36,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'number',
 			'validation' => 'required'
 		],
 		'dietary_requirements'         => [
-			'order'      => 36,
+			'order'      => 37,
 			'value'      => 1,
 			'section'    => 'Additional',
 			'type'       => 'text-area',
 			'validation' => 'required'
 		],
 		'interpretation'               => [
-			'order'      => 37,
+			'order'      => 38,
 			'value'      => 1,
 			'section'    => 'Additional',
 			'type'       => 'text',
 			'validation' => 'required',
 		],
 		'disabilities'                 => [
-			'order'      => 38,
+			'order'      => 39,
 			'value'      => 1,
 			'section'    => 'Additional',
 			'type'       => 'text-area',
 			'validation' => 'required'
 		],
 		'remark'                       => [
-			'order'      => 39,
+			'order'      => 40,
 			'value'      => 1,
 			'section'    => 'Additional',
 			'type'       => 'text-area',
