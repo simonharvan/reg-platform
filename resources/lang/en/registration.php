@@ -43,5 +43,7 @@ return [
 	'interpretation' => 'Interpretation',
 	'disabilities' => 'Specific needs',
 	'attending_dates' => 'Select attendance',
-	'remark' => 'Other particular requirements and comments'
+	'remark' => 'Other particular requirements and comments',
+    'yes' => 'Yes',
+    'no' => 'No'
 ];

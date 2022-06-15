@@ -105,7 +105,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $options[$optionValue] = [
+                                        $label = $optionValue;
+                                        if (trans('registration.' . strtolower($optionValue)) != null) {
+                                            $label = trans('registration.' . strtolower($optionValue);
+                                        }
+                                        $options[$label] = [
                                             'name' => $key . '[]',
                                             'value' => $optionValue
                                         ];
@@ -118,7 +122,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $options[$optionValue] = [
+                                        $label = $optionValue;
+                                        if (trans('registration.' . strtolower($optionValue)) != null) {
+                                            $label = trans('registration.' . strtolower($optionValue);
+                                        }
+                                        $options[$label] = [
                                             'name' => $key,
                                             'value' => $optionValue
                                         ];
@@ -174,7 +182,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $options[$optionValue] = [
+                                        $label = $optionValue;
+                                        if (trans('registration.' . strtolower($optionValue)) != null) {
+                                            $label = trans('registration.' . strtolower($optionValue);
+                                        }
+                                        $options[$label] = [
                                             'name' => $key . '[]',
                                             'value' => $optionValue
                                         ];
@@ -187,7 +199,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $options[$optionValue] = [
+                                        $label = $optionValue;
+                                        if (trans('registration.' . strtolower($optionValue)) != null) {
+                                            $label = trans('registration.' . strtolower($optionValue);
+                                        }
+                                        $options[$label] = [
                                             'name' => $key,
                                             'value' => $optionValue
                                         ];
@@ -249,7 +265,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $options[$optionValue] = [
+                                        $label = $optionValue;
+                                        if (trans('registration.' . strtolower($optionValue)) != null) {
+                                            $label = trans('registration.' . strtolower($optionValue);
+                                        }
+                                        $options[$label] = [
                                             'name' => $key . '[]',
                                             'value' => $optionValue
                                         ];
@@ -262,7 +282,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $options[$optionValue] = [
+                                        $label = $optionValue;
+                                        if (trans('registration.' . strtolower($optionValue)) != null) {
+                                            $label = trans('registration.' . strtolower($optionValue);
+                                        }
+                                        $options[$label] = [
                                             'name' => $key,
                                             'value' => $optionValue
                                         ];
@@ -318,7 +342,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $options[$optionValue] = [
+                                        $label = $optionValue;
+                                        if (trans('registration.' . strtolower($optionValue)) != null) {
+                                            $label = trans('registration.' . strtolower($optionValue);
+                                        }
+                                        $options[$label] = [
                                             'name' => $key . '[]',
                                             'value' => $optionValue
                                         ];
@@ -331,7 +359,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $options[$optionValue] = [
+                                        $label = $optionValue;
+                                        if (trans('registration.' . strtolower($optionValue)) != null) {
+                                            $label = trans('registration.' . strtolower($optionValue);
+                                        }
+                                        $options[$label] = [
                                             'name' => $key,
                                             'value' => $optionValue
                                         ];
