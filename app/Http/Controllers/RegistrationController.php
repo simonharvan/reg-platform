@@ -52,7 +52,12 @@ class RegistrationController extends Controller
      */
     public function create()
     {
-        $event = Event::find(Session::get('event_id'));
+        $event_id = Session::get('event_id');
+        if ($event_id == 0) {
+            return Redirect::to('/');
+        }
+
+        $event = Event::find($event_id);
         $is_registration_available = strtotime($event->available_until) >= time();
         if (!$is_registration_available) {
             return Redirect::to('/');
@@ -64,9 +69,9 @@ class RegistrationController extends Controller
         $group_id = Session::get('group_id', 0);
         $country_list = Country::pluck('name', 'name');
 
-        $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
+        $event_text = EventText::where('event_id', '=', $event_id)->where('language_code', '=', App::getLocale())->first();
 
-        $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
+        $event_form = EventForm::where('event_id', '=', $event_id)->first();
         if (is_null($event_form)) {
             return View::make('registration.form', [
                 'event_text' => $event_text,
@@ -322,7 +327,7 @@ class RegistrationController extends Controller
     private function uploadImage($event_id, $field_name)
     {
         $file = Request::file($field_name);
-        $filename = $field_name .'_'. Str::random(15) . '.' . $file->getClientOriginalExtension();
+        $filename = $field_name . '_' . Str::random(15) . '.' . $file->getClientOriginalExtension();
         $filename = Str::lower($filename);
         $path = 'public/event_' . $event_id . '/';
         if (!Storage::exists($path)) {

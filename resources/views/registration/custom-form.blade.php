@@ -1,5 +1,7 @@
 @extends('layouts.platform')
-
+<?php
+use Illuminate\Support\Facades\Lang;
+?>
 
 @section('content')
 
@@ -105,11 +107,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $label = $optionValue;
-                                        if (trans('registration.' . strtolower($optionValue)) != null) {
-                                            $label = trans('registration.' . strtolower($optionValue);
+                                        $labelOption = $optionValue;
+                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                            $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
-                                        $options[$label] = [
+                                        $options[$labelOption] = [
                                             'name' => $key . '[]',
                                             'value' => $optionValue
                                         ];
@@ -122,11 +124,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $label = $optionValue;
-                                        if (trans('registration.' . strtolower($optionValue)) != null) {
-                                            $label = trans('registration.' . strtolower($optionValue);
+                                        $labelOption = $optionValue;
+                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                            $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
-                                        $options[$label] = [
+                                        $options[$labelOption] = [
                                             'name' => $key,
                                             'value' => $optionValue
                                         ];
@@ -182,11 +184,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $label = $optionValue;
-                                        if (trans('registration.' . strtolower($optionValue)) != null) {
-                                            $label = trans('registration.' . strtolower($optionValue);
+                                        $labelOption = $optionValue;
+                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                            $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
-                                        $options[$label] = [
+                                        $options[$labelOption] = [
                                             'name' => $key . '[]',
                                             'value' => $optionValue
                                         ];
@@ -199,11 +201,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $label = $optionValue;
-                                        if (trans('registration.' . strtolower($optionValue)) != null) {
-                                            $label = trans('registration.' . strtolower($optionValue);
+                                        $labelOption = $optionValue;
+                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                            $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
-                                        $options[$label] = [
+                                        $options[$labelOption] = [
                                             'name' => $key,
                                             'value' => $optionValue
                                         ];
@@ -265,11 +267,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $label = $optionValue;
-                                        if (trans('registration.' . strtolower($optionValue)) != null) {
-                                            $label = trans('registration.' . strtolower($optionValue);
+                                        $labelOption = $optionValue;
+                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                            $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
-                                        $options[$label] = [
+                                        $options[$labelOption] = [
                                             'name' => $key . '[]',
                                             'value' => $optionValue
                                         ];
@@ -282,11 +284,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $label = $optionValue;
-                                        if (trans('registration.' . strtolower($optionValue)) != null) {
-                                            $label = trans('registration.' . strtolower($optionValue);
+                                        $labelOption = $optionValue;
+                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                            $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
-                                        $options[$label] = [
+                                        $options[$labelOption] = [
                                             'name' => $key,
                                             'value' => $optionValue
                                         ];
@@ -339,14 +341,15 @@
                             {!! Former::number($key)->label($label) !!}
                         @elseif($item->type === 'checkboxes')
                             @php
+
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $label = $optionValue;
-                                        if (trans('registration.' . strtolower($optionValue)) != null) {
-                                            $label = trans('registration.' . strtolower($optionValue);
+                                        $labelOption = $optionValue;
+                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                            $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
-                                        $options[$label] = [
+                                        $options[$labelOption] = [
                                             'name' => $key . '[]',
                                             'value' => $optionValue
                                         ];
@@ -359,11 +362,11 @@
                                 $options = [];
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
-                                        $label = $optionValue;
-                                        if (trans('registration.' . strtolower($optionValue)) != null) {
-                                            $label = trans('registration.' . strtolower($optionValue);
+                                        $labelOption = $optionValue;
+                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                            $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
-                                        $options[$label] = [
+                                        $options[$labelOption] = [
                                             'name' => $key,
                                             'value' => $optionValue
                                         ];
