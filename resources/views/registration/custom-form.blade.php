@@ -108,7 +108,7 @@ use Illuminate\Support\Facades\Lang;
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
                                         $labelOption = $optionValue;
-                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                        if (Lang::has('registration.'. strtolower($optionValue))) {
                                             $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
                                         $options[$labelOption] = [
@@ -125,7 +125,7 @@ use Illuminate\Support\Facades\Lang;
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
                                         $labelOption = $optionValue;
-                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                        if (Lang::has('registration.'. strtolower($optionValue))) {
                                             $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
                                         $options[$labelOption] = [
@@ -185,7 +185,7 @@ use Illuminate\Support\Facades\Lang;
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
                                         $labelOption = $optionValue;
-                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                        if (Lang::has('registration.'. strtolower($optionValue))) {
                                             $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
                                         $options[$labelOption] = [
@@ -202,7 +202,7 @@ use Illuminate\Support\Facades\Lang;
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
                                         $labelOption = $optionValue;
-                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                        if (Lang::has('registration.'. strtolower($optionValue))) {
                                             $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
                                         $options[$labelOption] = [
@@ -268,7 +268,7 @@ use Illuminate\Support\Facades\Lang;
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
                                         $labelOption = $optionValue;
-                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                        if (Lang::has('registration.'. strtolower($optionValue))) {
                                             $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
                                         $options[$labelOption] = [
@@ -285,7 +285,7 @@ use Illuminate\Support\Facades\Lang;
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
                                         $labelOption = $optionValue;
-                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                        if (Lang::has('registration.'. strtolower($optionValue))) {
                                             $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
                                         $options[$labelOption] = [
@@ -346,7 +346,7 @@ use Illuminate\Support\Facades\Lang;
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
                                         $labelOption = $optionValue;
-                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                        if (Lang::has('registration.'. strtolower($optionValue))) {
                                             $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
                                         $options[$labelOption] = [
@@ -363,7 +363,7 @@ use Illuminate\Support\Facades\Lang;
                                 if (isset($item->options)) {
                                     foreach($item->options as $optionKey => $optionValue) {
                                         $labelOption = $optionValue;
-                                        if (Lang::has('registration'. strtolower($optionValue))) {
+                                        if (Lang::has('registration.'. strtolower($optionValue))) {
                                             $labelOption = trans('registration.' . strtolower($optionValue));
                                         }
                                         $options[$labelOption] = [
