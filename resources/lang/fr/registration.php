@@ -36,6 +36,7 @@ return [
 	'disabilities' => 'Handicap éventuel',
 	'attending_dates' => 'Select attendance',
 	'remark' => 'Other particular requirements and comments',
+    'covid_disclaimer_copy' => 'Merci d’attacher votre Document « clause de non-responsabilité covid » signé et scanné',
     'yes' => 'Oui',
     'no' => 'Non'
 ];

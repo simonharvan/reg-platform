@@ -108,7 +108,7 @@ class CreateFormController extends VoyagerBaseController {
 	private $form_defaults = [
 
 		'prefix'                       => [
-			'order'      => 1,
+			'order'      => 10,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'radio',
@@ -120,119 +120,119 @@ class CreateFormController extends VoyagerBaseController {
 			]
 		],
 		'first_name'                   => [
-			'order'      => 2,
+			'order'      => 20,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'last_name'                    => [
-			'order'      => 3,
+			'order'      => 30,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'organization'                 => [
-			'order'      => 4,
+			'order'      => 40,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'position'                     => [
-			'order'      => 5,
+			'order'      => 50,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'address'                      => [
-			'order'      => 6,
+			'order'      => 60,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'address2'                     => [
-			'order'      => 7,
+			'order'      => 70,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'city'                         => [
-			'order'      => 8,
+			'order'      => 80,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'postal_code'                  => [
-			'order'      => 9,
+			'order'      => 90,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'country'                      => [
-			'order'      => 10,
+			'order'      => 100,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'nationality'                  => [
-			'order'      => 11,
+			'order'      => 110,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'email'                        => [
-			'order'      => 12,
+			'order'      => 120,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required|email'
 		],
 		'assistant_email'              => [
-			'order'      => 13,
+			'order'      => 130,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required|email'
 		],
 		'cc_assistant_email'           => [
-			'order'      => 14,
+			'order'      => 140,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required|email'
 		],
 		'phone'                        => [
-			'order'      => 15,
+			'order'      => 150,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'mobile_phone'                 => [
-			'order'      => 16,
+			'order'      => 160,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'fax'                          => [
-			'order'      => 17,
+			'order'      => 170,
 			'value'      => 1,
 			'section'    => 'Personal',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'is_visa_required'             => [
-			'order'      => 18,
+			'order'      => 180,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'radio',
@@ -243,7 +243,7 @@ class CreateFormController extends VoyagerBaseController {
 			]
 		],
         'is_visa_obtained'             => [
-            'order'      => 19,
+            'order'      => 190,
             'value'      => 1,
             'section'    => 'Travel',
             'type'       => 'radio',
@@ -254,7 +254,7 @@ class CreateFormController extends VoyagerBaseController {
             ]
         ],
 		'visa_copy'                    => [
-			'order'      => 20,
+			'order'      => 200,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'file',
@@ -264,7 +264,7 @@ class CreateFormController extends VoyagerBaseController {
 			]
 		],
 		'passport_copy'                => [
-			'order'      => 21,
+			'order'      => 210,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'file',
@@ -274,70 +274,70 @@ class CreateFormController extends VoyagerBaseController {
 			]
 		],
 		'passport_number'              => [
-			'order'      => 22,
+			'order'      => 220,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'passport_issued_by'           => [
-			'order'      => 23,
+			'order'      => 230,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'passport_date_of_issue'       => [
-			'order'      => 24,
+			'order'      => 240,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'date',
 			'validation' => 'required|date'
 		],
 		'passport_date_of_expiry'      => [
-			'order'      => 25,
+			'order'      => 250,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'date',
 			'validation' => 'required|date'
 		],
 		'birthdate'                    => [
-			'order'      => 26,
+			'order'      => 260,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'required|date',
 			'validation' => 'required'
 		],
 		'local_embassy'                => [
-			'order'      => 27,
+			'order'      => 270,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'departure_city'               => [
-			'order'      => 28,
+			'order'      => 280,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'departure_date'               => [
-			'order'      => 29,
+			'order'      => 290,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'date',
 			'validation' => 'required'
 		],
 		'return_date'                  => [
-			'order'      => 30,
+			'order'      => 300,
 			'value'      => 1,
 			'section'    => 'Travel',
 			'type'       => 'date',
 			'validation' => 'required|date'
 		],
 		'needs_accomodation'           => [
-			'order'      => 31,
+			'order'      => 310,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'radio',
@@ -348,14 +348,14 @@ class CreateFormController extends VoyagerBaseController {
 			]
 		],
 		'guest_names'                  => [
-			'order'      => 32,
+			'order'      => 320,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'text',
 			'validation' => 'required'
 		],
 		'room_type'                    => [
-			'order'      => 33,
+			'order'      => 330,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'select',
@@ -368,49 +368,49 @@ class CreateFormController extends VoyagerBaseController {
 			]
 		],
 		'room_arrival'                 => [
-			'order'      => 34,
+			'order'      => 340,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'date',
 			'validation' => 'required|date'
 		],
 		'room_departure'               => [
-			'order'      => 35,
+			'order'      => 350,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'date',
 			'validation' => 'required'
 		],
 		'room_additional_number_night' => [
-			'order'      => 36,
+			'order'      => 360,
 			'value'      => 1,
 			'section'    => 'Accomodation',
 			'type'       => 'number',
 			'validation' => 'required'
 		],
 		'dietary_requirements'         => [
-			'order'      => 37,
+			'order'      => 370,
 			'value'      => 1,
 			'section'    => 'Additional',
 			'type'       => 'text-area',
 			'validation' => 'required'
 		],
 		'interpretation'               => [
-			'order'      => 38,
+			'order'      => 380,
 			'value'      => 1,
 			'section'    => 'Additional',
 			'type'       => 'text',
 			'validation' => 'required',
 		],
 		'disabilities'                 => [
-			'order'      => 39,
+			'order'      => 390,
 			'value'      => 1,
 			'section'    => 'Additional',
 			'type'       => 'text-area',
 			'validation' => 'required'
 		],
 		'remark'                       => [
-			'order'      => 40,
+			'order'      => 400,
 			'value'      => 1,
 			'section'    => 'Additional',
 			'type'       => 'text-area',

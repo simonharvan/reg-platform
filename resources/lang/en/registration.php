@@ -44,6 +44,7 @@ return [
 	'disabilities' => 'Specific needs',
 	'attending_dates' => 'Select attendance',
 	'remark' => 'Other particular requirements and comments',
+    'covid_disclaimer_copy' => 'Please upload your signed & scanned Document « covid disclaimer »',
     'yes' => 'Yes',
     'no' => 'No'
 ];

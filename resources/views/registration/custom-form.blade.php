@@ -82,8 +82,8 @@ use Illuminate\Support\Facades\Lang;
                 @foreach($personal as $key => $item)
                     @php
                         if (isset($item->label) && !empty($item->label)) {
-                            if (substr($item->label, 0, 1) == '.') {
-                                $label = trans('registration'. $item->label);
+                            if (Lang::has('registration.'. strtolower($item->label))) {
+                                $label = trans('registration.'. $item->label);
                             } else {
                                 $label = $item->label;
                             }
@@ -159,8 +159,8 @@ use Illuminate\Support\Facades\Lang;
                 @foreach($travel as $key => $item)
                     @php
                         if (isset($item->label) && !empty($item->label)) {
-                            if (substr($item->label, 0, 1) == '.') {
-                                $label = trans('registration'. $item->label);
+                            if (Lang::has('registration.'. strtolower($item->label))) {
+                                $label = trans('registration.'. $item->label);
                             } else {
                                 $label = $item->label;
                             }
@@ -234,8 +234,8 @@ use Illuminate\Support\Facades\Lang;
                 @foreach($accomodation as $key => $item)
                     @php
                         if (isset($item->label) && !empty($item->label)) {
-                            if (substr($item->label, 0, 1) == '.') {
-                                $label = trans('registration'. $item->label);
+                            if (Lang::has('registration.'. strtolower($item->label))) {
+                                $label = trans('registration.'. $item->label);
                             } else {
                                 $label = $item->label;
                             }
@@ -319,8 +319,8 @@ use Illuminate\Support\Facades\Lang;
                 @foreach($additional as $key => $item)
                     @php
                         if (isset($item->label) && !empty($item->label)) {
-                            if (substr($item->label, 0, 1) == '.') {
-                                $label = trans('registration'. $item->label);
+                            if (Lang::has('registration.'. strtolower($item->label))) {
+                                $label = trans('registration.'. $item->label);
                             } else {
                                 $label = $item->label;
                             }
