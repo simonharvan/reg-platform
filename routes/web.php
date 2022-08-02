@@ -84,8 +84,12 @@ Route::get( 'language/{lang}', function ( $lang ) {
 
 Route::get( 'welcome-page', function () {
 	$code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
-
-	return View::make( 'welcome-page', array( 'welcome_text' => $code_text->instructions ) );
+    if (!isset($code_text)) {
+        $code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->first();
+        Session::put( 'lang', $code_text->language_code);
+        App::setLocale( $code_text->language_code );
+    }
+    return View::make('welcome-page', array('welcome_text' => $code_text->instructions));
 } );
 
 Route::get( 'event-page/{id}', function ( $id ) {
