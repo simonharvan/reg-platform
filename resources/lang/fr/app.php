@@ -25,8 +25,10 @@ return [
     'confirmationText' => 'Vous recevrez un email de confirmation . Veuillez lire les informations dans l\'email de la confirmation attentivement . <br> (Vous pouvez fermer cette page.)',
 
 
-    'save' => 'Save',
+    'save' => 'S\'INSCRIRE',
 
     'operations' => 'Operations',
-
+    'close' => 'Fermer',
+    'termsAndConditions' => 'Termes et Conditions',
+    'agreeTermsAndConditions' => 'I agree to <a data-toggle="modal" data-target="#termsAndConditions">terms & conditions</a>'
 ];

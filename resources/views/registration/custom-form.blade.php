@@ -1,6 +1,5 @@
 @extends('layouts.platform')
 <?php
-use Illuminate\Support\Facades\Lang;
 ?>
 
 @section('content')
@@ -10,7 +9,7 @@ use Illuminate\Support\Facades\Lang;
             {!! $event_text->registration_top_note !!}
             <h1 class="page-header">{{trans('app.registerNow')}}</h1>
             <p>{{trans('app.fields')}} (<span
-                        class="required">*</span>) {{trans('app.areRequired')}}</p>
+                    class="required">*</span>) {{trans('app.areRequired')}}</p>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -386,8 +385,28 @@ use Illuminate\Support\Facades\Lang;
         </div>
     @endif
 
+    @if (isset($event_text->registration_note) && !empty($event_text->registration_note))
+        {!! Former::radio("terms_and_conditions")->radios(['yes' => ['name' => 'Yes','value' => 'yes']])->label(__('app.agreeTermsAndConditions'))->required()  !!}
 
-    {!! $event_text->registration_note  !!}
+        <!-- Modal -->
+        <div class="modal fade" id="termsAndConditions" data-backdrop="static" data-keyboard="false" tabindex="-1"
+             aria-labelledby="termsAndConditionsLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="termsAndConditionsLabel">{{__('app.termsAndConditions')}}</h5>
+                    </div>
+                    <div class="modal-body">
+                        {!! $event_text->registration_note  !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">{{__('app.close')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <!-- /.panel -->
 
     {!! Former::actions(Form::submit(__('app.save'), array('class'=>'btn btn-primary')) ) !!}
