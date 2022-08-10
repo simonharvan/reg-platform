@@ -173,7 +173,6 @@
 
                 @foreach($travel as $key => $item)
                     @php
-                        if (isset($item->grooup) && $ite)
                         if (isset($item->label) && !empty($item->label)) {
                             if (Lang::has('registration.'. strtolower($item->label))) {
                                 $label = trans('registration.'. $item->label);

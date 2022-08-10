@@ -109,14 +109,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="visa_copy[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="visa_copy[required]" id="visa_copy"
                            value="0" @if(empty($old_parameters->visa_copy->validation)) {{ 'checked' }} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="visa_copy[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="visa_copy[required]" id="visa_copy"
                            value="1" @if(!empty($old_parameters->visa_copy->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>
@@ -152,14 +152,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="passport_copy[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="passport_copy[required]" id="passport_copy"
                            value="0" @if(empty($old_parameters->passport_copy->validation)) {{ 'checked' }} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="passport_copy[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="passport_copy[required]" id="passport_copy"
                            value="1" @if(!empty($old_parameters->passport_copy->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>
@@ -376,14 +376,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="birthdate[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="birthdate[required]" id="birthdate"
                            value="0" @if(empty($old_parameters->birthdate->validation)) {{ 'checked' }} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="birthdate[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="birthdate[required]" id="birthdate"
                            value="1" @if(!empty($old_parameters->birthdate->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>
@@ -419,14 +419,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="local_embassy[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="local_embassy[required]" id="local_embassy"
                            value="0" @if(empty($old_parameters->local_embassy->validation)) {{ 'checked' }} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="local_embassy[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="local_embassy[required]" id="local_embassy"
                            value="1" @if(!empty($old_parameters->local_embassy->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>
@@ -464,14 +464,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="departure_city[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="departure_city[required]" id="departure_city"
                            value="0" @if(empty($old_parameters->departure_city->validation)) {{ 'checked' }} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="departure_city[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="departure_city[required]" id="departure_city"
                            value="1" @if(!empty($old_parameters->departure_city->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>
@@ -509,14 +509,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="departure_date[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="departure_date[required]" id="departure_date"
                            value="0" @if(empty($old_parameters->departure_date->validation)) {{ 'checked' }} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="departure_date[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="departure_date[required]" id="departure_date"
                            value="1" @if(!empty($old_parameters->departure_date->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>
@@ -553,14 +553,14 @@
         <div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="return_date[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="return_date[required]" id="return_date"
                            value="0" @if(empty($old_parameters->return_date->validation)) {{ 'checked' }} @endif>
                     No
                 </label>
             </div>
             <div class="radio-inline">
                 <label>
-                    <input class="form-check-input" type="radio" name="return_date[required]" id="prefix"
+                    <input class="form-check-input" type="radio" name="return_date[required]" id="return_date"
                            value="1" @if(!empty($old_parameters->return_date->validation)) {{ 'checked' }} @endif>
                     Yes
                 </label>
