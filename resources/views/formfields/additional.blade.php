@@ -35,6 +35,12 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="dietary_requirements[groups]"
+                   name="dietary_requirements[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->dietary_requirements->groups) ? '['. implode(',',$old_parameters->dietary_requirements->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -75,6 +81,12 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="interpretation[groups]"
+                   name="interpretation[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->interpretation->groups) ? '['. implode(',',$old_parameters->interpretation->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -114,6 +126,12 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="disabilities[groups]"
+                   name="disabilities[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->disabilities->groups) ? '['. implode(',',$old_parameters->disabilities->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -151,6 +169,12 @@
                     Yes
                 </label>
             </div>
+        </div>
+
+        <div>
+            <input remark="text" class="form-control input-sm" id="remark[groups]"
+                   name="remark[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->remark->groups) ? '['. implode(',',$old_parameters->remark->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>

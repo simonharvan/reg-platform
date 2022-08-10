@@ -35,6 +35,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="needs_accomodation[groups]"
+                   name="needs_accomodation[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->needs_accomodation->groups) ? '['. implode(',',$old_parameters->needs_accomodation->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -73,6 +78,11 @@
                     Yes
                 </label>
             </div>
+        </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="guest_names[groups]"
+                   name="guest_names[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->guest_names->groups) ? '['. implode(',',$old_parameters->guest_names->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -113,6 +123,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="room_type[groups]"
+                   name="room_type[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->room_type->groups) ? '['. implode(',',$old_parameters->room_type->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -151,6 +166,11 @@
                     Yes
                 </label>
             </div>
+        </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="room_arrival[groups]"
+                   name="room_arrival[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->room_arrival->groups) ? '['. implode(',',$old_parameters->room_arrival->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -192,6 +212,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="room_departure[groups]"
+                   name="room_departure[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->room_departure->groups) ? '['. implode(',',$old_parameters->room_departure->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -231,6 +256,11 @@
                     Yes
                 </label>
             </div>
+        </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="room_additional_number_night[groups]"
+                   name="room_additional_number_night[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->room_additional_number_night->groups) ? '['. implode(',',$old_parameters->room_additional_number_night->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>

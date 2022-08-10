@@ -135,6 +135,12 @@
                     </label>
                 </div>
             </div>
+
+            <div>
+                <input remark="text" class="form-control input-sm" id="additional_field_{{$i}}[groups]"
+                       name="additional_field_{{$i}}[groups]" placeholder="Group ids e.g. [1,2,3]"
+                       value="{{ isset($old_parameters->$additional_field->groups) ? '['. implode(',',$old_parameters->$additional_field->groups) . ']' : ''}}">
+            </div>
         </div>
     </fieldset>
 @endfor

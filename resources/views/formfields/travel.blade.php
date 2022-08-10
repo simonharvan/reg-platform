@@ -35,6 +35,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="is_visa_required[groups]"
+                   name="is_visa_required[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->is_visa_required->groups) ? '['. implode(',',$old_parameters->is_visa_required->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 <fieldset class="form-group">
@@ -74,6 +79,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="is_visa_obtained[groups]"
+                   name="is_visa_obtained[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->is_visa_obtained->groups) ? '['. implode(',',$old_parameters->is_visa_obtained->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 <fieldset class="form-group">
@@ -112,6 +122,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="visa_copy[groups]"
+                   name="visa_copy[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->visa_copy->groups) ? '['. implode(',',$old_parameters->visa_copy->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -149,6 +164,11 @@
                     Yes
                 </label>
             </div>
+        </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="passport_copy[groups]"
+                   name="passport_copy[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->passport_copy->groups) ? '['. implode(',',$old_parameters->passport_copy->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -190,6 +210,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="passport_number[groups]"
+                   name="passport_number[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->passport_number->groups) ? '['. implode(',',$old_parameters->passport_number->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -229,6 +254,11 @@
                     Yes
                 </label>
             </div>
+        </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="passport_issued_by[groups]"
+                   name="passport_issued_by[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->passport_issued_by->groups) ? '['. implode(',',$old_parameters->passport_issued_by->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -270,6 +300,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="passport_date_of_issue[groups]"
+                   name="passport_date_of_issue[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->passport_date_of_issue->groups) ? '['. implode(',',$old_parameters->passport_date_of_issue->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -310,6 +345,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="passport_date_of_expiry[groups]"
+                   name="passport_date_of_expiry[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->passport_date_of_expiry->groups) ? '['. implode(',',$old_parameters->passport_date_of_expiry->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -349,6 +389,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="birthdate[groups]"
+                   name="birthdate[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->birthdate->groups) ? '['. implode(',',$old_parameters->birthdate->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -386,6 +431,11 @@
                     Yes
                 </label>
             </div>
+        </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="local_embassy[groups]"
+                   name="local_embassy[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->local_embassy->groups) ? '['. implode(',',$old_parameters->local_embassy->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -427,6 +477,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="departure_city[groups]"
+                   name="departure_city[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->departure_city->groups) ? '['. implode(',',$old_parameters->departure_city->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -467,6 +522,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="departure_date[groups]"
+                   name="departure_date[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->departure_date->groups) ? '['. implode(',',$old_parameters->departure_date->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -505,6 +565,11 @@
                     Yes
                 </label>
             </div>
+        </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="return_date[groups]"
+                   name="return_date[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->return_date->groups) ? '['. implode(',',$old_parameters->return_date->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>

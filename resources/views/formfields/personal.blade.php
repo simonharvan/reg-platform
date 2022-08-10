@@ -68,6 +68,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="prefix[groups]"
+                   name="prefix[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->prefix->groups) ? '['. implode(',',$old_parameters->prefix->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -107,6 +112,11 @@
                     Yes
                 </label>
             </div>
+        </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="first_name[groups]"
+                   name="first_name[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->first_name->groups) ? '['. implode(',',$old_parameters->first_name->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -148,6 +158,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="last_name[groups]"
+                   name="last_name[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->last_name->groups) ? '['. implode(',',$old_parameters->last_name->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -188,6 +203,11 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input type="text" class="form-control input-sm" id="organization[groups]"
+                   name="organization[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->organization->groups) ? '['. implode(',',$old_parameters->organization->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -225,6 +245,12 @@
                     Yes
                 </label>
             </div>
+        </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="position[groups]"
+                   name="position[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->position->groups) ? '['. implode(',',$old_parameters->position->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -264,6 +290,12 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="address[groups]"
+                   name="address[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->address->groups) ? '['. implode(',',$old_parameters->address->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -302,6 +334,12 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="address2[groups]"
+                   name="address2[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->address2->groups) ? '['. implode(',',$old_parameters->address2->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 <fieldset class="form-group">
@@ -338,6 +376,12 @@
                     Yes
                 </label>
             </div>
+        </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="city[groups]"
+                   name="city[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->city->groups) ? '['. implode(',',$old_parameters->city->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -379,6 +423,12 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="postal_code[groups]"
+                   name="postal_code[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->postal_codegroups) ? '['. implode(',',$old_parameters->organizationpostal_codegroups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -416,6 +466,12 @@
                     Yes
                 </label>
             </div>
+        </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="country[groups]"
+                   name="country[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->country->groups) ? '['. implode(',',$old_parameters->country->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -456,6 +512,12 @@
                     Yes
                 </label>
             </div>
+        </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="nationality[groups]"
+                   name="nationality[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->nationalitygroups) ? '['. implode(',',$old_parameters->organizationnationalitygroups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -498,6 +560,12 @@
                     Yes
                 </label>
             </div>
+        </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="assistant_email[groups]"
+                   name="assistant_email[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->assistant_emailgroups) ? '['. implode(',',$old_parameters->organizationassistant_emailgroups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -542,6 +610,12 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="prefix[groups]"
+                   name="prefix[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->prefix->groups) ? '['. implode(',',$old_parameters->prefix->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -580,6 +654,12 @@
                     Yes
                 </label>
             </div>
+        </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="phone[groups]"
+                   name="phone[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->phone->groups) ? '['. implode(',',$old_parameters->phone->groups) . ']' : ''}}">
         </div>
     </div>
 </fieldset>
@@ -622,6 +702,12 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="mobile_phone[groups]"
+                   name="mobile_phone[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->mobile_phonegroups) ? '['. implode(',',$old_parameters->organizationmobile_phonegroups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
 
@@ -661,5 +747,13 @@
                 </label>
             </div>
         </div>
+
+        <div>
+            <input type="text" class="form-control input-sm" id="fax[groups]"
+                   name="fax[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->fax->groups) ? '['. implode(',',$old_parameters->fax->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
+
+

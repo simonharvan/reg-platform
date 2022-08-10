@@ -52,16 +52,32 @@
     @endif
     @php
 
-        $personal = array_filter(get_object_vars($form), function($v, $k) {
+        use Illuminate\Support\Facades\Session;
+
+        $group = Session::get('group_id', 1);
+
+        $personal = array_filter(get_object_vars($form), function($v, $k) use ($group) {
+            if (isset($v->groups) && !in_array($group, $v->groups)) {
+                return false;
+            }
             return $v->section === 'Personal';
         }, ARRAY_FILTER_USE_BOTH);
-        $travel = array_filter(get_object_vars($form), function($v, $k) {
+        $travel = array_filter(get_object_vars($form), function($v, $k) use ($group) {
+            if (isset($v->groups) && !in_array($group, $v->groups)) {
+                return false;
+            }
             return $v->section === 'Travel';
         }, ARRAY_FILTER_USE_BOTH);
-        $accomodation = array_filter(get_object_vars($form), function($v, $k) {
+        $accomodation = array_filter(get_object_vars($form), function($v, $k) use ($group) {
+            if (isset($v->groups) && !in_array($group, $v->groups)) {
+                return false;
+            }
             return $v->section === 'Accomodation';
         }, ARRAY_FILTER_USE_BOTH);
-        $additional = array_filter(get_object_vars($form), function($v, $k) {
+        $additional = array_filter(get_object_vars($form), function($v, $k) use ($group) {
+            if (isset($v->groups) && !in_array($group, $v->groups)) {
+                return false;
+            }
             return $v->section === 'Additional';
         }, ARRAY_FILTER_USE_BOTH);
 
@@ -69,7 +85,6 @@
         uasort($travel, 'sortForm');
         uasort($accomodation, 'sortForm');
         uasort($additional, 'sortForm');
-
     @endphp
 
     @if (count($personal) > 0)
@@ -79,6 +94,7 @@
             </div>
             <div class="panel-body">
                 @foreach($personal as $key => $item)
+
                     @php
                         if (isset($item->label) && !empty($item->label)) {
                             if (Lang::has('registration.'. strtolower($item->label))) {
@@ -157,6 +173,7 @@
 
                 @foreach($travel as $key => $item)
                     @php
+                        if (isset($item->grooup) && $ite)
                         if (isset($item->label) && !empty($item->label)) {
                             if (Lang::has('registration.'. strtolower($item->label))) {
                                 $label = trans('registration.'. $item->label);

@@ -67,5 +67,10 @@
                 </label>
             </div>
         </div>
+        <div>
+            <input remark="text" class="form-control input-sm" id="additional_file[groups]"
+                   name="additional_file[groups]" placeholder="Group ids e.g. [1,2,3]"
+                   value="{{ isset($old_parameters->additional_file->groups) ? '['. implode(',',$old_parameters->additional_file->groups) . ']' : ''}}">
+        </div>
     </div>
 </fieldset>
