@@ -2,6 +2,7 @@
 
 use App\Models\Code;
 use App\Models\CodeText;
+use App\Models\Event;
 use App\Models\EventPage;
 use App\Models\EventText;
 use App\Models\Registration;
@@ -69,8 +70,12 @@ Route::post( '/', function ( Request $request ) {
 
 
 Route::get( 'logout', function () {
-	Session::flush();
 
+    $event = Event::where('id', '=', Session::get('event_id', 1))->first();
+    Session::flush();
+    if (!empty($event->redirect_url)) {
+        return Redirect::to($event->redirect_url);
+    }
 	return Redirect::to( '/' );
 } );
 
@@ -112,10 +117,12 @@ Route::get( 'statistics', function () {
 Route::get( 'thankyou', function () {
 
 	$event_id   = Session::get( 'event_id' );
-	$event_text = EventText::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
+    $event = Event::where( 'id', '=', $event_id )->first();
+	$event_text = EventText::where( 'event_id', '=', $event_id )->where( 'language_code', '=', App::getLocale() )->first();
 
 	return View::make( 'thankyou', [
 		'event_id'   => $event_id,
+        'event' => $event,
 		'event_text' => $event_text,
 	] );
 } );

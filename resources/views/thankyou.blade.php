@@ -22,7 +22,7 @@
                             </p>
                         @endif
 
-                        <a class="btn btn-default" href="{{ URL::to('welcome-page') }}" role="button">Go back</a>
+                        <a class="btn btn-default" href="@if(!empty($event->redirect_url)) {{ $event->redirect_url }} @else {{URL::to('welcome-page')}} @endif" role="button">Go back</a>
                     </div>
                 </div>
             </div>

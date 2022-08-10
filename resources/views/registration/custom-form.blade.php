@@ -403,7 +403,7 @@
     @endif
 
     @if (isset($event_text->registration_note) && !empty($event_text->registration_note))
-        {!! Former::radio("terms_and_conditions")->radios(['yes' => ['name' => 'Yes','value' => 'yes']])->label(__('app.agreeTermsAndConditions'))->required()  !!}
+        {!! Former::radio("terms_and_conditions")->radios(['yes' => ['name' => 'Yes','value' => 'agree_terms_and_conditions']])->label(__('app.agreeTermsAndConditions'))->required()  !!}
 
         <!-- Modal -->
         <div class="modal fade" id="termsAndConditions" data-backdrop="static" data-keyboard="false" tabindex="-1"

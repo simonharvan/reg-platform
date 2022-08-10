@@ -38,6 +38,13 @@
     </tr>
 
     @foreach ($registration as $label => $value)
+        @if ($value == 'agree_terms_and_conditions')
+            <tr>
+                <td width="200">{{ trans('app.termsAndConditions') }}</td>
+                <td>{{ trans('registration.yes') }}</td>
+            </tr>
+            @continue
+        @endif
         @if ($event_form->$label->type !== 'file')
             @if (is_array($value))
                 @if(isset($event_form->$label->label))
