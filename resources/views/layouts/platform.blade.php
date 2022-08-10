@@ -37,7 +37,6 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
     {{ Html::style('css/ladda-themeless.min.css') }}
     {{ Html::style('css/flag-icon.min.css') }}
     {{ Html::style('css/dataTables.bootstrap.css') }}
-    {{ Html::style('css/datepicker.css') }}
     {{ Html::style('css/app.css?version=1.0.0') }}
 
 </head>
@@ -162,7 +161,6 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
         src="https://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
 
 {{ Html::script('js/bootstrap.min.js') }}
-{{ Html::script('js/bootstrap-datepicker.js') }}
 
 <script>
     $(document).ready(function () {
@@ -171,10 +169,6 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
         } else {
             $('.sidebar-collapse').removeClass('collapse');
         }
-        $('input[type=date]').datepicker({
-            format: 'yyyy-mm-dd',
-            language: 'sk'
-        });
 
         $('#registration').bootstrapValidator({
             feedbackIcons: {

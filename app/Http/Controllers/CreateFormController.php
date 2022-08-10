@@ -314,8 +314,8 @@ class CreateFormController extends VoyagerBaseController
             'order' => 260,
             'value' => 1,
             'section' => 'Travel',
-            'type' => 'required|date',
-            'validation' => 'required'
+            'type' => 'date',
+            'validation' => 'required|date'
         ],
         'local_embassy' => [
             'order' => 270,
