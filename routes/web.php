@@ -91,6 +91,9 @@ Route::get( 'welcome-page', function () {
 	$code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
     if (!isset($code_text)) {
         $code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->first();
+        if (!isset($code_text)) {
+            return Redirect::to('/registration/create');
+        }
         Session::put( 'lang', $code_text->language_code);
         App::setLocale( $code_text->language_code );
     }

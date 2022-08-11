@@ -2,13 +2,21 @@
 <html lang="sk">
 
 <?php
+use App\Models\CodeText;
 use App\Models\Event;
-use App\Models\EventPage;use App\Models\EventText;
-use \App\Models\EventMenuItem;
+use App\Models\EventPage;
+use App\Models\EventText;
+use App\Models\EventMenuItem;
 $event = Event::find( Session::get( 'event_id' ) );
 $event_text = EventText::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
 $event_menu_items = EventMenuItem::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 $event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
+$is_welcome_page_available = true;
+$code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
+$code_text_2 = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->first();
+if (!isset($code_text) && !isset($code_text_2)) {
+    $is_welcome_page_available = false;
+}
 $is_registration_available = isset($event->available_until) && strtotime($event->available_until) >= time();
 ?>
 
@@ -81,10 +89,12 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
         <div class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
+                    @if ($is_welcome_page_available)
                     <li>
                         <a href="{{ URL::to('welcome-page') }}"><i
                                     class="fa fa-home fa-fw"></i> {{ __('platform.welcome') }}</a>
                     </li>
+                    @endif
                     @if ($is_registration_available)
                     <li>
                         <a href="{{ URL::to('registration/create') }}"><i
