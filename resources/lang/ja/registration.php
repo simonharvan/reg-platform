@@ -2,9 +2,9 @@
 
 return [
     'prefix' => 'プレフィックス',
-    'Mr' => '様',
-    'Mrs' => '様',
-    'Ms' => '様',
+    'mr' => '様',
+    'mrs' => '様',
+    'ms' => '様',
     'first_name' => 'ファーストネーム/名前',
     'last_name' => 'ラストネーム/苗字',
     'organization' => 'Organisation',
@@ -14,7 +14,7 @@ return [
     'phone' => '電話番号',
     'address' => 'Address',
     'address2' => 'Address 2',
-    'Company' => '会社名',
+    'company' => '会社名',
     'city' => 'City',
     'postal_code' => 'Postal code',
     'assistant_email' => 'Second email',
