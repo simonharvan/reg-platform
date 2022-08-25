@@ -6,8 +6,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">{{trans('app.registerNow')}}</h1>
-            <p>{{trans('app.fields')}} (<span
-                        class="required">*</span>) {{trans('app.areRequired')}}</p>
+            <p>{!! trans('app.fieldsAreRequired') !!} </p>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -214,7 +213,7 @@
                         'IFC' => ['name' => 'additional_info_2[]', 'value' => 'IFC'],
                         'KFW' => ['name' => 'additional_info_2[]', 'value' => 'KFW']
 
-                    ]) 
+                    ])
                 !!}
             </div>
 
@@ -241,14 +240,14 @@
                         'CDP' => ['name' => 'additional_info_2[]', 'value' => 'CDP'],
                         'EDFI' => ['name' => 'additional_info_2[]', 'value' => 'EDFI'],
                         'EIB' => ['name' => 'additional_info_2[]', 'value' => 'EIB'],
-                        'KFW' => ['name' => 'additional_info_2[]', 'value' => 'KFW'], 
+                        'KFW' => ['name' => 'additional_info_2[]', 'value' => 'KFW'],
                         'IFC' => ['name' => 'additional_info_2[]', 'value' => 'IFC'],
-                       
-                        'WB' => ['name' => 'additional_info_2[]', 'value' => 'WB']
-                        
 
-                    ]) 
- 
+                        'WB' => ['name' => 'additional_info_2[]', 'value' => 'WB']
+
+
+                    ])
+
                 !!}
             </div>
 
@@ -275,7 +274,7 @@
         </div>
     @endif
 
-    
+
 
     <!-- /.panel -->
 

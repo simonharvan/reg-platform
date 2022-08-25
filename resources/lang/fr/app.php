@@ -12,8 +12,7 @@ return [
     'welcome' => 'Bienvenue!',
 
     'registerNow' => 'Inscrivez-vous',
-    'fields' => 'Les domaines marqués avec',
-    'areRequired' => 'sont nécessaires',
+    'fieldsAreRequired' => 'Les domaines marqués avec (<span class="required">*</span>) sont nécessaires',
     'personal' => 'DONNÉES PERSONNELLES',
     'delegation' => 'DELEGATION DATA',
     'travel' => 'VOYAGE / DATA VISA',

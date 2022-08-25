@@ -8,8 +8,7 @@
         <div class="col-lg-12">
             {!! $event_text->registration_top_note !!}
             <h1 class="page-header">{{trans('app.registerNow')}}</h1>
-            <p>{{trans('app.fields')}} (<span
-                    class="required">*</span>) {{trans('app.areRequired')}}</p>
+            <p>{!! trans('app.fieldsAreRequired') !!} </p>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -98,7 +97,7 @@
                     @php
                         if (isset($item->label) && !empty($item->label)) {
                             if (Lang::has('registration.'. strtolower($item->label))) {
-                                $label = trans('registration.'. $item->label);
+                                $label = trans('registration.'. strtolower($item->label));
                             } else {
                                 $label = $item->label;
                             }
@@ -175,7 +174,7 @@
                     @php
                         if (isset($item->label) && !empty($item->label)) {
                             if (Lang::has('registration.'. strtolower($item->label))) {
-                                $label = trans('registration.'. $item->label);
+                                $label = trans('registration.'. strtolower($item->label));
                             } else {
                                 $label = $item->label;
                             }
@@ -250,7 +249,7 @@
                     @php
                         if (isset($item->label) && !empty($item->label)) {
                             if (Lang::has('registration.'. strtolower($item->label))) {
-                                $label = trans('registration.'. $item->label);
+                                $label = trans('registration.'. strtolower($item->label));
                             } else {
                                 $label = $item->label;
                             }
@@ -335,7 +334,7 @@
                     @php
                         if (isset($item->label) && !empty($item->label)) {
                             if (Lang::has('registration.'. strtolower($item->label))) {
-                                $label = trans('registration.'. $item->label);
+                                $label = trans('registration.'. strtolower($item->label));
                             } else {
                                 $label = $item->label;
                             }
@@ -387,6 +386,7 @@
                                         ];
                                     }
                                 }
+
                             @endphp
                             {!! Former::radios($key)->radios($options)->label($label)  !!}
                         @elseif($item->type === 'file')

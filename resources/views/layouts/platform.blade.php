@@ -8,6 +8,7 @@ use App\Models\EventPage;
 use App\Models\EventText;
 use App\Models\EventMenuItem;
 $event = Event::find( Session::get( 'event_id' ) );
+
 $event_text = EventText::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
 $event_menu_items = EventMenuItem::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 $event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();

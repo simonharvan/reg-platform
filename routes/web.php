@@ -89,13 +89,15 @@ Route::get( 'language/{lang}', function ( $lang ) {
 
 Route::get( 'welcome-page', function () {
 	$code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
+
     if (!isset($code_text)) {
-        $code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->first();
+        $code_text = CodeText::where('code_id', '=', Session::get('code_id'))->first();
         if (!isset($code_text)) {
             return Redirect::to('/registration/create');
         }
-        Session::put( 'lang', $code_text->language_code);
-        App::setLocale( $code_text->language_code );
+
+        Session::put('lang', $code_text->language_code);
+        App::setLocale($code_text->language_code);
     }
     return View::make('welcome-page', array('welcome_text' => $code_text->instructions));
 } );

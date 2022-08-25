@@ -9,11 +9,11 @@ return [
     |
     */
 
-    'welcome' => 'Welcome!',
+    'welcome' => 'ようこそ',
 
-    'registerNow' => 'Register Now',
-    'fieldsAreRequired' => 'Fields marked with (<span class="required">*</span>) are required',
-    'personal' => 'PERSONAL DATA',
+    'registerNow' => '新規登録はこちら',
+    'fieldsAreRequired' => '(<span class="required">*</span>) 印は、必須入力項目です。',
+    'personal' => 'お客様情報',
     'delegation' => 'DELEGATION DATA',
     'travel' => 'TRAVEL / VISA DATA',
     'accommodation' => 'HOTEL ACCOMMODATION',
