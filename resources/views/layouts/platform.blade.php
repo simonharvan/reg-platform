@@ -55,7 +55,7 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
 
 <div id="wrapper">
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <nav id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -88,7 +88,7 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
         </ul>
         <!-- /.navbar-top-links -->
 
-        <div class="navbar-default navbar-static-side" role="navigation">
+        <div class="navbar-default navbar-static-side upper-margin-div" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
                     @if ($is_welcome_page_available)
@@ -167,7 +167,7 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" class="upper-margin-div">
 
         <!-- Content -->
         @yield('content')
@@ -228,6 +228,7 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
 
     gtag('config', 'UA-161907026-1');
 </script>
+{{ Html::script('js/custom-app.js') }}
 
 
 @yield('javascript')

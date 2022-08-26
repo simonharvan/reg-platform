@@ -12,8 +12,9 @@
 
 #page-wrapper {
     padding: 0 15px;
-    min-height: 568px;
+    min-height: calc(100vh - 200px);
     background-color: #fff;
+    /* This value is being overriden /js/custom-app.js. When the title was longer, it resulted in title overlapping content */
     margin-top: 100px;
 }
 
@@ -22,10 +23,15 @@
         position: inherit;
         margin: 0 0 0 250px;
         padding: 0 30px;
-        min-height: 1300px;
+        min-height: calc(100vh - 150px);
         border-left: 1px solid #e7e7e7;
+        /* This value is being overriden /js/custom-app.js. When the title was longer, it resulted in title overlapping content */
         margin-top: 50px;
     }
+}
+
+.navbar-brand {
+    height: auto;
 }
 
 /* Navigation */
@@ -128,6 +134,7 @@
         z-index: 1;
         position: absolute;
         width: 250px;
+        /* This value is being overriden /js/custom-app.js. When the title was longer, it resulted in title overlapping content */
         margin-top: 51px;
     }
 
