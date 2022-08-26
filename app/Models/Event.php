@@ -30,6 +30,11 @@ class Event extends Model
         return $this->hasMany('App\Models\EventMenuItem');
     }
 
+    public function links()
+    {
+        return $this->hasMany('App\Models\EventLink');
+    }
+
     public function eventForms()
     {
         return $this->hasMany('App\Models\EventForm');

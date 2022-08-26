@@ -4,7 +4,7 @@
 <?php
 use App\Models\CodeText;
 use App\Models\Event;
-use App\Models\EventPage;
+use App\Models\EventLink;use App\Models\EventPage;
 use App\Models\EventText;
 use App\Models\EventMenuItem;
 $event = Event::find( Session::get( 'event_id' ) );
@@ -12,6 +12,7 @@ $event = Event::find( Session::get( 'event_id' ) );
 $event_text = EventText::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
 $event_menu_items = EventMenuItem::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 $event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
+$event_links = EventLink::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 $is_welcome_page_available = true;
 $code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
 $code_text_2 = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->first();
@@ -76,7 +77,7 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
                     @foreach ($event->languages as $language)
                         @if ($language->language_code!= App::getLocale())
                             <li><a href="{{ URL::to('/language/' . $language->language_code) }}"><span
-                                            class="flag-icon flag-icon-{{ $language->language_code }}"></span> {{strtoupper($language->language_code)}}
+                                            class="flag-icon flag-icon-{{ $language->language_code }}"></span> {{ucfirst($language->language_name)}}
                                 </a></li>
                         @endif
                     @endforeach
@@ -121,6 +122,19 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
                             <li>
                                 <a target="_blank" href="{{ URL::to('/storage/' . $menu_item->url) }}"><i
                                             class="fa fa-file fa-fw"></i> {{ $menu_item->name }}</a>
+                            </li>
+                        @endforeach
+                    @endif
+                    @if (isset($event_links))
+                        @foreach($event_links as $event_link)
+                            <li>
+                                <a target="_blank" href="{{ $event_link->url }}"><i
+                                        class="fa
+                                        @if (isset($event_link->icon))
+                                        {{ $event_link->icon }}
+                                        @else
+                                        {{ "fa-external-link-alt" }}
+                                        @endif fa-fw"></i> {{ $event_link->title }}</a>
                             </li>
                         @endforeach
                     @endif
