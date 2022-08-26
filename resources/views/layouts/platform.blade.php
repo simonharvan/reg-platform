@@ -128,7 +128,7 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
                     @if (isset($event_links))
                         @foreach($event_links as $event_link)
                             <li>
-                                <a target="_blank" href="{{ $event_link->url }}"><i
+                                <a href="{{ $event_link->url }}"><i
                                         class="fa
                                         @if (isset($event_link->icon))
                                         {{ $event_link->icon }}
