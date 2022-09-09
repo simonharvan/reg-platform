@@ -63,5 +63,9 @@ return [
     'media' => 'メディア',
     'ngo and civil society' => 'NGO 市民団体',
     'other' => 'その他',
-
+    'please choose your attendance:' => '選択してください',
+    'session 1 (soil health)' => 'セッション1（土壌の健康状態に関するダイアログ）',
+    'session 2 (sustainable use of pesticides)' => 'セッション2（農薬の持続可能な使用に関するダイアログ）',
+    'session 3 (dialogue on food loss, waste and sustainable consumption)' => 'セッション3（食品ロス、食品廃棄物、持続可能な消費に関するダイアログ）',
+    'lunch' => '給食'
 ];

@@ -46,5 +46,10 @@ return [
 	'remark' => 'Other particular requirements and comments',
     'covid_disclaimer_copy' => 'Please upload your signed & scanned Document « covid disclaimer »',
     'yes' => 'Yes',
-    'no' => 'No'
+    'no' => 'No',
+    'please choose your attendance:' => 'Please choose your attendance:',
+    'session 1 (soil health)' => 'Session 1 (Soil Health)',
+    'session 2 (sustainable use of pesticides)' => 'Session 2 (Sustainable Use of Pesticides)',
+    'session 3 (dialogue on food loss, waste and sustainable consumption)' => 'Session 3 (Dialogue on Food Loss, Waste and Sustainable Consumption)',
+    'lunch' => 'Lunch'
 ];
