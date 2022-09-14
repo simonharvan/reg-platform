@@ -24,7 +24,7 @@ return [
     'confirmationText' => 'You will receive a confirmation email shortly. Please read carefully the information included in the confirmation email.<br>(You can close the present page.)',
 
 
-    'save' => 'REGISTER',
+    'save' => '登録',
 
     'operations' => 'Operations',
 
