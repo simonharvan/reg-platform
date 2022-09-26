@@ -105,7 +105,7 @@ class RegistrationController extends Controller
 
         foreach ($input as $key => $value) {
             if (!empty($value) && is_array($value)) {
-                $input[$key] = implode(', ', $value);
+                $input[$key] = implode('; ', $value);
             }
         }
 
