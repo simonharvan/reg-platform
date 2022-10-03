@@ -41,14 +41,18 @@
                                 <th>{{ __('app.operations') }}</th>
 
                                 @foreach($list as $key)
-                                    <th>
-                                        @if (isset($form) && isset($form->$key->label))
+                                    @if (isset($form) && $form->$key->type === 'note')
+                                        @continue
+                                    @elseif (isset($form) && isset($form->$key->label))
+                                        <th>
                                             {{-- This is to check whether the label is suppose to be translated. It is if the first character is `.` --}}
                                             {{ substr($form->$key->label, 0, 1) == '.' ? trans('registration'. $form->$key->label) : ucwords(str_replace('_', ' ', $form->$key->label)) }}
-                                        @else
+                                        </th>
+                                    @else
+                                        <th>
                                             {{ ucwords(str_replace('_', ' ', $key)) }}
-                                        @endif
-                                    </th>
+                                        </th>
+                                    @endif
                                 @endforeach
 
 
@@ -60,13 +64,13 @@
                                     <td>
                                         <a href="{{ URL::action('RegistrationController@show', array($registration->id)) }}"
                                            class="btn btn-info btn-circle" data-following="false"><i
-                                                    class="fa fa-search"></i></a>
+                                                class="fa fa-search"></i></a>
                                         <a href="{{ URL::action('RegistrationController@edit', array($registration->id)) }}"
                                            class="btn btn-info btn-circle" data-following="false"><i
-                                                    class="fa fa-edit"></i></a>
+                                                class="fa fa-edit"></i></a>
                                         <a href="{{ URL::action('RegistrationController@destroy', array($registration->id)) }}"
                                            class="btn btn-danger btn-circle delete-btn" data-following="false"><i
-                                                    class="fa fa-trash-alt" data-id="{{ $registration->id }}"></i></a>
+                                                class="fa fa-trash-alt" data-id="{{ $registration->id }}"></i></a>
                                         {{--<a href="{{ URL::action('RegistrationController@downloadBadge', array($registration->id)) }}"--}}
                                         {{--class="btn btn-info btn-circle" data-following="false"><i class="fas fa-id-badge" aria-hidden="true"></i></a>--}}
                                     </td>
@@ -76,9 +80,11 @@
                                                 <td>
                                                     <a href="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
                                                        target="_blank"><img
-                                                                src="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
-                                                                class="img-responsive"></a>
+                                                            src="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
+                                                            class="img-responsive"></a>
                                                 </td>
+                                            @elseif (isset($form) && $form->$key->type === 'note')
+                                                @continue
                                             @else
                                                 <td>{{ $registration->$key }}</td>
                                             @endif
@@ -107,30 +113,38 @@
 
 
 @section('javascript')
-
     <script type="text/javascript">
-    $(document).ready(function () {
-      $('.delete-btn').click((e) => {
-        e.preventDefault();
-        if (confirm('Do you really want to delete this registration?')) {
-          console.log('registration/' + e.target.dataset.id);
-          $.ajax({
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: 'registration/' + e.target.dataset.id,
-            type: 'DELETE',
-            success: function (result) {
-              document.location.href = '/registration';
-            },
-            error: function (result) {
-              console.error(result);
-              alert('Something went wrong, please try again');
-            }
-          });
-        }
-      })
-    });
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                lengthMenu: [
+                    [25, 50, -1],
+                    [25, 50, 'All']
+                ],
+                scrollX: true,
+                scrollY: '50vh',
+                scrollCollapse: false
+            });
+            $('.delete-btn').click((e) => {
+                e.preventDefault();
+                if (confirm('Do you really want to delete this registration?')) {
+                    console.log('registration/' + e.target.dataset.id);
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: 'registration/' + e.target.dataset.id,
+                        type: 'DELETE',
+                        success: function (result) {
+                            document.location.href = '/registration';
+                        },
+                        error: function (result) {
+                            console.error(result);
+                            alert('Something went wrong, please try again');
+                        }
+                    });
+                }
+            })
+        });
     </script>
 
 @stop

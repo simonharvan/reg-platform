@@ -40,14 +40,15 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
           type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
           integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
     {{ Html::style('css/sb-admin.css') }}
     {{ Html::style('css/ladda-themeless.min.css') }}
     {{ Html::style('css/flag-icon.min.css') }}
-    {{ Html::style('css/dataTables.bootstrap.css') }}
     {{ Html::style('css/app.css?version=1.0.0') }}
+
 
 </head>
 
@@ -184,7 +185,7 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script type="text/javascript"
         src="https://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
-
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 {{ Html::script('js/bootstrap.min.js') }}
 
 <script>
