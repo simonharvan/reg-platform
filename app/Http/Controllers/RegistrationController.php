@@ -125,18 +125,18 @@ class RegistrationController extends Controller
             if ($request::hasFile('passport_copy')) {
                 $registration->passport_copy = $this->uploadImage(Session::get('event_id', 0), 'passport_copy');
                 $registration->save();
-                $files[] = $this->filePath($registration->id, 'passport_copy');
+                $files[] = $registration->filePath($registration->id, 'passport_copy');
             }
             if ($request::hasFile('visa_copy')) {
                 $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0), 'visa_copy');
                 $registration->save();
-                $files[] = $this->filePath($registration->id, 'visa_copy');
+                $files[] = $registration->filePath($registration->id, 'visa_copy');
             }
 
             if ($request::hasFile('additional_file')) {
                 $registration->additional_file = $this->uploadImage(Session::get('event_id', 0), 'additional_file');
                 $registration->save();
-                $files[] = $this->filePath($registration->id, 'additional_file');
+                $files[] = $registration->filePath($registration->id, 'additional_file');
             }
 
             $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
@@ -310,8 +310,8 @@ class RegistrationController extends Controller
             return abort(404);
         }
 
-        $pathToFile = $this->filePath($id, $file);
-        if (!file_exists($pathToFile)) {
+        $pathToFile = $registration->filePath($file);
+        if (!$registration->hasImage($file)) {
             return abort(404);
         }
 

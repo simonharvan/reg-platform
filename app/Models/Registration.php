@@ -99,5 +99,16 @@ class Registration extends Model {
 		$this->attributes['attending_dates'] = $value;
 	}
 
+    public function hasImage($type) {
+        if (!empty($this->$type)) {
+            return file_exists($this->filePath($type));
+        }
+        return false;
+    }
+
+    public function filePath($file)
+    {
+        return base_path() . '/storage/app/public/event_' . $this->event_id . '/' . $this->$file;
+    }
 
 }

@@ -33,7 +33,7 @@
                     @endif
                 </td>
                 <td>
-                    @if (isset($form) && $form->$key->type === 'file' && !empty($key)))
+                    @if (isset($form) && $form->$key->type === 'file' &&  $registration->hasImage($key))
                         <a href="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
                            target="_blank"><img
                                 src="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
