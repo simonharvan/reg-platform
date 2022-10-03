@@ -76,7 +76,7 @@
                                     </td>
                                     @if (!empty($registrations[0]))
                                         @foreach($list as $key)
-                                            @if (isset($form) && $form->$key->type === 'file')
+                                            @if (isset($form) && $form->$key->type === 'file' && !empty($key))
                                                 <td>
                                                     <a href="{{ URL::to('registration/' . $registration->id . '/download/' . $key) }}"
                                                        target="_blank"><img
