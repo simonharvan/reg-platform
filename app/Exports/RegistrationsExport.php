@@ -86,7 +86,7 @@ class RegistrationsExport implements FromArray, WithHeadings {
 			$registration = [];
 			foreach ( $this->keys as $key => $value ) {
 				if ( isset( $helperCheckboxes[ $key ] ) ) {
-					if ( in_array( $key, explode( ', ', $item[ $helperCheckboxes[ $key ] ] ) ) ) {
+					if ( in_array( $key, explode( '; ', $item[ $helperCheckboxes[ $key ] ] ) ) ) {
 						$registration[] = '✓';
 					} else {
 						$registration[] = '';
