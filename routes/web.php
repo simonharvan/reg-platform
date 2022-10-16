@@ -8,6 +8,7 @@ use App\Models\EventText;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
@@ -87,20 +88,7 @@ Route::get( 'language/{lang}', function ( $lang ) {
 } );
 
 
-Route::get( 'welcome-page', function () {
-	$code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
-
-    if (!isset($code_text)) {
-        $code_text = CodeText::where('code_id', '=', Session::get('code_id'))->first();
-        if (!isset($code_text)) {
-            return Redirect::to('/registration/create');
-        }
-
-        Session::put('lang', $code_text->language_code);
-        App::setLocale($code_text->language_code);
-    }
-    return View::make('welcome-page', array('welcome_text' => $code_text->instructions));
-} );
+Route::get( 'welcome-page', 'WelcomePageController@index');
 
 Route::get( 'event-page/{id}', function ( $id ) {
 	$event_page = EventPage::where( 'id', '=', $id )

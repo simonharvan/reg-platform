@@ -15,8 +15,7 @@ $event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->
 $event_links = EventLink::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 $is_welcome_page_available = true;
 $code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
-$code_text_2 = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->first();
-if (!isset($code_text) && !isset($code_text_2)) {
+if (!isset($code_text)) {
     $is_welcome_page_available = false;
 }
 $is_registration_available = isset($event->available_until) && strtotime($event->available_until) >= time();
