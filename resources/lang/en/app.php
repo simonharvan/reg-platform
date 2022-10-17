@@ -27,10 +27,9 @@ return [
     'save' => 'REGISTER',
 
     'operations' => 'Operations',
-    'approved' => 'Approved',
 
     'close' => 'Close',
     'termsAndConditions' => 'Terms & Conditions',
-    'agreeTermsAndConditions' => 'I agree to <a data-toggle="modal" data-target="#termsAndConditions">terms & conditions</a>',
-    'clickHereToFinish' => 'Click here to finish your registration'
+    'agreeTermsAndConditions' => 'I agree to <a data-toggle="modal" data-target="#termsAndConditions">terms & conditions</a>'
+
 ];

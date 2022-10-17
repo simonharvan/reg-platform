@@ -65,8 +65,6 @@ class Registration extends Model {
 		'additional_field_9',
 		'additional_field_10',
 		'remark',
-        'approval_token',
-        'language'
 	);
 
 	public static $rules = array(
