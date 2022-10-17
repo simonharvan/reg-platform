@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\EventForm;
 use App\Models\EventText;
 use App\Models\Registration;
+use DateTimeImmutable;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
@@ -16,9 +17,16 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
+use Lcobucci\JWT\Encoding\ChainedFormatter;
+use Lcobucci\JWT\Encoding\JoseEncoder;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
+use Lcobucci\JWT\Signer\Key\InMemory;
+use Lcobucci\JWT\Token\Builder;
+use Lcobucci\JWT\Token\Plain;
 use Maatwebsite\Excel\Facades\Excel;
 
 class RegistrationController extends Controller
@@ -32,16 +40,18 @@ class RegistrationController extends Controller
     public function index()
     {
         $group_id = Session::get('group_id', 0);
-        if ($group_id < 2) {
+        if ($group_id != 3) {
             return Redirect::route('registration.create');
         }
 
         $registrations = Registration::where('event_id', '=', Session::get('event_id'))->orderBy('created_at', 'DESC')->get();
         $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
+        $event = Event::where('id', '=', Session::get('event_id'))->first();
 
         return View::make('registration.index')
             ->with('registrations', $registrations)
-            ->with('event_form', $event_form);
+            ->with('event_form', $event_form)
+            ->with('event', $event);
     }
 
 
@@ -102,7 +112,6 @@ class RegistrationController extends Controller
 
         $rules = Registration::$rules;
 
-
         foreach ($input as $key => $value) {
             if (!empty($value) && is_array($value)) {
                 $input[$key] = implode('; ', $value);
@@ -119,6 +128,7 @@ class RegistrationController extends Controller
             $registration->fill($input);
             $registration->event_id = Session::get('event_id', 0);
             $registration->group_id = Session::get('group_id', 0);
+            $registration->language = App::getLocale();
             $registration->save();
 
             $files = [];
@@ -170,14 +180,14 @@ class RegistrationController extends Controller
      *
      * @return Response
      */
-    public function show($id)
+    public function show($registration)
     {
         $group_id = Session::get('group_id', 0);
-        if ($group_id < 2) {
+        if ($group_id != 3) {
             return Redirect::route('registration.create');
         }
         $event_form = EventForm::where('event_id', '=', Session::get('event_id'))->first();
-        $registration = Registration::find($id);
+        $registration = Registration::find($registration);
 
         return View::make('registration.show')
             ->with('registration', $registration)
@@ -293,6 +303,62 @@ class RegistrationController extends Controller
         return response('Success', 200);
     }
 
+    public function approve($id)
+    {
+        if (!isset($id) || $id === 'undefined') {
+            return Response::json(['message' => 'Registration not Found!'], 404);
+        }
+
+        $registration = Registration::find($id);
+
+        if (!isset($registration)) {
+            return Response::json(['message' => 'Registration not Found!'], 404);
+        }
+
+        $event = Event::find(Session::get('event_id'));
+
+        if (!isset($event)) {
+            return Response::json(['message' => 'Event not Found!'], 404);
+        }
+
+        $for_event_id = $event->approval_for_event_id;
+        $key = InMemory::base64Encoded(env('JWT_KEY'));
+        $now = new DateTimeImmutable();
+        $tokenBuilder = (new Builder(new JoseEncoder(), ChainedFormatter::default()));
+        $algorithm = new Sha256();
+        $token = $tokenBuilder
+            ->issuedBy('https://reg.nookom.eu')
+            ->withClaim('from_event_id', $event->id)
+            ->withClaim('to_event_id', $for_event_id)
+            ->withClaim('registration_id', $registration->id)
+            ->expiresAt($now->modify('+7 day'))
+            ->getToken($algorithm, $key);
+
+        $event_text = EventText::where('event_id', '=', Session::get('event_id'))
+            ->where('language_code', '=', $registration->language)
+            ->first();
+        if (!isset($event_text)) {
+            $event_text = EventText::where('event_id', '=', Session::get('event_id'))
+                ->first();
+        }
+
+        Mail::send('emails.approval', [
+            'registration' => $registration,
+            'event_text' => $event_text,
+            'approval_url' => $this->getApprovalUrl($token)
+        ], function ($message) use ($registration, $event, $event_text) {
+            $message->from('reg-platform@nookom.eu', 'Registration Platform');
+            $message->to($registration->email)->cc($event->email_cc)->replyTo($event->email_reply_to);
+            $message->subject($event_text->approval_email_subject);
+            if (isset($registration->language)) {
+                $message->locale($registration->language);
+            }
+        });
+
+        return Response::json(['message' => 'Success']);
+    }
+
+
     public function downloadExcel()
     {
         return Excel::download(new RegistrationsExport(Session::get('event_id')), 'registrations.xlsx');
@@ -318,12 +384,6 @@ class RegistrationController extends Controller
         return Response::download($pathToFile);
     }
 
-    private function filePath($id, $file)
-    {
-        $registration = Registration::find($id);
-        return base_path() . '/storage/app/public/event_' . $registration->event_id . '/' . $registration->$file;
-    }
-
     private function uploadImage($event_id, $field_name)
     {
         $file = Request::file($field_name);
@@ -340,5 +400,8 @@ class RegistrationController extends Controller
         return $filename;
     }
 
-
+    private function getApprovalUrl(Plain $token)
+    {
+        return URL::action('RegistrationController@finish', ['token' => $token->toString()]);
+    }
 }

@@ -67,7 +67,7 @@ Route::post( '/', function ( Request $request ) {
 	}
 
 	return View::make( 'login', array( 'error_message' => [ $error_message ] ) );
-} );
+});
 
 
 Route::get( 'logout', function () {
@@ -122,6 +122,9 @@ Route::get( 'thankyou', function () {
 Route::get( 'registration/{id}/download/{file}', 'RegistrationController@downloadImage' );
 Route::get( 'registration/downloadExcel', 'RegistrationController@downloadExcel' );
 Route::resource( 'registration', 'RegistrationController' );
+
+Route::post( 'registration/{id}/approve', 'RegistrationController@approve' );
+Route::get( 'registration/finish', 'RegistrationController@finish' );
 
 
 Route::group( [ 'prefix' => 'admin' ], function () {

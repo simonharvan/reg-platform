@@ -7,14 +7,8 @@ use App\Models\Event;
 use App\Models\EventLink;use App\Models\EventPage;
 use App\Models\EventText;
 use App\Models\EventMenuItem;
-$event = Event::find( Session::get( 'event_id' ) );
 
-$event_text = EventText::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
-$event_menu_items = EventMenuItem::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
-$event_pages = EventPage::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
-$event_links = EventLink::where( 'event_id', '=', Session::get( 'event_id' ) )->where( 'language_code', '=', App::getLocale() )->get();
 $is_welcome_page_available = true;
-$code_text = CodeText::where( 'code_id', '=', Session::get( 'code_id' ) )->where( 'language_code', '=', App::getLocale() )->first();
 if (!isset($code_text)) {
     $is_welcome_page_available = false;
 }

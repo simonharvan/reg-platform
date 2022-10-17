@@ -39,6 +39,9 @@
                             <thead>
                             <tr>
                                 <th>{{ __('app.operations') }}</th>
+                                @if (isset($event->approval_for_event_id))
+                                    <th>{{ __('app.approved') }}</th>
+                                @endif
 
                                 @foreach($list as $key)
                                     @if (isset($form) && $form->$key->type === 'note')
@@ -69,11 +72,21 @@
                                            class="btn btn-info btn-circle" data-following="false"><i
                                                 class="fa fa-edit"></i></a>
                                         <a href="{{ URL::action('RegistrationController@destroy', array($registration->id)) }}"
-                                           class="btn btn-danger btn-circle delete-btn" data-following="false"><i
+                                           class="btn btn-danger btn-circle delete-btn" data-following="false" data-id="{{ $registration->id }}"><i
                                                 class="fa fa-trash-alt" data-id="{{ $registration->id }}"></i></a>
-                                        {{--<a href="{{ URL::action('RegistrationController@downloadBadge', array($registration->id)) }}"--}}
-                                        {{--class="btn btn-info btn-circle" data-following="false"><i class="fas fa-id-badge" aria-hidden="true"></i></a>--}}
+                                        @if (isset($event->approval_for_event_id) && empty($registration->approval_token))
+                                            <a href="{{ URL::action('RegistrationController@destroy', array($registration->id)) }}"
+                                               class="btn btn-success btn-circle approve-btn" data-following="false" data-id="{{ $registration->id }}"><i
+                                                    class="fa fa-thumbs-up" data-id="{{ $registration->id }}"></i></a>
+                                        @endif
                                     </td>
+                                    @if (isset($event->approval_for_event_id))
+                                        <td>
+                                            @if (!empty($registration->approval_token))
+                                                <i class="fa fa-check"></i>
+                                            @endif
+                                        </td>
+                                    @endif
                                     @if (!empty($registrations[0]))
                                         @foreach($list as $key)
 
@@ -127,16 +140,39 @@
             });
             $('.delete-btn').click((e) => {
                 e.preventDefault();
+                let targetID = $(e.target).attr('data-id');
                 if (confirm('Do you really want to delete this registration?')) {
-                    console.log('registration/' + e.target.dataset.id);
+                    console.log('registration/' + targetID);
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: 'registration/' + e.target.dataset.id,
+                        url: 'registration/' + targetID,
                         type: 'DELETE',
                         success: function (result) {
                             document.location.href = '/registration';
+                        },
+                        error: function (result) {
+                            console.error(result);
+                            alert('Something went wrong, please try again');
+                        }
+                    });
+                }
+            })
+            $('.approve-btn').click((e) => {
+                e.preventDefault();
+                let targetID = $(e.target).attr('data-id');
+                console.log('registration/' + targetID + '/approve');
+                if (confirm('Do you really want to approve this registration?')) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: 'registration/' + targetID + '/approve',
+                        type: 'POST',
+                        success: function (result) {
+                            console.log(result);
+                            // document.location.href = '/registration';
                         },
                         error: function (result) {
                             console.error(result);
