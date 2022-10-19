@@ -39,6 +39,9 @@ class CreateFormController extends VoyagerBaseController
                 if (isset($new_parameters[$key]['type'])) {
                     $new_parameters[$key]['type'] = Str::slug($new_parameters[$key]['type']);
                 }
+                if (isset($new_parameters[$key]['order']) && is_numeric($new_parameters[$key]['order'])) {
+                    $new_parameters[$key]['order'] = (int) $new_parameters[$key]['order'];
+                }
 
                 if (isset($new_parameters[$key]['groups'])) {
                     $new_parameters[$key]['groups'] = json_decode($new_parameters[$key]['groups']);
