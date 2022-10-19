@@ -23,7 +23,6 @@ class CreateFormController extends VoyagerBaseController
                 }
                 $new_parameters[$key] = $value;
                 unset($new_parameters[$key]['required']);
-                $new_parameters[$key]['order'] = $order_additional;
                 $order_additional++;
                 if ($key === 'additional_file') {
                     $new_parameters[$key]['type'] = 'file';
@@ -41,6 +40,8 @@ class CreateFormController extends VoyagerBaseController
                 }
                 if (isset($new_parameters[$key]['order']) && is_numeric($new_parameters[$key]['order'])) {
                     $new_parameters[$key]['order'] = (int) $new_parameters[$key]['order'];
+                } else {
+                    $new_parameters[$key]['order'] = $order_additional;
                 }
 
                 if (isset($new_parameters[$key]['groups'])) {
