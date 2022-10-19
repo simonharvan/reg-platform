@@ -38,7 +38,7 @@ $(document).ready(() => {
         $('.create-form-parameters .add-file').css('display', this.value === '1' ? 'block' : 'none')
     });
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i <= 20; i++) {
         $('.create-form-parameters [name=additional_field_' + i + '\\[value\\]]').click(function () {
             $('.create-form-parameters .add-field-' + i).css('display', this.value === '1' ? 'block' : 'none')
         });
