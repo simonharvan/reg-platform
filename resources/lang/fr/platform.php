@@ -11,7 +11,7 @@ return [
 
     'title' => 'Registration platform',
     'welcome' => 'Bienvenue',
-    'register' => 'Enregistrement',
+    'register' => 'S\'inscrire',
     'registered' => 'Registered',
     'statistics' => 'Statistics',
     'logout' => 'Logout',

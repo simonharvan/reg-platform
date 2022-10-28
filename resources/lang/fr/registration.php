@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'prefix' => 'Prefix',
+	'prefix' => 'Titre',
 	'first_name' => 'Prénom',
     'last_name' => 'Nom',
     'organization' => 'Organisation',
@@ -38,5 +38,7 @@ return [
 	'remark' => 'Other particular requirements and comments',
     'covid_disclaimer_copy' => 'Merci d’attacher votre Document « clause de non-responsabilité covid » signé et scanné',
     'yes' => 'Oui',
-    'no' => 'Non'
+    'no' => 'Non',
+    'mrs' => 'Mme',
+    'ms' => 'n/a'
 ];
