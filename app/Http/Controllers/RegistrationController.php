@@ -125,18 +125,18 @@ class RegistrationController extends Controller
             if ($request::hasFile('passport_copy')) {
                 $registration->passport_copy = $this->uploadImage(Session::get('event_id', 0), 'passport_copy');
                 $registration->save();
-                $files[] = $registration->filePath($registration->id, 'passport_copy');
+                $files[] = $registration->filePath('passport_copy');
             }
             if ($request::hasFile('visa_copy')) {
                 $registration->visa_copy = $this->uploadImage(Session::get('event_id', 0), 'visa_copy');
                 $registration->save();
-                $files[] = $registration->filePath($registration->id, 'visa_copy');
+                $files[] = $registration->filePath('visa_copy');
             }
 
             if ($request::hasFile('additional_file')) {
                 $registration->additional_file = $this->uploadImage(Session::get('event_id', 0), 'additional_file');
                 $registration->save();
-                $files[] = $registration->filePath($registration->id, 'additional_file');
+                $files[] = $registration->filePath('additional_file');
             }
 
             $event_text = EventText::where('event_id', '=', Session::get('event_id'))->where('language_code', '=', App::getLocale())->first();
@@ -244,6 +244,12 @@ class RegistrationController extends Controller
     {
         $input = Request::all();
         $registration = Registration::find($id);
+
+        foreach ($input as $key => $value) {
+            if (!empty($value) && is_array($value)) {
+                $input[$key] = implode('; ', $value);
+            }
+        }
 
         $rules = Registration::$rules;
         $v = Validator::make($input, $rules);
