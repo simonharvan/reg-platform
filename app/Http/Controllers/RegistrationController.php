@@ -245,17 +245,18 @@ class RegistrationController extends Controller
         $input = Request::all();
         $registration = Registration::find($id);
 
-        foreach ($input as $key => $value) {
-            if (!empty($value) && is_array($value)) {
-                $input[$key] = implode('; ', $value);
-            }
-        }
-
         $rules = Registration::$rules;
         $v = Validator::make($input, $rules);
 
         if ($v->passes()) {
             $input = Request::except('_method');
+
+            foreach ($input as $key => $value) {
+                if (!empty($value) && is_array($value)) {
+                    $input[$key] = implode('; ', $value);
+                }
+            }
+
             $registration->fill($input);
             $registration->save();
 
