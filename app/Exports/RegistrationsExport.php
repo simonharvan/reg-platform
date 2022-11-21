@@ -55,11 +55,12 @@ class RegistrationsExport implements FromArray, WithHeadings {
 					$filteredAndLabelKeys
 				);
 			} else {
-				$this->keys = array_merge( array_keys( $first->toArray() ), [ 'group' ] );
+				$this->keys = array_merge( array_keys( $first->toArray() ), [ 'group'] );
 			}
 		} else {
 			$this->keys = [];
 		}
+        $this->keys['created_at'] = 'Registered at';
 
 		$this->keys = array_map( function ( $item ) {
 			return ucfirst( str_replace( '_', ' ', $item ) );
@@ -71,9 +72,9 @@ class RegistrationsExport implements FromArray, WithHeadings {
 					return isset( $event_form->$property );
 				}, ARRAY_FILTER_USE_KEY );
 
-
 				return array_merge( [
-					'group' => $item['group']['name']
+					'group' => $item['group']['name'],
+                    'created_at' => date('d.m.y G:i:s ', strtotime($item['created_at']))
 				], array_map( function ( $property ) {
 					return strip_tags( $property );
 				}, $array ) );
@@ -98,7 +99,6 @@ class RegistrationsExport implements FromArray, WithHeadings {
 						$registration[] = '';
 					}
 				}
-
 			}
 
 			return $registration;
