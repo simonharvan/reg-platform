@@ -69,7 +69,7 @@
                                            class="btn btn-info btn-circle" data-following="false"><i
                                                 class="fa fa-edit"></i></a>
                                         <a href="{{ URL::action('RegistrationController@destroy', array($registration->id)) }}"
-                                           class="btn btn-danger btn-circle delete-btn" data-following="false"><i
+                                           class="btn btn-danger btn-circle delete-btn" data-following="false" data-id="{{ $registration->id }}"><i
                                                 class="fa fa-trash-alt" data-id="{{ $registration->id }}"></i></a>
                                         {{--<a href="{{ URL::action('RegistrationController@downloadBadge', array($registration->id)) }}"--}}
                                         {{--class="btn btn-info btn-circle" data-following="false"><i class="fas fa-id-badge" aria-hidden="true"></i></a>--}}
