@@ -116,7 +116,7 @@
 @section('javascript')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#dataTables-example').DataTable({
+            var table = $('#dataTables-example').DataTable({
                 lengthMenu: [
                     [25, 50, -1],
                     [25, 50, 'All']
@@ -125,8 +125,9 @@
                 scrollY: '50vh',
                 scrollCollapse: false
             });
-            $('.delete-btn').click((e) => {
+            $('#dataTables-example').on('click', '.delete-btn', function (e) {
                 e.preventDefault();
+                console.log('registration/' + e.target.dataset.id);
                 if (confirm('Do you really want to delete this registration?')) {
                     console.log('registration/' + e.target.dataset.id);
                     $.ajax({
@@ -144,7 +145,7 @@
                         }
                     });
                 }
-            })
+            });
         });
     </script>
 
