@@ -152,6 +152,8 @@
                             {!! Former::radios($key)->radios($options)->inline()->label($label)  !!}
                         @elseif($item->type === 'file')
                             {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
+                        @elseif($item->type === 'select')
+                            {!! Former::select($key)->options($item->options) !!}
                         @endif
                     @endif
                 @endforeach
@@ -229,6 +231,8 @@
                             {!! Former::radios($key)->radios($options)->inline()->label($label)  !!}
                         @elseif($item->type === 'file')
                             {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
+                        @elseif($item->type === 'select')
+                            {!! Former::select($key)->options($item->options) !!}
                         @endif
                     @endif
                 @endforeach
@@ -312,6 +316,8 @@
                             {!! Former::radios($key)->radios($options)->inline()->label($label)  !!}
                         @elseif($item->type === 'file')
                             {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
+                        @elseif($item->type === 'select')
+                            {!! Former::select($key)->options($item->options) !!}
                         @endif
                     @endif
                 @endforeach
@@ -391,6 +397,8 @@
                             {!! Former::radios($key)->radios($options)->label($label)  !!}
                         @elseif($item->type === 'file')
                             {!! Former::file($key)->accept($item->options->mime)->label($label) !!}
+                        @elseif($item->type === 'select')
+                            {!! Former::select($key)->options($item->options) !!}
                         @endif
                     @endif
                 @endforeach
