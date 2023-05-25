@@ -39,7 +39,7 @@
                             <thead>
                             <tr>
                                 <th>{{ __('app.operations') }}</th>
-
+                                <th>Group</th>
                                 @foreach($list as $key)
                                     @if (isset($form) && $form->$key->type === 'note')
                                         @continue
@@ -73,6 +73,9 @@
                                                 class="fa fa-trash-alt" data-id="{{ $registration->id }}"></i></a>
                                         {{--<a href="{{ URL::action('RegistrationController@downloadBadge', array($registration->id)) }}"--}}
                                         {{--class="btn btn-info btn-circle" data-following="false"><i class="fas fa-id-badge" aria-hidden="true"></i></a>--}}
+                                    </td>
+                                    <td>
+                                        {{ ucfirst($registration->group->name) }}
                                     </td>
                                     @if (!empty($registrations[0]))
                                         @foreach($list as $key)
