@@ -79,25 +79,27 @@ $is_registration_available = isset($event->available_until) && strtotime($event-
         </div>
         <!-- /.navbar-header -->
 
-        <ul class="nav navbar-top-links navbar-right">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="flag-icon flag-icon-{{App::getLocale()}}"></i> <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    @foreach ($event->languages as $language)
-                        @if ($language->language_code!= App::getLocale())
-                            <li><a href="{{ URL::to('/language/' . $language->language_code) }}"><span
-                                            class="flag-icon flag-icon-{{ $language->language_code }}"></span> {{ucfirst($language->language_name)}}
-                                </a></li>
-                        @endif
-                    @endforeach
-                </ul>
-                {{--<!-- /.dropdown-language -->--}}
-            </li>
-            {{--<!-- /.dropdown -->--}}
-        </ul>
-        <!-- /.navbar-top-links -->
+        @if (count($event->languages) > 1)
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="flag-icon flag-icon-{{App::getLocale()}}"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        @foreach ($event->languages as $language)
+                            @if ($language->language_code!= App::getLocale())
+                                <li><a href="{{ URL::to('/language/' . $language->language_code) }}"><span
+                                                class="flag-icon flag-icon-{{ $language->language_code }}"></span> {{ucfirst($language->language_name)}}
+                                    </a></li>
+                            @endif
+                        @endforeach
+                    </ul>
+                    {{--<!-- /.dropdown-language -->--}}
+                </li>
+                {{--<!-- /.dropdown -->--}}
+            </ul>
+            <!-- /.navbar-top-links -->
+        @endif
 
         <div class="navbar-default navbar-static-side upper-margin-div" role="navigation">
             <div class="sidebar-collapse">
