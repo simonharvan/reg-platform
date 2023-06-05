@@ -27,8 +27,11 @@ class RegistrationsExport implements FromArray, WithHeadings {
 		$helperCheckboxes = [];
 		if ( isset( $first ) ) {
 			if ( isset( $event_form ) ) {
+                $vars = get_object_vars( $event_form );
+                uasort($vars, 'sortForm');
+
 				$checkboxesAddedKeys = [];
-				foreach ( get_object_vars( $event_form ) as $key => $form_item ) {
+				foreach ( $vars as $key => $form_item ) {
 					if ( $form_item->type === 'checkboxes' ) {
 						foreach ( $form_item->options as $option ) {
 							$helperCheckboxes[ strip_tags( $option ) ] = $key;
@@ -65,8 +68,7 @@ class RegistrationsExport implements FromArray, WithHeadings {
 		$this->keys = array_map( function ( $item ) {
 			return ucfirst( str_replace( '_', ' ', $item ) );
 		}, $this->keys );
-
-		if ( isset( $event_form ) ) {
+        if ( isset( $event_form ) ) {
 			$this->registrations = array_map( function ( $item ) use ( $event_form ) {
 				$array = array_filter( $item, function ( $property ) use ( $event_form, $item ) {
 					return isset( $event_form->$property );
