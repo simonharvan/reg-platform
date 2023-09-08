@@ -65,6 +65,8 @@ return [
     'organisation/company' => 'Organización/Empresa',
     'please select your attendance on 12 september 2023' => 'Seleccione su asistencia el 12 de septiembre de 2023',
     'please select your attendance on 13 september 2023' => 'Seleccione su asistencia el 13 de septiembre de 2023',
+    'please select your attendance on day 1' => 'Por favor seleccione su asistencia el día 1',
+    'please select your attendance on day 2' => 'Por favor seleccione su asistencia el día 2',
     'online' => 'En línea',
     'can\'t attend' => 'No puedo asistir',
     'please choose your attendance:' => 'Please choose your attendance:',
